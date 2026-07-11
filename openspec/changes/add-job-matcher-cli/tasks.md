@@ -234,8 +234,27 @@ moves to **approved**.
       streamed grounded answer: **81/100 strong_match** with the exact
       deterministic recommendation string and evidence quotes; `done`
       event terminated the stream
-- [ ] Manual, owner: point the neutral chatbot's `VITE_API_ENDPOINT` at
-      the agent service and repeat through the UI — record evidence here
+- [x] **Wire-level round trip verified (2026-07-11)** against the real
+      neutral chatbot (`github.com/senthilsweb/mcp-chat-client`, whose
+      `.env.example` already ships `VITE_API_ENDPOINT=http://127.0.0.1:8006`
+      — same repo, no divergence). This surfaced and fixed two real gaps
+      rather than just confirming config compatibility: (1) the widget's
+      `uploadFile()` was dead code, never wired to any UI control — fixed
+      upstream (atomic attach+send, upload-progress state, attachment
+      chip); (2) our `/upload` never returned the `content` field the
+      widget's contract folds into chat — fixed here (`app.py`). Full
+      round trip driven with the widget's exact request/response
+      handling replicated at the wire level: upload → fold `content`
+      into the message → `🔧 analyze_job_fit` tool notice → streamed
+      grounded answer (78/100 good_match, Gusto JD) → `done`. See ADR
+      0001's correction and design.md's upload-flow correction for
+      detail. Both repos' test suites re-verified green after the fix
+      (backend 96, agent-service 6, widget `tsc`/`build` clean).
+- [ ] **Manual, owner — still open:** the above proves the contract at
+      the HTTP/SSE level, replicating the widget's logic exactly; it is
+      not the same as clicking through the actual browser UI. Load
+      `mcp-chat-client`'s dev server, attach a resume via the paperclip
+      button, and send — record evidence here to close this item.
 
 ## Bolt 9 — Live evals + verification ✅ (2026-07-11)
 
@@ -262,3 +281,31 @@ moves to **approved**.
       review recorded. Flipping to **VERIFIED** awaits the two owner
       manual evidence items: Claude Desktop mount (Bolt 7) and the
       neutral-chatbot UI run (Bolt 8); then archive per convention
+
+## Bolt 10 — Cover letter rendering (revision 7, not yet built)
+
+- [ ] `candidate.py` — deterministic extractors (email, phone, github,
+      linkedin, website, name) over already-extracted resume text;
+      `contact_line()` joins whichever fields were found; every field
+      `Optional[str]`, a miss is `None` never a guess
+- [ ] `job_matcher/templates/cover_letter.txt` — package-data default
+      template (concise two-line header + `Re:` line + body +
+      signature, per the design doc's exact text)
+- [ ] `prompts.py`'s `load_template()` gains a package-default fallback
+      (matching `load_prompt()`'s resolution order) — corrects the
+      earlier "no package default" statement
+- [ ] `pipeline.py`: extract candidate identity once per run (after
+      `extract_resume_text()`, not per job); `_cover_letter_text()`
+      passes the identity block + `re_line` + `date` to `render()`
+- [ ] Tests: `candidate.py` unit tests incl. deliberately-missing-field
+      fixtures (omission, not placeholder); template render test
+      (default active with no config, operator override takes
+      precedence, degrades line-by-line on missing fields); a
+      substring-grounding assertion tying every rendered identity value
+      back to `resume.txt` — all offline, `stub_analysis()` reused
+- [ ] Live smoke: one real run's `cover_letter_text` inspected for the
+      full header, `Re: <title> at <company>`, and the LLM body —
+      record evidence here
+- [ ] Re-run the full offline + live sweep to confirm no regression,
+      then this bolt's completion re-opens the VERIFIED gate check
+      alongside the two pre-existing manual evidence items

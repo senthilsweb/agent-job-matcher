@@ -48,6 +48,26 @@ Build `mcp/agent-service/` per option 3, with these bindings:
   directory (`AGENT_UPLOAD_DIR`, a shared volume when containerized);
   the returned server-side path feeds the existing `resume_path` flow
   unchanged — no new resume handling downstream.
+  **Correction (2026-07-11):** verifying against the actual chatbot
+  (`github.com/senthilsweb/mcp-chat-client`, confirmed to be "the
+  neutral chatbot" this ADR refers to) surfaced two real gaps, both
+  fixed:
+  1. The widget's own `uploadFile()` was dead code — no UI ever called
+     it, and `Chat.tsx` never wired the callback it exposed. Fixed
+     upstream in that repo: attach + send is now one atomic
+     `useChat.sendMessage(text, file)` call (uploads before streaming,
+     never races), with an upload-progress state and an attachment chip
+     on the sent message.
+  2. The widget's `UploadResponse` contract folds a `content` string
+     into the *next chat message* — it never reads `path`. Our
+     `/upload` originally returned only `path`/`filename`/`message`, so
+     even with the widget fixed, the model would never have learned
+     where the file landed. Fixed by adding `content` (a short note
+     carrying the path) alongside the existing fields.
+  Verified end-to-end (not just unit-tested): upload → widget-style
+  fold of `content` into the chat message → real `analyze_job_fit` MCP
+  tool call → grounded, scored streamed answer. This is the first real
+  proof the ADR's upload flow works as designed, not just as specified.
 - **Max reuse, minimum code:** the loop is pydantic-ai's MCP client
   (`MCPServerStdio` toolset over `mcp/index.js`), not a hand-rolled
   function-calling loop; the service imports `job_matcher`'s

@@ -144,7 +144,16 @@ async def upload(file: UploadFile = File(...)):
     target = upload_dir() / f"{safe_stem}-{uuid.uuid4().hex[:8]}{suffix}"
     target.write_bytes(await file.read())
     log.info("upload_stored", path=str(target))
-    return {"path": str(target), "filename": file.filename, "message": "Uploaded. Reference this path in chat."}
+    return {
+        "path": str(target),
+        "filename": file.filename,
+        # `content` is the field the mcp-chat-client widget (and any client
+        # following its UploadResponse contract) folds into the next chat
+        # message — it must carry the server path or the model never learns
+        # where the file landed.
+        "content": f"Resume uploaded — server path: {target}",
+        "message": "Uploaded. Reference this path in chat.",
+    }
 
 
 @app.get("/health")

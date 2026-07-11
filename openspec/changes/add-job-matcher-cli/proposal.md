@@ -1,11 +1,21 @@
 # Proposal: Add `job-matcher` backend (CLI + REST + embeddable core)
 
-> Status: **IMPLEMENTED** — 2026-07-11. All nine bolts built; HARD eval
-> sweep green (96 offline + 11 live on the mini model); SOFT
+> Status: **IMPLEMENTED**, Bolt 10 pending — 2026-07-11. Bolts 1-9 built;
+> HARD eval sweep green (96 offline + 11 live on the mini model); SOFT
 > observations reviewed and the band table recalibrated (rubrics.md §3).
+> Revision 7 adds cover-letter rendering (Bolt 10, not yet built).
 > → VERIFIED awaits two owner manual evidence items (Claude Desktop
-> mount, neutral-chatbot UI run), then archive.
+> mount, neutral-chatbot UI run) AND Bolt 10, then archive.
 > (APPROVED 2026-07-11: inception gate passed, all six questions resolved)
+>
+> Revision 7 (owner, 2026-07-11): cover-letter text rendering through a
+> shipped default template, with the candidate's identity block
+> (name/email/phone/GitHub/LinkedIn/website) sourced from the resume —
+> never hard-coded, per the talent-align prototype's banned
+> `CANDIDATE_INFO` pattern. Decision (resolved, not left open): identity
+> fields are extracted **deterministically** (regex over the already-
+> extracted resume text), not via a third LLM call — see design.md
+> "Cover letter rendering" for the reasoning.
 > Owner: @senthilsweb
 > Revision: 6 (owner, 2026-07-11: **agent service added to `mcp/`** —
 > the ctms-style REST/SSE chat bridge (`/chat/stream`, `/upload`) that
@@ -177,6 +187,20 @@ evals. It is the "before" picture and will be replaced by this change.
   extraction call (same pattern and model resolution as the analysis
   call); Pydantic models mirror the standard field-for-field, so the
   output is schema-valid by construction or the request fails loudly.
+- **Cover-letter rendering with a shipped default template** *(revision
+  7)*: `job_matcher` ships a default `cover_letter.txt` (package data),
+  used automatically when no operator override is staged under
+  `templates/` — a correction to the earlier "templates have no package
+  default, missing → plain text" behaviour, needed because a template
+  that never renders unless an operator supplies one isn't a shipped
+  feature. The template's identity block (name, one contact line with
+  whichever of email/phone/GitHub/LinkedIn/website are present) comes
+  from a new deterministic `candidate.py` module — regex extraction over
+  the resume text already in hand, computed once per run (not once per
+  job). No LLM call, no grounding risk (a regex match is definitionally
+  present in the source text), and no third LLM operation added to the
+  system (see ADR 0001's two-operation invariant). A missing field is
+  simply omitted from the contact line — never a fabricated placeholder.
 - **Agent service in `mcp/agent-service/`** *(revision 6)*: the
   conversational REST bridge modelled on the owner's ctms
   `agent_service_mcp_client.py` — a small FastAPI app exposing
@@ -302,6 +326,15 @@ evals. It is the "before" picture and will be replaced by this change.
     JD fixture returns the same typed JSON array as `POST /analyze`.
     The MCP server itself contains no REST endpoints (the agent
     service is the only HTTP face inside `mcp/`).
+16a. A run against the synthetic resume produces `cover_letter_text`
+    with: the candidate's name and a contact line built only from
+    fields actually present in the resume text (no placeholder for an
+    absent field), a `Re: <job title>[ at <company>]` line, and the
+    LLM-generated body paragraphs — all through the shipped default
+    template with zero operator configuration. Removing the resume's
+    GitHub URL from the fixture removes it from the contact line
+    without failing the run. An eval asserts every emitted identity
+    value is a literal substring of the extracted resume text.
 16. With the backend API and agent service running: `POST /upload`
     stores a resume into the configured temp directory and returns its
     server-side path; `POST /chat/stream` with a natural-language

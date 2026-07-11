@@ -244,6 +244,18 @@ mcp/
   LLM passes it as the MCP tool's `resume_path` → the backend's
   existing server-path mode takes over. No new resume handling code
   anywhere downstream.
+  **Correction (2026-07-11, post-implementation verification):** the
+  response body is `{path, filename, content, message}` — `content` was
+  added after wiring the real `mcp-chat-client` widget (the owner's
+  "neutral chatbot") and finding its `UploadResponse` contract folds a
+  `content` string into the *next chat message*, not `path`; the widget
+  never reads `path` at all. `content` is set to a short natural-language
+  note carrying the server path (`"Resume uploaded — server path:
+  <path>"`), which is what actually reaches the LLM's context — `path`
+  is kept for direct REST/MCP callers that bypass the chat contract.
+  Verified end-to-end: upload → fold `content` into the chat message →
+  `analyze_job_fit` tool call → grounded, scored answer (see Bolt 8
+  evidence in tasks.md).
 - **Two model roles, one policy:** `MODEL_CHAT` → `MODEL_ANALYST` →
   `MODEL` → error (mini tier default per the cost policy). LLM-2's
   spans ride the same observability facade (`openinference.span.kind`
@@ -264,6 +276,91 @@ mcp/
 - Tests: a Node-side smoke (`tools/list` + one `tools/call` against a
   stubbed fetch) — kept minimal; the contract weight stays in the
   backend's own evals.
+
+## Cover letter rendering (Bolt 10, revision 7)
+
+**Decision: deterministic identity extraction, not a third LLM call.**
+Candidate contact fields (email, phone, GitHub, LinkedIn, website,
+name) all follow strong-enough textual conventions — a regex-matchable
+format, or (for name) a fixed position at the top of the document — that
+parsing them in code is more reliable than asking a model, strictly
+cheaper, and structurally ungroundable-wrong: a regex match is by
+definition a literal substring of the source text, so there is no
+grounding guard to write or fail. It also keeps the system at exactly
+two LLM operations (ADR 0001) — this is not a third.
+
+- **`candidate.py`** — pure functions over the already-extracted resume
+  text (computed once per run, reused across every job in the fan-out,
+  never re-run per job):
+  - `email`: standard email regex, first match.
+  - `phone`: a short list of common formats (`(xxx) xxx-xxxx`,
+    `xxx-xxx-xxxx`, `xxx.xxx.xxxx`, `+1 xxx xxx xxxx`).
+  - `github` / `linkedin` / `website`: scan URL-like tokens
+    (`https?://\S+` and bare `domain.tld/...`), classify by hostname
+    (`github.com` → github, `linkedin.com` → linkedin, first remaining
+    URL → website).
+  - `name`: the first non-blank line of the resume text, accepted only
+    if short (≤ 60 chars), digit-free, and contains no `@`/`http` — the
+    standard resume convention of leading with the candidate's name.
+  - Every field is `Optional[str]`; a miss is `None`, never a guess.
+  - `contact_line()`: joins whichever of email/phone/github/linkedin/
+    website were found with `" · "` — an absent field is simply not in
+    the join, never a placeholder.
+- **Default template ships as package data**
+  (`job_matcher/templates/cover_letter.txt`), used automatically when no
+  operator override exists. **Correction to an earlier statement:** the
+  original design said templates have no package default and a missing
+  template means plain paragraphs — true for operator-supplied
+  templates, but a rendering feature that never activates without ops
+  configuration isn't shipped. `load_template()` gains the same
+  resolution order `load_prompt()` already has: `$TEMPLATES_DIR` →
+  `./templates/` → package default. An operator can still fully
+  override by staging their own file at either path.
+- **The template itself** (concise, per the owner's established style —
+  trimmed to a subtle two-line header instead of four, no repeated
+  contact block at the sign-off):
+
+  ```
+  {{candidate_name}}
+  {{candidate_contact_line}}
+
+  {{date}}
+
+  {{re_line}}
+
+  Dear Hiring Manager,
+
+  {{cover_letter_body}}
+
+  Sincerely,
+  {{candidate_name}}
+  ```
+
+  All placeholders are pre-resolved plain strings before the existing
+  mustache-lite `render()` runs — `render()` itself stays
+  conditional-free. `re_line` is assembled in Python:
+  `f"Re: {job_title}" + (f" at {company_name}" if company_name else "")`.
+  `date` is the run's `generated_at`, formatted human-readable
+  (`"July 11, 2026"`), never model-supplied.
+- **Wiring**: `pipeline.py`'s `_cover_letter_text()` gains the identity
+  block as additional `render()` arguments; candidate extraction runs
+  once in `run_analysis()` right after `extract_resume_text()`, not
+  inside the per-job task.
+- **Eval plan** (offline-first, matching the rest of the suite):
+  - `candidate.py` unit tests: each extractor against the synthetic
+    resume and hand-built fixtures with fields deliberately absent
+    (missing GitHub, missing phone, no LinkedIn) — confirms omission,
+    never a fabricated placeholder.
+  - Template-rendering test: the shipped default renders with the full
+    header when identity fields are present, degrades line-by-line when
+    they're absent, and an operator override under `templates/` takes
+    precedence — reusing the existing `stub_analysis()` fixture, no LLM
+    needed.
+  - One assertion tying it together: every literal value that appears in
+    a run's `cover_letter_text` (name, email, phone, URLs) is a
+    substring of that run's `resume.txt` — the same grounding shape used
+    elsewhere in the suite, here holding by construction rather than by
+    guard.
 
 ## Observability as aspects (AOP via decorators)
 
