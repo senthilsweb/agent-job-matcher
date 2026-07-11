@@ -1,13 +1,46 @@
 # agent-job-matcher — one-command launch (privacyshield pattern).
 #
-#   docker compose up -d api          # FastAPI on :8000 (arrives with Bolt 4)
+#   docker compose up -d api          # FastAPI on :8000
 #   docker compose run --rm cli version
 #   docker compose run --rm cli analyze \
 #     --resume /work/data/resume/synthetic-resume.pdf \
 #     --job https://example.com/job --out /work/runs
 #
-# Uses the published GHCR image; `docker compose build` rebuilds locally
-# (Dockerfile defaults shown there). Config comes from the root .env.
+# Uses the published GHCR image; `docker compose build` rebuilds locally.
+# Configuration: env_file loads the root .env; the environment blocks
+# below list every variable inline (documentation + per-run override via
+# `VAR=x docker compose up`). Inline entries use ${VAR:-default}
+# interpolation, which compose resolves from your shell and the root
+# .env — so .env remains the single source of truth. Empty values are
+# treated as unset by the app (telemetry backends stay inactive).
+
+x-jobmatcher-env: &jobmatcher-env
+  # --- model (required) ---
+  MODEL_ANALYST: ${MODEL_ANALYST:-openai:gpt-5.4-mini}
+  MODEL: ${MODEL:-}
+  OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+  ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+  # --- pipeline ---
+  JOB_FANOUT_CONCURRENCY: ${JOB_FANOUT_CONCURRENCY:-3}
+  JOB_MIN_WORDS: ${JOB_MIN_WORDS:-100}
+  MAX_FETCH_BYTES: ${MAX_FETCH_BYTES:-2000000}
+  MAX_RESUME_BYTES: ${MAX_RESUME_BYTES:-20000000}
+  LOG_LEVEL: ${LOG_LEVEL:-INFO}
+  # --- telemetry (fill a block to enable that backend) ---
+  OBSERVABILITY_SINK: ${OBSERVABILITY_SINK:-json}
+  TELEMETRY_RECORD_IO: ${TELEMETRY_RECORD_IO:-false}
+  OPENOBSERVE_URL: ${OPENOBSERVE_URL:-}
+  OPENOBSERVE_ORG: ${OPENOBSERVE_ORG:-default}
+  OPENOBSERVE_STREAM: ${OPENOBSERVE_STREAM:-job_matcher}
+  OPENOBSERVE_USER: ${OPENOBSERVE_USER:-}
+  OPENOBSERVE_PASSWORD: ${OPENOBSERVE_PASSWORD:-}
+  OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
+  OTEL_EXPORTER_OTLP_HEADERS: ${OTEL_EXPORTER_OTLP_HEADERS:-}
+  PHOENIX_COLLECTOR_ENDPOINT: ${PHOENIX_COLLECTOR_ENDPOINT:-}
+  PHOENIX_API_KEY: ${PHOENIX_API_KEY:-}
+  ARIZE_SPACE_ID: ${ARIZE_SPACE_ID:-}
+  ARIZE_API_KEY: ${ARIZE_API_KEY:-}
+  ARIZE_PROJECT_NAME: ${ARIZE_PROJECT_NAME:-job-matcher}
 
 services:
   api:
@@ -15,10 +48,14 @@ services:
     build: .
     entrypoint: ["uvicorn", "job_matcher.api:app", "--host", "0.0.0.0", "--port", "8000"]
     env_file: .env
+    environment:
+      <<: *jobmatcher-env
+      API_UPLOAD_DIR: ${API_UPLOAD_DIR:-/work/uploads}
     ports:
       - "8000:8000"
     volumes:
       - ./runs:/work/runs
+      - uploads:/work/uploads
     restart: unless-stopped
 
   cli:
@@ -26,6 +63,13 @@ services:
     image: ghcr.io/senthilsweb/agent-job-matcher:latest
     build: .
     env_file: .env
+    environment:
+      <<: *jobmatcher-env
     volumes:
       - ./runs:/work/runs
       - ./backend/evals/data:/work/data:ro
+
+volumes:
+  # Shared upload landing zone — the future containerized agent service
+  # mounts this same volume as AGENT_UPLOAD_DIR (ADR 0001 upload flow).
+  uploads:
