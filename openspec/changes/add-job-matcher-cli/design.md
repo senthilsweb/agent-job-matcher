@@ -9,7 +9,7 @@
 | Zod schemas (`agent/lib/schemas.ts`) | Pydantic models (`job_matcher/schemas.py`) | Same shapes, same "no score field in the LLM schema" property |
 | `agent/lib/scoring.ts` | `job_matcher/scoring.py` — behaviour-identical port | The formula is the product |
 | Eve native evals (`*.eval.ts`) + rubrics | pytest suites + adapted rubrics; fixtures copied verbatim | Same pass/fail contract, pythonic harness |
-| OTel dual-export telemetry, per-job traces | Decorator-based (AOP) trace/span instrumentation on key methods, pluggable sink (JSON logs default, OTel optional) + per-run `summary.json` | Observability without weaving calls into core logic; backend optional |
+| OTel dual-export telemetry, per-job traces | Decorator-based (AOP) trace/span instrumentation on key methods; sinks: JSON logs (always) + OpenObserve REST ingestion (when configured); per-run `summary.json` | Observability without weaving calls into core logic; no vendor SDK — OTel can be inserted before OpenObserve later |
 | Single invocation surface (eve dev/TUI) | Three surfaces over one service layer: CLI, FastAPI, direct import | Same use case per surface; parity not required |
 | Sandbox + `load_input` path confinement | Direct filesystem access with the same path-safety checks on user-supplied paths | CLI runs as the user; guards still matter for slugs/outputs |
 | `sync_run_to_host`, object-store upload | Not needed — runs are written on the host to begin with | |
@@ -26,9 +26,12 @@ backend/
 ├── job_matcher/
 │   ├── __init__.py           # re-exports the embeddable core API
 │   ├── cli.py                # ADAPTER — Typer app: `jobmatch analyze ...`
-│   ├── api.py                # ADAPTER — FastAPI app: /analyze, /score, /runs, /health
-│   ├── observability.py      # AOP facade: @traced/@span decorators, contextvars
-│   │                         #   trace propagation, pluggable sinks (JSON log / OTel)
+│   ├── api.py                # ADAPTER — FastAPI app: POST /analyze, POST /score,
+│   │                         #   GET /health (no /runs — no workflow layer)
+│   ├── logging.py            # the ONE logging config: structlog JSON factory,
+│   │                         #   ./logs/<entry>_<ts>.log + stdout (see backend/AGENTS.md)
+│   ├── observability.py      # AOP facade: @traced/@timed decorators, contextvars
+│   │                         #   trace propagation, sinks: json | none | openobserve (REST)
 │   ├── config.py             # env resolution: MODEL_ANALYST → MODEL → error
 │   ├── schemas.py            # Pydantic: SkillMatch, JobAnalysis, ScoreBreakdown,
 │   │                         #   MatchStatus, JobReport, JobFetchFailure
@@ -77,29 +80,43 @@ from anywhere inside the repo.
 ## Pipeline
 
 ```
-jobmatch analyze --resume R --job J1 --job J2 ...
+jobmatch analyze --resume R --job J1 --job J2 ...     (or POST /analyze)
         │
         ▼
-create run dir runs/<UTC ts>/
-extract_resume_text(R) ──► runs/<ts>/resume.txt          (fail fast: scanned PDF, .doc)
-fetch_job_postings([J1..Jn]) ──► jobs/<n>.txt + fetch-attempts.json
-        │                        (guards; one attempt each; failures recorded)
-        ▼
-for each OK job — worker pool, bounded by JOB_FANOUT_CONCURRENCY (default 3):
-    analyze(resume_text, job_text) ──► JobAnalysis        (the only LLM call)
-    score_job_fit(analysis)        ──► ScoreBreakdown + band + recommendation
-    assemble_report(...)           ──► slug(<title>)_<ts>.json
-for each failed job:
-    slug(<source>)_<ts>.failed.json
+mint run_id (every request is a unique run — but NO workflow layer)
+extract_resume_text(R)                    (once; fail fast: scanned PDF, .doc)
         │
         ▼
-ranking.md (when jobs > 1, by total_score desc) + summary.json (tokens, timing)
-exit 0 if the run completed (even all-failed); nonzero only on operator error
+spawn ONE END-TO-END ASYNC TASK PER JOB SOURCE
+(asyncio, bounded by a JOB_FANOUT_CONCURRENCY semaphore, default 3):
+
+  task(J_i):  fetch(J_i)                  (guards; exactly one attempt)
+                 │ fail → log gracefully, emit JobFetchFailure, task ends
+                 ▼
+              analyze(resume, job_text)   (the only LLM call, per job)
+              score_job_fit(analysis)     (deterministic)
+              assemble outcome            (typed JobReport)
+                 │ any error → log gracefully, emit failure outcome,
+                 ▼             NEVER disturbs sibling tasks
+        gather all outcomes ──► list[JobOutcome]  (the typed JSON array)
+        │
+        ▼
+CLI:  persist under runs/<ts>/ — per-job files, results.json (the array),
+      ranking.md (when jobs > 1), summary.json; exit 0 (even all-failed)
+API:  return the array as the response payload; nothing persisted
 ```
 
-There is no N=1 vs N>1 fork in kind — one job is simply a pool of one.
-(Eve needed the fork to avoid spawning a subagent for a single job; a
-worker pool has no such cost cliff.)
+**Correction (2026-07-11, owner, pre-approval):** revision 2 fetched all
+sources first, then analyzed via a worker pool, and the API persisted
+runs identically to the CLI with `GET /runs...` retrieval endpoints.
+Owner direction replaced both: fan-out is per-job **end-to-end** (each
+job's fetch+analyze+score+report is one async task, failures isolated
+per task), and the run-retrieval API surface was dropped as an Eve-ism —
+persistence is a CLI concern, the API returns the payload.
+
+There is no N=1 vs N>1 fork in kind — one job is simply a gather of one
+task. (Eve needed the fork to avoid spawning a subagent for a single
+job; asyncio tasks have no such cost cliff.)
 
 ## Three access surfaces, one service layer
 
@@ -112,8 +129,8 @@ not promise feature parity — same use case, different ergonomics:
 
 | Surface | Module | Shape | Notes / deliberate divergence |
 |---|---|---|---|
-| CLI | `cli.py` (Typer) | `jobmatch analyze ...` | Full run semantics: writes `runs/<ts>/`, prints ranked summary, exit-code contract |
-| REST | `api.py` (FastAPI) | `POST /analyze` (multipart resume upload or server-path + job sources), `GET /runs`, `GET /runs/{run_id}`, `GET /runs/{run_id}/reports`, `POST /score` (deterministic scoring only — no LLM), `GET /health` | Key operations only. Synchronous in v1 (open question 6). Returns report JSON in the response **and** persists the run identically to a CLI run, so the CLI and later frontend read the same `runs/` layout. Localhost binding by default; no auth in this change |
+| CLI | `cli.py` (Typer) | `jobmatch analyze ...` | Persists the typed array + per-job files under `runs/<ts>/`, prints ranked summary, exit-code contract |
+| REST | `api.py` (FastAPI) | `POST /analyze` (multipart resume upload or server-path + job sources) → **typed JSON array of `JobOutcome`** with `run_id`; `GET /health` | Key operations only, synchronous. The array **is** the deliverable — nothing persisted server-side, and no `/runs` browsing endpoints (no workflow layer; owner correction 2026-07-11). Localhost binding by default; no auth in this change. This is the contract the roadmap MCP REST bridge wraps. No standalone `/score` endpoint — scoring is part of the `/analyze` flow; the core `score_job_fit()` function is available to the embeddable surface if needed |
 | Embeddable core | `job_matcher` package itself | `from job_matcher import run_analysis, score_job_fit, ...` | The GenAI-integration path: an agent can wrap `run_analysis` or just `score_job_fit` as tools in-process. `__init__.py` re-exports the stable core API; anything not re-exported is internal and may change |
 
 `POST /score` exists on the API (and `score_job_fit` in the core) as a
@@ -149,11 +166,21 @@ Mechanics:
   fan-out worker pool (context is copied into workers). This replaces
   Eve's `$eve.parent`/`$eve.root` session-tree correlation.
 - **Pluggable sinks** behind a tiny protocol (`on_span_start`,
-  `on_span_end`): the default sink emits one structured JSON log line
-  per span; a no-op sink disables everything; an OTel sink (optional
-  extra, open question 5) maps spans onto `opentelemetry-sdk` spans and
-  exports over OTLP when configured. Sink selection is env-driven
-  (`OBSERVABILITY_SINK=json|none|otel`), resolved once at startup.
+  `on_span_end`), selected once at startup via
+  `OBSERVABILITY_SINK=json|none|openobserve`:
+  - `json` (default): one structured JSON log line per span through the
+    shared structlog factory;
+  - `none`: fully disabled;
+  - `openobserve`: everything `json` does, **plus** span records batched
+    and POSTed to OpenObserve's REST JSON-ingestion API —
+    `{OPENOBSERVE_URL}/api/{OPENOBSERVE_ORG}/{OPENOBSERVE_STREAM}/_json`,
+    basic auth via `OPENOBSERVE_USER`/`OPENOBSERVE_PASSWORD`. Shipping
+    is async and fire-and-forget: batches flush on size/interval and at
+    run end; an unreachable instance logs one warning and never fails or
+    slows the run. (The ai-agents monorepo ships to the same OpenObserve
+    via OTLP — here we call the REST API directly, per owner decision;
+    if OTel is ever wanted it becomes a fourth sink behind this same
+    protocol, its own future change.)
 - Adapter coverage: FastAPI requests get the same treatment via a small
   middleware that opens the root span per request (middleware is the
   idiomatic aspect seam for HTTP); the CLI opens it per command. Both
@@ -164,10 +191,27 @@ Mechanics:
   the no-retry fetch rule is business logic and stays in `fetch.py`.
 
 `test_observability.py` pins the contract: span nesting matches the call
-tree on a fixture run, worker-pool spans parent correctly, an exception
-inside a decorated function produces an `error` span and re-raises
-untouched, and `OBSERVABILITY_SINK=none` yields byte-identical run
-output to the default.
+tree on a fixture run, per-job async task spans parent correctly under
+the run's root span, an exception inside a decorated function produces
+an `error` span and re-raises untouched, `OBSERVABILITY_SINK=none`
+yields byte-identical run output to the default, and the openobserve
+sink survives an unreachable endpoint (run succeeds, one warning).
+
+## Logging (custom logger, owner's style)
+
+Codified in `AGENTS.md` / `backend/AGENTS.md` (added by this change) and
+implemented in `job_matcher/logging.py` — the **only** place logging is
+configured. It reproduces the owner's established pipeline-script
+pattern centrally instead of per-file: structlog over stdlib logging,
+JSON renderer, ISO timestamps, log file
+`./logs/<entry_point>_<YYYYmmdd_HHMMSS>.log` plus stdout. Entry points
+(CLI command, API startup) call `get_logger(script_name)` once; library
+modules use `structlog.get_logger(__name__)` and inherit. Events are
+structured key-value (`log.info("job_fetched", job_source=url)`), never
+interpolated prose; no `print()` diagnostics anywhere. Every Python file
+also carries the AGENTS.md header docstring (File Name / Author / Date /
+Description with numbered responsibilities / env vars it reads) and
+block-level inline comments in the same style.
 
 ## Scoring port — the one place precision matters
 
@@ -268,8 +312,11 @@ LLM-side scoring do not survive.
 ## Non-goals
 
 Same boundary as the Eve v1 plus this change's out-of-scope list: no
-GUI, no API auth/rate-limiting/multi-tenancy, no async job queue, no
-document rendering, no OCR, no JS-rendering fetch, no telemetry backend
-deployment (the decorator facade and optional OTLP export are in scope;
-running a collector is not). Each arrives, if ever, as its own
+GUI, no API auth/rate-limiting/multi-tenancy, no workflow or
+run-management layer (no queues, no run-browsing endpoints), no OTel
+SDK (OpenObserve is reached over plain REST; OTel-in-between is a
+possible future change), no document rendering, no OCR, no
+JS-rendering fetch. The MCP REST bridge for the owner's existing
+chatbot is explicitly roadmap: this change only guarantees the stable
+typed-array contract it will wrap. Each arrives, if ever, as its own
 `openspec/changes/<name>/`.

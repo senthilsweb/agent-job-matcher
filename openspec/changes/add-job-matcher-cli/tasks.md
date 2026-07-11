@@ -12,21 +12,26 @@ moves to **approved**.
       public repo, or substitute a synthetic one (owner decision)
 - [ ] Resolve open question 4: rounding convention (recommended: JS
       semantics, `floor(x + 0.5)`)
-- [ ] Resolve open question 5: observability sink strategy (recommended:
-      pluggable facade — JSON logs default, OTel as optional extra)
-- [ ] Resolve open question 6: API execution model (recommended:
-      synchronous v1)
+- [x] Resolve open question 5 — **resolved by owner (2026-07-11):**
+      JSON logs + OpenObserve REST sink; no OTel SDK in v1
+- [x] Resolve open question 6 — **resolved by owner (2026-07-11):**
+      synchronous API returning the typed JSON array; no /runs endpoints,
+      no workflow layer
+- [x] Codify logger + file-header conventions in `AGENTS.md` and
+      `backend/AGENTS.md` (done with revision 3)
 - [ ] Proposal status → **APPROVED** with date
 
 ## Bolt 1 — Package skeleton + deterministic core (no LLM)
 
 - [ ] `backend/pyproject.toml` — package `job_matcher`, console script
-      `jobmatch`, deps pinned (incl. `fastapi`, `uvicorn`; `[otel]`
-      extra); old prototype files removed
+      `jobmatch`, deps pinned (incl. `fastapi`, `uvicorn`, `structlog`,
+      `httpx`); old prototype files removed
+- [ ] `logging.py` — the structlog factory per `backend/AGENTS.md`
+      (JSON lines, ISO timestamps, `./logs/<entry>_<ts>.log` + stdout)
 - [ ] `observability.py` — `@traced`/`@timed` facade, contextvars
-      propagation, json/none sinks (otel sink stubbed behind the extra);
-      `test_observability.py` green — built first so every later module
-      lands already decorated
+      propagation, sinks json/none/openobserve (REST `_json` ingestion,
+      batched, fire-and-forget); `test_observability.py` green — built
+      first so every later module lands already decorated
 - [ ] `schemas.py` — Pydantic port of the Eve schemas incl. the
       SkillMatch matched⇔evidence validator
 - [ ] `scoring.py` — behaviour-identical port (formula, reallocation,
@@ -53,23 +58,29 @@ moves to **approved**.
 - [ ] `prompts.py` + `prompts/` — ported analysis prompt frame (data,
       not instructions); review old talent-align prompts for reuse
 - [ ] `analyze.py` — typed extraction call
-- [ ] `pipeline.py` — the service layer: run dir, bounded worker pool
-      (context-propagating), scoring, reports, `ranking.md`,
-      `summary.json`; stable core API re-exported from `__init__.py`
+- [ ] `pipeline.py` — the service layer: per-job end-to-end asyncio
+      tasks (semaphore-bounded, context-propagating, per-task graceful
+      failure) gathered into the typed `list[JobOutcome]`; CLI-side
+      persistence (`results.json`, per-job files, `ranking.md`,
+      `summary.json`); stable core API re-exported from `__init__.py`
 - [ ] `cli.py` — `jobmatch analyze` per spec, exit-code contract, root
       span per command
 - [ ] `test_embeddable_core.py` — offline fixture run through direct
       import only
-- [ ] `.env.example` at repo root updated (model vars +
-      `OBSERVABILITY_SINK`, `JOB_FANOUT_CONCURRENCY`)
+- [ ] `.env.example` at repo root updated (model vars,
+      `OBSERVABILITY_SINK`, `JOB_FANOUT_CONCURRENCY`, and the
+      `OPENOBSERVE_URL/ORG/STREAM/USER/PASSWORD` set)
 
 ## Bolt 4 — FastAPI surface
 
-- [ ] `api.py` — `POST /analyze` (multipart + server-path), `GET /runs`,
-      `GET /runs/{run_id}`, `GET /runs/{run_id}/reports`, `POST /score`,
-      `GET /health`; localhost default bind; root-span middleware
+- [ ] `api.py` — `POST /analyze` (multipart + server-path) returning the
+      typed JSON array + `run_id`, `GET /health`; no `/runs` endpoints,
+      no server-side persistence, no `/score` endpoint; localhost default
+      bind; root-span middleware
 - [ ] `test_api.py` — TestClient over fixtures with the analyze step
-      stubbed; asserts response report ≡ persisted report ≡ CLI schema
+      stubbed; asserts the response array is schema-identical to what
+      the CLI writes to `results.json` for the same inputs, and that the
+      API run leaves nothing under `runs/`; verify `/score` does not exist
 - [ ] Verify decorator-only instrumentation: no trace/span calls inside
       core function bodies (grep gate from acceptance criterion 10)
 

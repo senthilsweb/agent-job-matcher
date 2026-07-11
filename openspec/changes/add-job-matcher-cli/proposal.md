@@ -2,6 +2,13 @@
 
 > Status: **PROPOSED** — awaiting inception-gate approval
 > Owner: @senthilsweb
+> Revision: 3 (owner corrections 2026-07-11: run-browsing endpoints
+> dropped as an Eve-ism — no workflow layer, each request is simply a
+> unique run; telemetry ships to OpenObserve over REST with OTel as a
+> future insert; custom structlog logger + file-header convention made
+> mandatory via AGENTS.md; fan-out is per-job end-to-end async; results
+> are a typed JSON array — disk for CLI, payload for API; MCP REST
+> bridge noted as roadmap)
 > Revision: 2 (adds: FastAPI surface for key operations; AOP-style
 > decorator instrumentation for observability)
 > Reference implementation: `ai-agents/agents/job-matcher/` (Eve, TypeScript)
@@ -29,10 +36,14 @@ evals. It is the "before" picture and will be replaced by this change.
   parity is explicitly not required):
   1. **CLI** — `jobmatch analyze --resume <file> --job <url-or-file>
      [--job ...] [--out runs/]`; the primary surface for this change.
-  2. **REST API (FastAPI)** — the *key operations only* (submit an
-     analysis, retrieve run results, deterministic scoring, health),
-     served by uvicorn; the surface the later frontend change will
-     consume.
+  2. **REST API (FastAPI)** — the *key operations only*: submit an
+     analysis (`POST /analyze`, synchronous, returns the typed JSON
+     array of per-job outcomes as the response payload) and health
+     (`GET /health`); served by
+     uvicorn; the surface the later frontend change and the roadmap MCP
+     bridge will consume. **No run-browsing endpoints** (`GET /runs...`
+     was an Eve-ism) — there is no workflow/run-management layer; each
+     request simply carries its own unique `run_id` in the response.
   3. **Embeddable core** — the pipeline, analysis, and scoring functions
      importable directly (`from job_matcher import ...`) so a GenAI
      agent/orchestrator can call them as tools in-process, no CLI or
@@ -42,10 +53,31 @@ evals. It is the "before" picture and will be replaced by this change.
   business logic lives in a CLI command or route handler.
 - **Observability as aspects (AOP).** Cross-cutting instrumentation —
   trace/span creation, timing, success/error capture — SHALL attach to
-  key methods via Python decorators (`@traced`, `@span`), never as inline
-  calls woven through core logic. The decorator facade is no-op-safe by
-  default (structured JSON logs) with an optional OpenTelemetry backend;
-  removing the decorators must leave behaviour identical.
+  key methods via Python decorators (`@traced`, `@timed`), never as
+  inline calls woven through core logic; removing the decorators must
+  leave behaviour identical. Sinks: local structured JSON logs (always
+  on) and **OpenObserve via its REST JSON-ingestion API** when
+  configured — batched, fire-and-forget, never failing a run. OTel is
+  *not* part of v1: if needed later it is inserted between the sink
+  interface and OpenObserve as its own change (the ai-agents monorepo's
+  OTLP-to-OpenObserve setup is the reference for that future step).
+- **Custom logger + file-header convention, repo-wide.** All Python code
+  logs through one structlog-based factory (JSON lines, ISO timestamps,
+  per-invocation `./logs/<entry>_<ts>.log` + stdout) and every file opens
+  with the owner's header-docstring convention. Both are codified in
+  `AGENTS.md` (repo level) and `backend/AGENTS.md` (workspace level) as
+  part of this change, with the canonical snippet taken from the owner's
+  established pipeline-script style.
+- **Async, per-job, end-to-end fan-out.** Given multiple job sources,
+  each spawns one end-to-end asyncio task (fetch → analyze → score →
+  report), bounded by `JOB_FANOUT_CONCURRENCY`. Any job's failure is
+  logged gracefully and recorded as a failed outcome without disturbing
+  the other jobs; an all-failed run still completes cleanly.
+- **Typed JSON array as the result contract.** Every surface produces
+  the same `list[JobOutcome]` (Pydantic union of report | fetch-failure).
+  CLI: stored on disk under `runs/<ts>/` (per-job files plus an
+  aggregated `results.json`). API: returned as the response payload —
+  not persisted server-side.
 
 - **Port the core features of the Eve job-matcher** (and only the core —
   no Eve sessions, subagents, sandboxes, or OTel pipeline):
@@ -98,8 +130,16 @@ evals. It is the "before" picture and will be replaced by this change.
   contract that frontend will consume, but no UI work happens here.
 - API auth, rate limiting, multi-tenancy — the API binds to localhost by
   default; hardening arrives with the frontend/deployment change.
-- Async job queues / background workers for the API — v1 API calls run
-  the pipeline synchronously per request.
+- Any workflow / run-management layer: no job queues, no background
+  workers, no run state machine, no run-browsing endpoints. Each request
+  is a unique, self-contained run.
+- OTel SDK integration — telemetry goes straight to OpenObserve over
+  REST in v1; an OTel layer in between is a possible future change.
+- **MCP REST bridge (roadmap, design must not block it):** an MCP tool
+  server wrapping this REST API so the owner's existing chatbot can call
+  it (chatbot → MCP tool → `POST /analyze`). The stable typed JSON array
+  contract is what makes this a thin future addition; it lands as its own
+  `openspec/changes/<name>/`.
 - DOCX/PDF/HTML rendering — cover-letter content stays text inside the
   JSON, same v1 boundary as the Eve project.
 - OCR / scanned-PDF support, legacy `.doc`.
@@ -133,19 +173,31 @@ evals. It is the "before" picture and will be replaced by this change.
 7. The old prototype files (`app.py`, `cli.py`, `job_fit_from_files.py`)
    are gone from `backend/` — fully superseded, not wrapped.
 8. `uvicorn job_matcher.api:app` starts; `POST /analyze` with a resume
-   and a local JD fixture returns the same schema-valid report the CLI
-   produces for identical inputs; `GET /runs/{run_id}` retrieves it;
-   `GET /health` returns 200. The run is persisted under `runs/` exactly
-   as a CLI run is.
+   and a local JD fixture synchronously returns a typed JSON array of
+   per-job outcomes (schema-identical to what the CLI writes to disk for
+   the same inputs) with a unique `run_id`; `GET /health` returns 200;
+   no `/runs` endpoints exist.
 9. The same pipeline is demonstrably callable in-process: a smoke test
    imports the service layer directly (no CLI, no HTTP) and completes an
    offline fixture run.
 10. Key pipeline methods (extract, fetch, analyze, score, assemble) carry
     instrumentation **only** via decorators: `grep` shows no
-    trace/span/log calls inside the function bodies of core modules, and
+    trace/span calls inside the function bodies of core modules, and
     a captured run emits one span record per decorated call with
     parent/child relationships and timing. With no backend configured,
     output behaviour is byte-identical to instrumentation disabled.
+11. With `OBSERVABILITY_SINK=openobserve` and a reachable instance, a
+    fixture run lands span records in the configured stream via the REST
+    ingestion API; with the instance down, the run still succeeds and
+    logs exactly one delivery warning.
+12. Every Python file carries the AGENTS.md header docstring; all
+    diagnostics flow through the shared structlog factory (a run
+    produces `./logs/<entry>_<ts>.log` with JSON lines); `grep` finds no
+    `print(` diagnostics and no per-module `logging.basicConfig` outside
+    `job_matcher/logging.py`.
+13. A CLI run writes `results.json` (the typed array) alongside the
+    per-job files under `runs/<ts>/`; an API run writes nothing under
+    `runs/`.
 
 ## Open questions for the inception gate
 
@@ -163,13 +215,12 @@ evals. It is the "before" picture and will be replaced by this change.
    value pinned by the Eve eval fixtures) or adopt Python banker's rounding
    (2.5 → 2)? Recommendation: **keep JS semantics** via
    `math.floor(x + 0.5)` so the ported eval fixtures stay byte-identical.
-5. **Observability backend behind the decorators** — plain structured
-   JSON logs only, or the OpenTelemetry SDK with OTLP export as an
-   optional extra (`pip install job-matcher[otel]`)? Recommendation:
-   **facade with both** — decorators talk to a pluggable sink; JSON-log
-   sink is the zero-dependency default, OTel sink activates when the
-   extra is installed and `OTEL_EXPORTER_OTLP_ENDPOINT` is set.
-6. **API execution model** — synchronous request/response (simple, fine
-   for a localhost tool) vs. submit-then-poll job pattern. Recommendation:
-   **synchronous for v1**; the run-id-addressable `runs/` layout already
-   leaves room to add submit/poll later without breaking the contract.
+5. ~~Observability backend behind the decorators~~ — **Resolved (owner,
+   2026-07-11):** JSON logs always on; OpenObserve via its REST
+   JSON-ingestion API when configured; **no OTel SDK in v1** — OTel may
+   be inserted between the sink interface and OpenObserve later as its
+   own change.
+6. ~~API execution model~~ — **Resolved (owner, 2026-07-11):**
+   synchronous; `POST /analyze` returns the typed JSON array as the
+   response payload. No workflow layer, no run-browsing endpoints —
+   each request is its own unique run.
