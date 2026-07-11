@@ -29,6 +29,11 @@ Owner-directed change: specified and implemented together (2026-07-11).
       in — see proposal acceptance criterion 5)
 - [ ] **Manual, owner:** flip GHCR package visibility to public (package
       settings — no API for this)
-- [ ] **Optional, owner:** `gh secret set OPENAI_API_KEY -R
-      senthilsweb/agent-job-matcher` to enable graphify's semantic pass
+- [x] **Owner set the `OPENAI_API_KEY` repo secret (2026-07-11);**
+      suggested Actions variable `OPENAI_MODEL=gpt-5-mini` (bulk
+      extraction workload — mini tier suffices; unset falls back to
+      gpt-5). Note: currently dormant — the CI build step runs AST-only
+      extraction because graphify's semantic pass can't run inside
+      Actions (needs an LLM orchestrator; run locally and push instead).
+      The key/model activate automatically if that changes
 - [ ] Status → **verified**; then archive per openspec convention

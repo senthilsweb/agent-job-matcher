@@ -75,20 +75,28 @@ entry point's configuration. Log events are key-value structured
 (`log.info("job_fetched", job_source=url, words=n)`), never interpolated
 prose strings.
 
-## Telemetry (OpenObserve over REST)
+## Telemetry (env-activated backends)
 
-- The `@traced`/`@timed` decorators (see `job_matcher/observability.py`)
-  emit span records to the configured sink. `OBSERVABILITY_SINK=json`
-  (default) writes them through the logger; `openobserve` additionally
-  batches and POSTs them to
-  `{OPENOBSERVE_URL}/api/{OPENOBSERVE_ORG}/{OPENOBSERVE_STREAM}/_json`
-  with basic auth (`OPENOBSERVE_USER`/`OPENOBSERVE_PASSWORD`); `none`
-  disables.
-- Shipping is async/batched and fire-and-forget: an unreachable
-  OpenObserve logs one warning and never fails or slows a run.
-- Do not import any OTel/vendor SDK in application code. If OTel is
-  inserted later it becomes another sink implementation behind the same
-  interface.
+- The `@traced`/`@timed` decorators (see `job_matcher/observability/`)
+  emit span records to every configured sink. The JSON-log sink is
+  always on; `OBSERVABILITY_SINK=none` disables all telemetry.
+- Remote backends join the fan-out purely by their env vars being set:
+  - **OpenObserve (REST, no OTel)** — `OPENOBSERVE_URL` +
+    `OPENOBSERVE_ORG`/`OPENOBSERVE_STREAM`/`OPENOBSERVE_USER`/
+    `OPENOBSERVE_PASSWORD`; POSTs batches to `.../_json`; no extra deps.
+  - **Any OTLP collector / OpenObserve via OTel** —
+    `OTEL_EXPORTER_OTLP_ENDPOINT` (+ `OTEL_EXPORTER_OTLP_HEADERS`).
+  - **Arize Phoenix** — `PHOENIX_COLLECTOR_ENDPOINT` (+ `PHOENIX_API_KEY`).
+  - **Arize AX** — `ARIZE_SPACE_ID` + `ARIZE_API_KEY`
+    (+ `ARIZE_PROJECT_NAME`, default `job-matcher`).
+- The three OTLP-shaped backends need `pip install job-matcher[otel]`;
+  configuring one without the extra is a clear startup error.
+- The OpenTelemetry SDK is imported **only** in
+  `observability/otel_bridge.py` — never in core, adapters, or tests.
+  LLM spans carry OpenInference attributes; prompt/completion payloads
+  ship only when `TELEMETRY_RECORD_IO=true` (default off).
+- Shipping is async/batched and fire-and-forget: an unreachable backend
+  logs one warning and never fails or slows a run.
 
 ## Other workspace rules
 

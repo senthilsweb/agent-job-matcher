@@ -1,7 +1,13 @@
 # Proposal: Add `job-matcher` backend (CLI + REST + embeddable core)
 
-> Status: **PROPOSED** — awaiting inception-gate approval
+> Status: **APPROVED** — 2026-07-11 (inception gate passed: all six
+> open questions resolved by owner; construction may begin at Bolt 1)
 > Owner: @senthilsweb
+> Revision: 4 (owner, 2026-07-11: telemetry must support **Arize AX,
+> Arize Phoenix, and OpenObserve (with or without OTel)** selected
+> purely by env vars — this reverses revision 3's "no OTel SDK"
+> decision: Arize/Phoenix only ingest OTLP, so an OTel bridge ships as
+> an optional extra, confined to the sink layer)
 > Revision: 3 (owner corrections 2026-07-11: run-browsing endpoints
 > dropped as an Eve-ism — no workflow layer, each request is simply a
 > unique run; telemetry ships to OpenObserve over REST with OTel as a
@@ -55,12 +61,28 @@ evals. It is the "before" picture and will be replaced by this change.
   trace/span creation, timing, success/error capture — SHALL attach to
   key methods via Python decorators (`@traced`, `@timed`), never as
   inline calls woven through core logic; removing the decorators must
-  leave behaviour identical. Sinks: local structured JSON logs (always
-  on) and **OpenObserve via its REST JSON-ingestion API** when
-  configured — batched, fire-and-forget, never failing a run. OTel is
-  *not* part of v1: if needed later it is inserted between the sink
-  interface and OpenObserve as its own change (the ai-agents monorepo's
-  OTLP-to-OpenObserve setup is the reference for that future step).
+  leave behaviour identical.
+- **Telemetry backends selected purely by env** *(revision 4)*. Local
+  structured JSON logs are always on; remote backends activate by
+  setting nothing more than the env vars each vendor documents:
+
+  | Backend | Enabled by | Transport | Extra deps? |
+  |---|---|---|---|
+  | OpenObserve (no OTel) | `OPENOBSERVE_URL` (+ org/stream/user/password) | its REST `_json` ingestion API | none |
+  | OpenObserve (via OTel) | `OTEL_EXPORTER_OTLP_ENDPOINT` (+ `OTEL_EXPORTER_OTLP_HEADERS`) | OTLP/HTTP | `[otel]` |
+  | Arize Phoenix | `PHOENIX_COLLECTOR_ENDPOINT` (+ `PHOENIX_API_KEY`) | OTLP/HTTP | `[otel]` |
+  | Arize AX | `ARIZE_SPACE_ID` + `ARIZE_API_KEY` (+ `ARIZE_PROJECT_NAME`) | OTLP to otlp.arize.com | `[otel]` |
+
+  Multiple backends may be active at once (fan-out, like the ai-agents
+  monorepo's Phoenix + OpenObserve dual export). The three OTLP-shaped
+  backends share **one OTel bridge module** living inside the
+  observability package — an optional `pip install job-matcher[otel]`
+  extra; application/core code still never imports a vendor SDK. LLM
+  analysis spans carry OpenInference semantic attributes so Phoenix and
+  Arize render model/token/prompt data natively (prompt/completion
+  capture gated by `TELEMETRY_RECORD_IO`, default off). All delivery is
+  batched and fire-and-forget — an unreachable backend logs one warning
+  and never fails a run.
 - **Custom logger + file-header convention, repo-wide.** All Python code
   logs through one structlog-based factory (JSON lines, ISO timestamps,
   per-invocation `./logs/<entry>_<ts>.log` + stdout) and every file opens
@@ -107,9 +129,12 @@ evals. It is the "before" picture and will be replaced by this change.
   6. **Model-agnostic env configuration**, no hard-coded model or candidate
      identity; config read from the repo-root `.env`.
 - **Copy the eval assets into this repo, re-expressed pythonically:**
-  - `evals/data/` fixtures verbatim from the Eve project: the resume PDF,
-    the four real JD snapshots, the two genuine JS-shell fetch-failure
-    captures, `manifest.json`, and the adversarial prompt-injection JD.
+  - `evals/data/` fixtures from the Eve project: the four real JD
+    snapshots, the two genuine JS-shell fetch-failure captures,
+    `manifest.json`, and the adversarial prompt-injection JD — all
+    verbatim. The resume fixture is the exception (resolved question 3):
+    a **synthetic resume** is authored and committed instead of the
+    owner's real PDF; the real one stays local-only and gitignored.
   - `evals/rubrics.md` adapted: same canonical scoring formula, same
     HARD/SOFT contract, criteria that referenced Eve internals (child
     session ids, subagent counts) restated in CLI terms.
@@ -133,8 +158,9 @@ evals. It is the "before" picture and will be replaced by this change.
 - Any workflow / run-management layer: no job queues, no background
   workers, no run state machine, no run-browsing endpoints. Each request
   is a unique, self-contained run.
-- OTel SDK integration — telemetry goes straight to OpenObserve over
-  REST in v1; an OTel layer in between is a possible future change.
+- Running/operating any telemetry backend (Phoenix, Arize account,
+  OpenObserve instance) — this change ships the client-side sinks and
+  bridge only.
 - **MCP REST bridge (roadmap, design must not block it):** an MCP tool
   server wrapping this REST API so the owner's existing chatbot can call
   it (chatbot → MCP tool → `POST /analyze`). The stable typed JSON array
@@ -154,7 +180,7 @@ evals. It is the "before" picture and will be replaced by this change.
 ## Acceptance criteria
 
 1. `pip install -e backend/` (or `uv sync`) then
-   `jobmatch analyze --resume evals/data/resume/sk-resume-june-2026.pdf
+   `jobmatch analyze --resume evals/data/resume/synthetic-resume.pdf
    --job evals/data/jobs/data-engineering-manager-product-anthropic.txt`
    produces a schema-valid per-job JSON report under `runs/<ts>/`.
 2. `pytest -m "not live"` passes offline with no API key: scoring
@@ -186,10 +212,16 @@ evals. It is the "before" picture and will be replaced by this change.
     a captured run emits one span record per decorated call with
     parent/child relationships and timing. With no backend configured,
     output behaviour is byte-identical to instrumentation disabled.
-11. With `OBSERVABILITY_SINK=openobserve` and a reachable instance, a
-    fixture run lands span records in the configured stream via the REST
-    ingestion API; with the instance down, the run still succeeds and
-    logs exactly one delivery warning.
+11. Telemetry backends activate by env alone: setting only
+    `OPENOBSERVE_URL...` lands span records in the stream via REST;
+    setting only `PHOENIX_COLLECTOR_ENDPOINT` lands OTLP traces in
+    Phoenix; setting only `ARIZE_SPACE_ID`/`ARIZE_API_KEY` exports to
+    Arize; setting only `OTEL_EXPORTER_OTLP_ENDPOINT` exports generic
+    OTLP (OpenObserve-with-OTel). Two backends set together both
+    receive the run (fan-out). With any backend down, the run still
+    succeeds and logs exactly one delivery warning per backend. OTLP
+    backends configured without the `[otel]` extra installed produce a
+    clear startup error naming the missing extra.
 12. Every Python file carries the AGENTS.md header docstring; all
     diagnostics flow through the shared structlog factory (a run
     produces `./logs/<entry>_<ts>.log` with JSON lines); `grep` finds no
@@ -201,25 +233,26 @@ evals. It is the "before" picture and will be replaced by this change.
 
 ## Open questions for the inception gate
 
-1. **LLM integration library** — pydantic-ai (what the prototype used;
-   typed output, model-agnostic id strings) vs. the provider SDK directly.
-   Recommendation: **pydantic-ai**, it matches the "typed extraction only"
-   design and keeps model routing env-driven.
-2. **CLI framework** — Typer (rich help, subcommands, matches "add more
-   commands later") vs. stdlib argparse. Recommendation: **Typer**.
-3. **Committing the real resume fixture** — the Eve repo committed the
-   owner's real resume deliberately. This repo is public
-   (github.com/senthilsweb/agent-job-matcher). Copy as-is, or substitute a
-   synthetic resume and keep the real one local-only? Needs an owner call.
-4. **Rounding convention** — keep JS `Math.round` semantics (2.5 → 3, the
-   value pinned by the Eve eval fixtures) or adopt Python banker's rounding
-   (2.5 → 2)? Recommendation: **keep JS semantics** via
-   `math.floor(x + 0.5)` so the ported eval fixtures stay byte-identical.
+1. ~~LLM integration library~~ — **Resolved (owner, 2026-07-11):**
+   **pydantic-ai** — typed output (`output_type=JobAnalysis`),
+   model-agnostic id strings, env-driven provider routing.
+2. ~~CLI framework~~ — **Resolved (owner, 2026-07-11):** **Typer**.
+3. ~~Committing the real resume fixture~~ — **Resolved (owner,
+   2026-07-11):** **synthetic resume in the repo.** A realistic but
+   fictional resume is authored and committed as the eval fixture; the
+   owner's real resume stays local-only at a gitignored path for
+   personal smoke runs. The rubric's SOFT band-range expectations are
+   recalibrated once against the synthetic profile at verification.
+4. ~~Rounding convention~~ — **Resolved (owner, 2026-07-11):** **JS
+   `Math.round` semantics** via a `floor(x + 0.5)` helper, keeping the
+   ported eval fixtures byte-identical to the Eve reference.
 5. ~~Observability backend behind the decorators~~ — **Resolved (owner,
    2026-07-11):** JSON logs always on; OpenObserve via its REST
-   JSON-ingestion API when configured; **no OTel SDK in v1** — OTel may
-   be inserted between the sink interface and OpenObserve later as its
-   own change.
+   JSON-ingestion API when configured. **Correction (owner, revision
+   4, same day):** the "no OTel SDK in v1" clause is reversed — Arize
+   AX, Arize Phoenix, and OpenObserve-via-OTLP must all work by env
+   alone, which requires an OTel bridge; it ships as the optional
+   `[otel]` extra, confined to the sink layer.
 6. ~~API execution model~~ — **Resolved (owner, 2026-07-11):**
    synchronous; `POST /analyze` returns the typed JSON array as the
    response payload. No workflow layer, no run-browsing endpoints —

@@ -30,13 +30,17 @@ agent-job-matcher/
    (with a numbered list of what the file does), and — for entry points —
    environment setup, requirements, and the environment variables it
    reads. Template in `backend/AGENTS.md`.
-3. **Telemetry ships to OpenObserve over REST.** Spans/metrics from the
-   observability decorators are batched and POSTed to OpenObserve's JSON
-   ingestion API (`{OPENOBSERVE_URL}/api/{ORG}/{STREAM}/_json`, basic
-   auth) when configured; local JSON logs are always on. OTel may be
-   inserted between the app and OpenObserve later — code must depend on
-   the sink interface, never on a vendor SDK. Telemetry delivery failures
-   are logged and swallowed; they never fail a run.
+3. **Telemetry backends are env-activated, never code-selected.** Local
+   JSON logs are always on. Setting a backend's own documented env vars
+   is all it takes to add it to the fan-out: OpenObserve via REST
+   (`OPENOBSERVE_URL...`, no extra deps), OpenObserve via OTLP or any
+   collector (`OTEL_EXPORTER_OTLP_ENDPOINT`), Arize Phoenix
+   (`PHOENIX_COLLECTOR_ENDPOINT`), Arize AX (`ARIZE_SPACE_ID` +
+   `ARIZE_API_KEY`). The OTLP-shaped backends require the
+   `job-matcher[otel]` extra. Vendor/OTel SDK imports are allowed **only
+   inside the observability sink layer** — core and application code
+   depend on the sink interface, nothing else. Telemetry delivery
+   failures are logged and swallowed; they never fail a run.
 4. **Instrumentation is aspect-oriented.** Trace/span/timing attach to
    methods only via decorators (`@traced`, `@timed`); core function
    bodies contain no instrumentation calls.
