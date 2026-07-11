@@ -1,6 +1,20 @@
 # CHANGELOG
 
 
+## v0.2.1 (2026-07-11)
+
+### Bug Fixes
+
+- **ci**: Openapi artifact via workflow_run; skip image builds for bot/doc commits
+  ([`cc8face`](https://github.com/senthilsweb/agent-job-matcher/commit/cc8face27a81cf530a079400597eea984f0aedbf))
+
+GITHUB_TOKEN-created releases don't emit release:published to other workflows, so the OpenAPI
+  workflow now chains off the Release workflow's completion (staying a separate action per owner
+  direction) and resolves the latest tag itself; dispatch backfills any release.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+
 ## v0.2.0 (2026-07-11)
 
 ### Features

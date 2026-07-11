@@ -15,7 +15,7 @@ This module exposes the public surface by:
 Anything not re-exported here is internal and carries no stability promise.
 """
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 
 def run_analysis(*args, **kwargs):
