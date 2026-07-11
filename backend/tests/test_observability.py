@@ -118,3 +118,13 @@ def test_none_sink_disables_everything(monkeypatch):
 def test_decorator_preserves_signature_metadata():
     assert inner.__name__ == "inner"
     assert outer(3) == 7
+
+
+def test_enrich_declares_post_call_attributes_at_the_decorator(recorder):
+    @traced("llm_call", enrich=lambda result, args: {"tokens": result[1], "model": args.get("model")})
+    def llm_call(prompt: str, model: str):
+        return "answer", 42
+
+    assert llm_call("p", model="test:m") == ("answer", 42)
+    span = recorder.ended[0]
+    assert span.attributes == {"tokens": 42, "model": "test:m"}

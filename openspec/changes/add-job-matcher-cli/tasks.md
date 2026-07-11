@@ -106,18 +106,49 @@ moves to **approved**.
       `OBSERVABILITY_SINK`, `TELEMETRY_RECORD_IO`, and every
       telemetry-backend block — kept concise per owner direction
 
-## Bolt 4 — FastAPI surface
+## Bolt 4 — FastAPI surface ✅ (2026-07-11)
 
-- [ ] `api.py` — `POST /analyze` (multipart + server-path) returning the
-      typed JSON array + `run_id`, `GET /health`; no `/runs` endpoints,
-      no server-side persistence, no `/score` endpoint; localhost default
-      bind; root-span middleware
-- [ ] `test_api.py` — TestClient over fixtures with the analyze step
-      stubbed; asserts the response array is schema-identical to what
-      the CLI writes to `results.json` for the same inputs, and that the
-      API run leaves nothing under `runs/`; verify `/score` does not exist
-- [ ] Verify decorator-only instrumentation: no trace/span calls inside
-      core function bodies (grep gate from acceptance criterion 10)
+- [x] `api.py` — `POST /analyze` (multipart + server-path) returning the
+      typed JSON array (every element carries `run_id`), `GET /health`;
+      no `/runs`, no `/score`, no server-side persistence; per-request
+      span middleware; full OpenAPI metadata (project description,
+      version, license, contact, externalDocs repo link,
+      fixture-sourced examples) per the add-openapi-release-artifact spec
+- [x] `test_api.py` (7 cases: health, server-path + multipart analyze,
+      exactly-one-resume-input rule, operator errors → 422, format
+      rejection, statelessness, absent workflow endpoints) +
+      `test_openapi_docs.py` (5 cases: summary/description/example
+      coverage, info/externalDocs, spec validates) — **offline suite 86
+      passed**
+- [x] Decorator-only grep gate clean; `@traced` gained `enrich=` so even
+      post-call span attributes (LLM token usage, gated IO capture) are
+      declared at the decorator, not in function bodies
+- [x] **Live server smoke (2026-07-11):** uvicorn boot, `GET /health` ok,
+      real `POST /analyze` (mini model) → Bain JD 74/good_match, typed
+      array payload, nothing persisted
+
+## Bolt 5 — Telemetry backends (env-activated) ✅ core (2026-07-11)
+
+- [x] `observability/sinks.py` — OpenObserveRestSink: batched POSTs to
+      `{url}/api/{org}/{stream}/_json`, basic auth, flush on batch size
+      and root-span end, one warning per process on failure, never raises
+- [x] `observability/otel_bridge.py` — the only OTel import site: facade
+      spans → OTel spans (nesting + real timestamps preserved),
+      OpenInference attrs on the analyze span (kind=LLM, model, token
+      counts; `TELEMETRY_RECORD_IO` gates payloads), OTLP exporters for
+      generic endpoint / Phoenix / Arize AX; `[otel]` extra
+- [x] Env registry wiring in `configure()`: backends join purely by
+      their env vars; fan-out; OTLP env without the extra → startup
+      error naming `job-matcher[otel]`
+- [x] Tests (`test_telemetry_backends.py`, 7 cases): activation matrix,
+      none-override, unreachable-OpenObserve resilience (one warning,
+      run unaffected), batching/flush contract, missing-extra error,
+      OTel bridge span mapping with OpenInference attrs (InMemory
+      exporter)
+- [ ] Manual smoke: one fixture run visible in a local Phoenix
+      (`docker run arizephoenix/phoenix`) and a local OpenObserve, via
+      env-only switches — record evidence here (deferred: needs the
+      containers running; unit suite covers the contracts)
 
 ## Bolt 5 — Telemetry backends (env-activated)
 

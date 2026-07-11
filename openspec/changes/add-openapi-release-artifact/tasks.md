@@ -12,18 +12,18 @@ Owner-directed change (2026-07-11). Wiring lands now; activation rides
       (openapi-spec-validator) → `gh release upload`
 - [x] AGENTS.md — API-documentation convention (rule 9)
 
-## Gated on add-job-matcher-cli Bolt 4 (the API)
+## Gated on add-job-matcher-cli Bolt 4 (the API) — done with Bolt 4 (2026-07-11)
 
-- [ ] `api.py` app metadata: project description, version from
-      `__version__`, license/contact, `externalDocs` → repo URL, tag
-      descriptions
-- [ ] Every endpoint: summary + Markdown description + fixture-sourced
-      request/response examples (Pydantic `Field(examples=...)` /
-      `openapi_extra`)
-- [ ] Offline test `test_openapi_docs.py`: every path+method has
-      summary, description, and examples; `info`/`externalDocs` fields
-      present; spec passes openapi-spec-validator
-- [ ] Add `openapi-spec-validator` + `pyyaml` to backend `[dev]` extra
+- [x] `api.py` app metadata: project description, version from
+      `__version__`, license/contact, `externalDocs` → repo URL
+- [x] Every endpoint: summary + Markdown description + fixture-sourced
+      request/response examples (`openapi_extra`)
+- [x] Offline test `test_openapi_docs.py`: summary/description/example
+      coverage per path+method, `info`/`externalDocs` present, spec
+      passes openapi-spec-validator
+- [x] `openapi-spec-validator` + `pyyaml` added to backend `[dev]`;
+      `scripts/export-openapi.py` verified producing openapi.json+yaml
+      locally (title/version/externalDocs/paths correct)
 
 ## Verification (first release after Bolt 4)
 

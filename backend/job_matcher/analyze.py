@@ -25,6 +25,8 @@ Environment Variables (.env at repo root):
 # Import necessary libraries
 from __future__ import annotations
 
+import os
+
 from pydantic_ai import Agent
 
 from job_matcher.observability import traced
@@ -44,7 +46,22 @@ def _usage_dict(result) -> dict[str, int]:
         return {"input_tokens": 0, "output_tokens": 0}
 
 
-@traced("analyze_job_fit", capture={"job_index"})
+def _span_enrichment(result, arguments) -> dict:
+    """Declared at the decorator (AOP): token usage + model onto the LLM span;
+    prompt/completion payloads only when TELEMETRY_RECORD_IO=true."""
+    analysis, usage = result
+    attrs: dict = {"model": arguments.get("model"), **usage}
+    if os.getenv("TELEMETRY_RECORD_IO", "").strip().lower() == "true":
+        attrs["input.value"] = render(
+            load_prompt("analysis_user"),
+            resume_text=arguments.get("resume_text", ""),
+            job_text=arguments.get("job_text", ""),
+        )
+        attrs["output.value"] = analysis.model_dump_json()
+    return attrs
+
+
+@traced("analyze_job_fit", capture={"job_index"}, enrich=_span_enrichment)
 async def analyze_job_fit(
     resume_text: str,
     job_text: str,

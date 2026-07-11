@@ -72,19 +72,37 @@ _sinks: list[Sink] | None = None
 
 
 def configure(force: bool = False) -> list[Sink]:
-    """Resolve the sink fan-out from env, once at startup (idempotent)."""
+    """Resolve the sink fan-out from env, once at startup (idempotent).
+
+    The JSON-log sink is always on (OBSERVABILITY_SINK=none disables all
+    telemetry); every remote backend joins purely by its own env vars:
+    OpenObserve REST (OPENOBSERVE_URL...), and the OTLP-shaped trio —
+    generic collector / Phoenix / Arize — through the otel bridge, which
+    requires the job-matcher[otel] extra (a clear startup error names it
+    when missing).
+    """
     global _sinks
     if _sinks is not None and not force:
         return _sinks
     mode = os.getenv("OBSERVABILITY_SINK", "json").strip().lower()
     if mode == "none":
         _sinks = []
-    else:
-        from job_matcher.observability.sinks import JsonLogSink
+        return _sinks
 
-        _sinks = [JsonLogSink()]
-    # Bolt 5: remote backends (OpenObserve REST, OTLP/Phoenix/Arize) join
-    # the fan-out here, each activated purely by its own env vars.
+    from job_matcher.observability.sinks import JsonLogSink, OpenObserveRestSink
+
+    sinks: list[Sink] = [JsonLogSink()]
+    if os.getenv("OPENOBSERVE_URL", "").strip():
+        sinks.append(OpenObserveRestSink.from_env())
+
+    from job_matcher.observability.otel_bridge import build_otel_sink, otlp_env_configured
+
+    if otlp_env_configured():
+        otel_sink = build_otel_sink()  # raises with the [otel] install hint if the SDK is absent
+        if otel_sink is not None:
+            sinks.append(otel_sink)
+
+    _sinks = sinks
     return _sinks
 
 
@@ -130,9 +148,25 @@ def start_span(name: str, *, trace_id: str | None = None, **attributes: Any):
 
 @contextmanager
 def root_span(name: str, run_id: str, **attributes: Any):
-    """Open the per-invocation root span; the run id becomes the trace id."""
-    with start_span(name, trace_id=run_id, run_id=run_id, **attributes) as span:
+    """Open the per-invocation root span; the run id becomes the trace id.
+
+    When already inside a span (e.g. the API's per-request middleware span),
+    the existing trace is kept — run_id stays queryable as an attribute.
+    """
+    trace_id = None if _current_span.get() else run_id
+    with start_span(name, trace_id=trace_id, run_id=run_id, **attributes) as span:
         yield span
+
+
+def add_span_attributes(**attributes: Any) -> None:
+    """Attach attributes to the active span from inside a decorated call.
+
+    The sanctioned way for a function to enrich its own span (e.g. token
+    usage after an LLM call) without touching sink or span plumbing.
+    """
+    span = _current_span.get()
+    if span is not None:
+        span.attributes.update(attributes)
 
 
 def _allowlisted(fn, capture: Iterable[str], args: tuple, kwargs: dict) -> dict[str, Any]:
@@ -147,29 +181,45 @@ def _allowlisted(fn, capture: Iterable[str], args: tuple, kwargs: dict) -> dict[
         return {}
 
 
-def traced(name: str | None = None, capture: Iterable[str] = ()):
+def traced(name: str | None = None, capture: Iterable[str] = (), enrich=None):
     """Decorator: run the wrapped sync/async callable inside a span.
 
     Signature-preserving; exceptions are recorded as an error outcome and
-    re-raised untouched.
+    re-raised untouched. `enrich(result, arguments) -> dict` lets a caller
+    declare post-call span attributes (e.g. token usage from an LLM result)
+    AT THE DECORATOR — keeping instrumentation out of function bodies.
     """
 
     def decorator(fn):
         span_name = name or fn.__qualname__
 
+        def _arguments(args, kwargs) -> dict[str, Any]:
+            try:
+                return dict(inspect.signature(fn).bind_partial(*args, **kwargs).arguments)
+            except TypeError:
+                return {}
+
+        def _apply_enrich(span: Span, result, args, kwargs) -> None:
+            if enrich is not None:
+                span.attributes.update(enrich(result, _arguments(args, kwargs)) or {})
+
         if inspect.iscoroutinefunction(fn):
 
             @functools.wraps(fn)
             async def async_wrapper(*args, **kwargs):
-                with start_span(span_name, **_allowlisted(fn, capture, args, kwargs)):
-                    return await fn(*args, **kwargs)
+                with start_span(span_name, **_allowlisted(fn, capture, args, kwargs)) as span:
+                    result = await fn(*args, **kwargs)
+                    _apply_enrich(span, result, args, kwargs)
+                    return result
 
             return async_wrapper
 
         @functools.wraps(fn)
         def wrapper(*args, **kwargs):
-            with start_span(span_name, **_allowlisted(fn, capture, args, kwargs)):
-                return fn(*args, **kwargs)
+            with start_span(span_name, **_allowlisted(fn, capture, args, kwargs)) as span:
+                result = fn(*args, **kwargs)
+                _apply_enrich(span, result, args, kwargs)
+                return result
 
         return wrapper
 
