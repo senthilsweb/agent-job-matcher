@@ -1,7 +1,11 @@
 # Proposal: Add `job-matcher` backend (CLI + REST + embeddable core)
 
-> Status: **APPROVED** — 2026-07-11 (inception gate passed: all six
-> open questions resolved by owner; construction may begin at Bolt 1)
+> Status: **IMPLEMENTED** — 2026-07-11. All nine bolts built; HARD eval
+> sweep green (96 offline + 11 live on the mini model); SOFT
+> observations reviewed and the band table recalibrated (rubrics.md §3).
+> → VERIFIED awaits two owner manual evidence items (Claude Desktop
+> mount, neutral-chatbot UI run), then archive.
+> (APPROVED 2026-07-11: inception gate passed, all six questions resolved)
 > Owner: @senthilsweb
 > Revision: 6 (owner, 2026-07-11: **agent service added to `mcp/`** —
 > the ctms-style REST/SSE chat bridge (`/chat/stream`, `/upload`) that

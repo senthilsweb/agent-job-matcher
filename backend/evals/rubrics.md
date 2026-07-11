@@ -118,17 +118,31 @@ architecture:
 
 ## 3. Directional expectations for the live corpus (all SOFT)
 
-The Eve repo's band-range table was calibrated against the owner's real
-resume. This repo uses the synthetic Jordan Rivera profile —
-**expectations below are provisional and will be recalibrated (with a
-`**Correction:**` entry) at the verification ceremony**, per inception
-decision Q3:
+**Correction (2026-07-11, verification ceremony):** recalibrated against
+the synthetic Jordan Rivera profile from the live sweep
+(`openai:gpt-5.4-mini`), replacing the provisional ranges inherited from
+the Eve repo's real-resume calibration. The synthetic profile (data
+platform + GenAI + observability heavy) fits the AI-engineering JDs
+harder and the solutions-architecture JD softer than the provisional
+guesses:
 
-| JD | Provisional band range |
-|---|---|
-| Anthropic — Data Engineering Manager, Product | moderate–good |
-| Bain — Expert Senior Manager, AI Engineering | moderate–good |
-| Gusto — Staff SWE, AI Developer Tools | weak–moderate |
-| Temporal — Senior Manager, Solutions Architecture | moderate–good |
+| JD | Expected band range (recalibrated) | Observed 2026-07-11 |
+|---|---|---|
+| Anthropic — Data Engineering Manager, Product | good–strong | 84–85 strong (78 good on rerun) |
+| Bain — Expert Senior Manager, AI Engineering | moderate–good | 72 good |
+| Gusto — Staff SWE, AI Developer Tools | good–strong | 79–81 good/strong |
+| Temporal — Senior Manager, Solutions Architecture | weak–moderate | 40 weak |
+| Adversarial (impossible requirements) | ≤ good, never strong | 67 good |
 
 - **SOFT** Re-running the same job twice lands within ±1 band.
+  *Observed: Anthropic 85 strong → 78 good — delta 1 band, within
+  tolerance.*
+
+**Correction (2026-07-11, Construction→Verification):** the analysis
+prompt's evidence rule was tightened from the Eve reference's "direct
+quote (or very close paraphrase)" to **exact contiguous quote only**
+(whitespace normalization allowed). The Bolt 3 smoke showed the mini
+model paraphrasing 5/14 evidence strings under the looser wording, which
+would fail the HARD grounding criterion; with the exact-quote rule the
+full live sweep passes grounding — a deliberate divergence from the Eve
+prompt, forced by making the HARD criterion actually hold.

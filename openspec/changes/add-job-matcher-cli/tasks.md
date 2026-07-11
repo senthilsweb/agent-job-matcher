@@ -237,11 +237,28 @@ moves to **approved**.
 - [ ] Manual, owner: point the neutral chatbot's `VITE_API_ENDPOINT` at
       the agent service and repeat through the UI — record evidence here
 
-## Bolt 9 — Live evals + verification
+## Bolt 9 — Live evals + verification ✅ (2026-07-11)
 
-- [ ] Live suites under `tests/live/` behind `-m live`: grounding,
-      injection, single/multi-job, mixed-failure run
-- [ ] Full HARD sweep passes; SOFT observations recorded in rubrics.md
-- [ ] README rewritten for this repo (quick start, CLI usage, eval howto)
-- [ ] Status → **implemented**, then **verified** after the rubric review
-      ceremony; corrections logged in design.md as encountered
+- [x] Live suites under `tests/live/` behind `-m live`: grounding
+      (verbatim-evidence HARD + rerun-stability SOFT), injection
+      (grounded, score recomputation, byte-identical recommendation),
+      single/multi-job (call-count spy, ranking order, typed array),
+      mixed-failure (one attempt per source, failures never reach the
+      LLM, all-failed completes)
+- [x] **Full HARD sweep green: 11/11 live + 96 offline**
+      (`openai:gpt-5.4-mini`). Pre-requisite correction applied: the
+      analysis prompt's evidence rule tightened to exact-contiguous-
+      quote-only (the Eve wording allowed paraphrase, which failed
+      grounding 5/14 in the Bolt 3 smoke) — logged in rubrics.md
+- [x] SOFT observations recorded + band table recalibrated at the
+      verification ceremony (rubrics.md §3 Correction): Anthropic 84–85
+      strong, Bain 72 good, Gusto 79–81 good/strong, Temporal 40 weak,
+      adversarial 67 good (not strong ✓), rerun delta 1 band ✓
+- [x] README rewritten (root: product overview, diagram, quick start,
+      surfaces, evals; backend/: slim workspace pointer); last
+      prototype leftovers removed (json-flows/, OpenDLC doc, stale
+      talent-align README)
+- [x] Status → **IMPLEMENTED** with the HARD gate passed and the SOFT
+      review recorded. Flipping to **VERIFIED** awaits the two owner
+      manual evidence items: Claude Desktop mount (Bolt 7) and the
+      neutral-chatbot UI run (Bolt 8); then archive per convention
