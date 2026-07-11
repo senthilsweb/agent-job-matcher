@@ -1,0 +1,39 @@
+# Repo
+.git
+.gitignore
+.github
+.vscode
+.idea
+*.md
+!backend/**/*.md
+
+# Python
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.venv
+**/env
+.env
+backend/.env
+
+# Node (frontend/ — later phase)
+frontend/node_modules
+frontend/dist
+frontend/.env
+frontend/.env.local
+
+# OpenSpec / docs / graph artifacts
+openspec
+docs
+scripts
+graph.json
+graph-index.json
+graph-manifest.json
+graphify-out
+
+# Runtime
+runs
+logs
+*.log
+.DS_Store

@@ -50,6 +50,9 @@ backend/logs/
 data/
 *.log
 
+# Graphify local build output (CI commits the root graph files)
+graphify-out/
+
 # Editor / IDE noise
 .idea/
 .vscode/
