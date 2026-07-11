@@ -210,6 +210,81 @@ async def analyze(
     return JSONResponse(content=json.loads(result.outcomes_json()))
 
 
+_JSONRESUME_RESPONSE_EXAMPLE = {
+    "basics": {
+        "name": "Jordan Rivera",
+        "label": "Data Platform & GenAI Architect",
+        "email": "jordan.rivera@example.com",
+        "phone": "+1 (555) 010-4477",
+        "location": {"city": "Springfield", "countryCode": "US"},
+        "profiles": [{"network": "GitHub", "username": "jordanrivera"}],
+    },
+    "work": [
+        {
+            "name": "Meridian Health Systems",
+            "position": "Principal Data & GenAI Architect",
+            "startDate": "2021",
+            "highlights": ["Designed a governed lakehouse serving 40+ analytics teams"],
+        }
+    ],
+    "skills": [{"name": "Data", "keywords": ["Snowflake", "dbt", "Spark"]}],
+    "meta": {"version": "v1.0.0"},
+}
+
+
+@app.post(
+    "/resume/jsonresume",
+    summary="Convert a resume to a JSON Resume document",
+    response_description="A strongly-typed JSON Resume v1.0.0 document (jsonresume.org)",
+    openapi_extra={
+        "responses": {"200": {"content": {"application/json": {"example": _JSONRESUME_RESPONSE_EXAMPLE}}}}
+    },
+)
+async def resume_jsonresume(
+    resume: UploadFile | None = File(None, description="Resume file upload (PDF, DOCX, TXT, MD)"),
+    resume_path: str | None = Form(None, description="Alternative to the upload: a server-side resume file path"),
+):
+    """Extract the resume into the standard JSON Resume format.
+
+    Provide the resume **either** as a multipart upload (`resume`) **or** as a
+    server-side path (`resume_path`) — exactly one of the two.
+
+    One typed LLM extraction; a deterministic grounding guard rejects any
+    invented contact detail (an extracted email/phone must appear in the
+    resume text). The document validates against the v1.0.0 schema by
+    construction — unknown fields cannot occur. Pure conversion: nothing is
+    persisted server-side and no run folder is created.
+    """
+    from job_matcher.config import resolve_model
+    from job_matcher.jsonresume import JsonResumeGroundingError, extract_jsonresume
+    from job_matcher.resume import extract_resume_text
+
+    if (resume is None) == (resume_path is None):
+        raise HTTPException(status_code=422, detail="provide exactly one of: resume (upload) or resume_path")
+
+    if resume is not None:
+        suffix = Path(resume.filename or "resume.pdf").suffix.lower()
+        if suffix not in SUPPORTED_EXTENSIONS:
+            raise HTTPException(status_code=422, detail=f"unsupported resume format {suffix!r}")
+        staged = _staged_upload_dir() / f"upload-{os.urandom(6).hex()}{suffix}"
+        staged.write_bytes(await resume.read())
+        resume_file = staged
+    else:
+        resume_file = Path(resume_path)  # type: ignore[arg-type]
+
+    try:
+        text = extract_resume_text(resume_file)
+        document = await extract_jsonresume(text, resolve_model())
+    except (ResumeError, ConfigError, JsonResumeGroundingError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
+    finally:
+        if resume is not None:
+            resume_file.unlink(missing_ok=True)
+
+    log.info("api_jsonresume_completed", resume_file=resume_file.name)
+    return JSONResponse(content=json.loads(document.model_dump_json(exclude_none=True)))
+
+
 @app.get(
     "/health",
     summary="Liveness and version",

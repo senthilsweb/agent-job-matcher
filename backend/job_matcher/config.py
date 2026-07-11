@@ -43,16 +43,20 @@ class ConfigError(RuntimeError):
     """Raised when required configuration is missing — an operator error."""
 
 
-def resolve_model(role: str = "ANALYST") -> str:
-    """MODEL_<ROLE> → MODEL → ConfigError. Never a built-in default."""
+def resolve_model(role: str = "ANALYST", *fallback_roles: str) -> str:
+    """MODEL_<ROLE> → MODEL_<FALLBACK>... → MODEL → ConfigError. Never a default.
+
+    The agent service resolves resolve_model("CHAT", "ANALYST") per ADR 0001.
+    """
     _ensure_env_loaded()
-    for var in (f"MODEL_{role}", "MODEL"):
+    chain = [f"MODEL_{role}", *(f"MODEL_{fb}" for fb in fallback_roles), "MODEL"]
+    for var in chain:
         value = os.getenv(var, "").strip()
         if value:
             return value
     raise ConfigError(
-        f"No model configured: set MODEL_{role} (or MODEL) in the repo-root .env, "
-        "e.g. MODEL_ANALYST=anthropic:claude-haiku-4-5"
+        f"No model configured: set {' or '.join(chain)} in the repo-root .env, "
+        "e.g. MODEL_ANALYST=openai:gpt-5.4-mini"
     )
 
 

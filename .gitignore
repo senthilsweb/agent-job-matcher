@@ -67,3 +67,4 @@ backend/evals/data/resume/local/
 *.pfx
 *.p12
 secrets/
+node_modules/

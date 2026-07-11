@@ -31,6 +31,14 @@ def extract_resume_text(*args, **kwargs):
 
     return _extract(*args, **kwargs)
 
+
+def extract_jsonresume(*args, **kwargs):
+    """Stable core re-export of JSON Resume extraction (lazy import, async)."""
+    from job_matcher.jsonresume import extract_jsonresume as _extract
+
+    return _extract(*args, **kwargs)
+
+
 # Stable embeddable-core re-exports
 from job_matcher.schemas import (  # noqa: F401
     DomainAlignment,
@@ -67,4 +75,5 @@ __all__ = [
     "score_job_fit",
     "run_analysis",
     "extract_resume_text",
+    "extract_jsonresume",
 ]

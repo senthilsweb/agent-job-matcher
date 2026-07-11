@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "jobmatcher": {
+      "command": "node",
+      "args": ["/absolute/path/to/agent-job-matcher/mcp/index.js"],
+      "env": {
+        "JOBMATCHER_API_URL": "http://localhost:8000"
+      }
+    }
+  }
+}

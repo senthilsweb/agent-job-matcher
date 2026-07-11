@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "jobmatcher": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/mcp/index.js"],
+      "env": {
+        "JOBMATCHER_API_URL": "http://localhost:8000"
+      }
+    }
+  }
+}

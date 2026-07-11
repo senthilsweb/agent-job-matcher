@@ -76,6 +76,33 @@ def analyze(
     # A completed run exits 0, even when every job source failed (spec: CLI invocation)
 
 
+@app.command()
+def jsonresume(
+    resume: Path = typer.Option(..., "--resume", help="Resume file (PDF, DOCX, TXT, MD)"),
+    out: Path | None = typer.Option(None, "--out", help="Write the document here (default: stdout)"),
+) -> None:
+    """Convert a resume into a JSON Resume v1.0.0 document (jsonresume.org)."""
+    log = get_logger("jobmatch")
+    from job_matcher.config import resolve_model
+    from job_matcher.jsonresume import JsonResumeGroundingError, extract_jsonresume
+    from job_matcher.resume import extract_resume_text
+
+    try:
+        text = extract_resume_text(resume)
+        document = asyncio.run(extract_jsonresume(text, resolve_model()))
+    except (ResumeError, ConfigError, JsonResumeGroundingError) as exc:
+        log.error("operator_error", error=str(exc))
+        typer.echo(f"Error: {exc}", err=True)
+        raise typer.Exit(code=2)
+
+    payload = document.model_dump_json(indent=2, exclude_none=True)
+    if out is not None:
+        out.write_text(payload + "\n", encoding="utf-8")
+        typer.echo(f"wrote {out}")
+    else:
+        typer.echo(payload)
+
+
 def main() -> None:
     """Console-script entry point."""
     app()

@@ -1,0 +1,5 @@
+Convert the resume below into a JSON Resume document, following every rule from your instructions.
+
+=== RESUME TEXT (the only source of truth) ===
+{{resume_text}}
+=== END RESUME TEXT ===

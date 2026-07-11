@@ -169,53 +169,73 @@ moves to **approved**.
       (`docker run arizephoenix/phoenix`) and a local OpenObserve, via
       env-only switches — record evidence in this file
 
-## Bolt 6 — JSON Resume extraction (revision 5)
+## Bolt 6 — JSON Resume extraction (revision 5) ✅ (2026-07-11)
 
-- [ ] `jsonresume.py` — Pydantic mirror of JSON Resume v1.0.0
-      (basics/location/profiles, work, volunteer, education, awards,
-      certificates, publications, skills, languages, interests,
-      references, projects, meta); unknown fields rejected
-- [ ] `extract_jsonresume()` — one typed LLM call, analysis-call
-      pattern (fenced resume text, MODEL_ANALYST resolution), grounding
-      rule on contact fields; re-exported from the package root
-- [ ] `POST /resume/jsonresume` (multipart + server-path, returns the
-      document, persists nothing) + `jobmatch jsonresume --resume
-      <file> [--out <file>]`
-- [ ] Offline test: schema mirror validates/rejects fixture documents;
-      live eval: synthetic resume → schema-valid document with the
-      fixture's fictional identity in `basics`
+- [x] `jsonresume.py` — Pydantic mirror of JSON Resume v1.0.0, every
+      section, `extra="forbid"` at every level; `meta.version` stamped
+      deterministically in code
+- [x] `extract_jsonresume()` — one typed LLM call + deterministic
+      grounding guard (email as normalized substring, phone as
+      digits-only match — invented contacts raise); re-exported from
+      the package root
+- [x] `POST /resume/jsonresume` (multipart + server-path, persists
+      nothing, documented with examples per AGENTS rule 9) +
+      `jobmatch jsonresume --resume <file> [--out <file>]`
+- [x] Offline tests (8 cases: round trip, unknown-field rejection at
+      root/basics/work, grounding accept/reject, version stamp, API
+      contract); **live smoke:** synthetic resume → Jordan Rivera /
+      jordan.rivera@example.com, 3 work entries, 6 skill groups,
+      grounding guard passed, meta v1.0.0
 
-## Bolt 7 — MCP server (`mcp/`, revision 5)
+## Bolt 7 — MCP server (`mcp/`, revision 5) ✅ (2026-07-11)
 
-- [ ] `mcp/package.json` + `mcp/index.js` — single-file server on
-      `@modelcontextprotocol/sdk`, stdio transport, modelled on
-      ctms-mcp-server (MCP part only); tools `analyze_job_fit`,
-      `extract_jsonresume`, `health` → fetch() to `JOBMATCHER_API_URL`
-- [ ] `mcp/configs/claude-desktop.json` + `mcp/configs/vscode-mcp.json`
-      client samples; `mcp/.env.example`; `mcp/README.md`
-- [ ] Node smoke test: `tools/list` + one `tools/call` against a
-      stubbed backend fetch; verify no REST endpoints exist in `mcp/`
-- [ ] Manual: mount in Claude Desktop via the claude-desktop config and
-      run one end-to-end analyze — record evidence here
+- [x] `mcp/package.json` + `mcp/index.js` — single-file server on
+      `@modelcontextprotocol/sdk`, stdio, ctms model (MCP part only);
+      tools `analyze_job_fit`, `extract_jsonresume`, `health` →
+      fetch()/FormData to `JOBMATCHER_API_URL`; typed JSON passed
+      through untouched; no REST endpoints (client fetch only)
+- [x] `configs/claude-desktop.json` + `configs/vscode-mcp.json`;
+      `.env.example`; `README.md` (covers both MCP + agent service)
+- [x] Node smoke (`npm test`, stub backend, 5 assertions green):
+      tools/list, analyze pass-through incl. form fields, jsonresume,
+      health, error→isError
+- [ ] Manual, owner: mount in Claude Desktop via the config and run one
+      analyze — record evidence here (the same server is exercised live
+      end-to-end by the Bolt 8 smoke below)
 
-## Bolt 8 — Agent service (`mcp/agent-service/`, revision 6)
+## Bolt 8 — Agent service (`mcp/agent-service/`, revision 6) ✅ core (2026-07-11)
 
-- [ ] `app.py` — FastAPI: `POST /chat/stream` (SSE, ctms-compatible
-      event shape), `POST /upload` (→ `AGENT_UPLOAD_DIR`, returns
-      server-side path), `GET /health` (+ discovered tool list);
-      imports `job_matcher.{logging,observability,config}` (grep gate:
-      no duplicated logging/sink plumbing)
-- [ ] LLM-2 loop: pydantic-ai Agent + `MCPServerStdio` toolset over
-      `mcp/index.js`; system prompt confines to job-matching, forbids
-      invented scores; model `MODEL_CHAT` → `MODEL_ANALYST` → `MODEL`
-- [ ] Compose: `agent` service (:8006) sharing the upload volume with
-      `api`; `.env.example` gains `MODEL_CHAT`, `AGENT_UPLOAD_DIR`,
-      `AGENT_PORT`
-- [ ] Tests (offline, LLM + MCP stubbed): upload→path round trip, SSE
-      event shape, health tool list, no-invented-scores prompt pinned
-- [ ] Manual: point the owner's neutral chatbot at the agent service
-      (`VITE_API_ENDPOINT`) and run upload → chat → analyze end to end —
-      record evidence here (acceptance criterion 16)
+- [x] `app.py` — `POST /chat/stream` (SSE: ctms `content`/`done`/`error`
+      events, tool notices as 🔧 content chunks via MCPToolset's
+      process_tool_call hook), `POST /upload` (sanitized filename →
+      `AGENT_UPLOAD_DIR`, returns server-side path), `GET /health`
+      (+ tool list via MCP stdio discovery); imports
+      `job_matcher.{logging,observability,config,prompts,resume}` —
+      reuse pinned by test (no basicConfig/structlog.configure here)
+- [x] LLM-2 loop: pydantic-ai `Agent` + `MCPToolset(StdioTransport)`
+      over `mcp/index.js` (the 2.9 API — `MCPServerStdio` no longer
+      exists); `chat_system.txt` prompt forbids invented scores; model
+      `MODEL_CHAT` → `MODEL_ANALYST` → `MODEL` (resolve_model gained
+      fallback-chain support)
+- [x] `.env.example` gains `MODEL_CHAT`, `JOBMATCHER_API_URL`,
+      `AGENT_UPLOAD_DIR`, `AGENT_PORT`; graphify watches `mcp/**`
+- [ ] Compose `agent` service sharing the upload volume — deferred:
+      needs a python+node image (Dockerfile.agent); host-run verified
+      instead, containerization with the frontend/deployment change
+- [x] Tests (6 offline, LLM/MCP stubbed): SSE contract incl. tool
+      notice + done ordering, empty-message and exception → error
+      events, upload round trip + sanitization + format rejection,
+      reuse grep-gate
+- [x] **Full-chain live smoke (2026-07-11, acceptance criterion 16 sans
+      chatbot UI):** API :8000 + agent service :8006 (real mini model) —
+      `/health` lists the 3 discovered tools; `/upload` of the synthetic
+      resume → sanitized temp path; `/chat/stream` "analyze the resume
+      at <path> against <Gusto JD>" → 🔧 analyze_job_fit notice, then a
+      streamed grounded answer: **81/100 strong_match** with the exact
+      deterministic recommendation string and evidence quotes; `done`
+      event terminated the stream
+- [ ] Manual, owner: point the neutral chatbot's `VITE_API_ENDPOINT` at
+      the agent service and repeat through the UI — record evidence here
 
 ## Bolt 9 — Live evals + verification
 

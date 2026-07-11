@@ -12,6 +12,7 @@ on:
     branches: [main]
     paths:
       - 'backend/**'
+      - 'mcp/**'
       - 'frontend/**'
       - 'openspec/**'
       - 'scripts/**'

@@ -1,0 +1,23 @@
+{
+  "name": "jobmatcher-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for agent-job-matcher — a pure stdio bridge to the backend REST API",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "jobmatcher-mcp": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test/smoke.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["mcp", "job-matcher", "resume", "jsonresume"],
+  "author": "Senthilnathan Karuppaiah",
+  "license": "MIT"
+}
