@@ -27,7 +27,14 @@ Owner-directed change (2026-07-11). Wiring lands now; activation rides
 
 ## Verification (first release after Bolt 4)
 
-- [ ] Release run attaches valid `openapi.json` + `openapi.yaml` to the
-      GitHub Release; version matches the tag; assets import cleanly
-      into Postman — record evidence here
-- [ ] Status → **verified**, then archive
+- [x] **Evidence (2026-07-11):** release v0.2.1 carries `openapi.json` +
+      `openapi.yaml`, attached automatically by the workflow_run-chained
+      OpenAPI workflow after semantic-release cut the tag; spec passed
+      openapi-spec-validator in the run; document version matches the
+      tag. **Correction:** the original `release: published` trigger
+      never fired — GITHUB_TOKEN-created releases don't emit events to
+      other workflows; fixed by chaining on the Release workflow's
+      completion (still a separate action). v0.2.0 predates the fix and
+      has no assets (superseded by v0.2.1 as latest).
+- [ ] Owner: confirm a Postman import of the attached spec, then
+      status → **verified** and archive
