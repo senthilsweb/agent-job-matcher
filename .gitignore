@@ -1,0 +1,62 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Unit test / coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.pytest_cache/
+coverage.xml
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Local env overrides (any depth). Tracked: .env.example.
+*.env.local
+.env.*.local
+.env.local
+
+# mypy
+.mypy_cache/
+
+# ---- Node / Next.js (frontend/) ----
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+.npm
+.eslintcache
+frontend/.env*.local
+frontend/.env
+
+# macOS
+.DS_Store
+
+# Runtime data
+logs/
+backend/logs/
+data/
+*.log
+
+# Editor / IDE noise
+.idea/
+.vscode/
+
+# Common keypair / cert leaks
+*.pem
+*.key
+*.pfx
+*.p12
+secrets/
