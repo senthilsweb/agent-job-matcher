@@ -1,6 +1,42 @@
 # CHANGELOG
 
 
+## v0.3.2 (2026-07-11)
+
+### Bug Fixes
+
+- **agent-service**: Upload response includes content field for chat fold-in
+  ([`b2588d0`](https://github.com/senthilsweb/agent-job-matcher/commit/b2588d0c4dcc2e1c5c07d137305da380172375fd))
+
+Verifying the agent service's upload flow against the actual neutral chatbot
+  (github.com/senthilsweb/mcp-chat-client) surfaced a real gap: its UploadResponse contract folds a
+  `content` string into the next chat message and never reads `path` — our /upload only returned
+  path/filename/message, so the model would never learn where an uploaded file landed even after the
+  widget's own dead-code bug (fixed upstream in that repo) was corrected.
+
+- /upload now also returns `content`: "Resume uploaded — server path: <path>", the field the
+  widget's contract actually relays into chat - Full round trip verified end-to-end at the wire
+  level (widget's exact request/response handling replicated): upload -> fold content into message
+  -> analyze_job_fit tool call -> grounded 78/100 good_match answer -> done. Existing test asserting
+  body["path"] unaffected; agent-service suite still 6/6, backend 96/96. - openspec: ADR 0001 and
+  design.md/spec.md carry dated corrections (not silent rewrites) documenting the gap and the fix;
+  tasks.md distinguishes this wire-level proof from the still-open manual browser-UI evidence item
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+### Chores
+
+- **compose**: Inline all env vars alongside env_file
+  ([`a6cb568`](https://github.com/senthilsweb/agent-job-matcher/commit/a6cb568b31de9e1fbf6ebccfa0fe8ce8ae9ff41e))
+
+Every variable listed in a shared x-jobmatcher-env anchor with ${VAR:-default} interpolation — .env
+  stays the source of truth, the compose file documents every knob, and any value can be overridden
+  per-run. Adds a named uploads volume pre-wired for the future containerized agent service (ADR
+  0001 upload flow).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+
 ## v0.3.1 (2026-07-11)
 
 ### Bug Fixes
