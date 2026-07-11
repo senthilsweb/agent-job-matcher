@@ -4,14 +4,19 @@ Author: Senthilnathan Karuppaiah
 Date: 11-JUL-2026
 Description:
 Agent-service eval (no LLM, no node — run_chat stubbed): the ctms SSE
-contract, the upload→path round trip, and the reuse rules.
+contract, the upload→path round trip, conversation-history threading,
+and the reuse rules.
 
 This suite pins the service by:
 1. /chat/stream emits data:{"content"} chunks with tool notices, then
    data:{"done": true}; errors become data:{"error"}.
 2. /upload stores into AGENT_UPLOAD_DIR and returns the server-side
    path; unsupported formats are refused.
-3. The module imports job_matcher's logging/config/prompts — no
+3. History is threaded to run_chat() when present in the request body,
+   converted to pydantic-ai message objects; an absent/empty history
+   behaves exactly as before (regression) — the service holds no
+   session state of its own (add-history-branding-and-release-assets).
+4. The module imports job_matcher's logging/config/prompts — no
    duplicated plumbing (grep-gated in acceptance criterion 16).
 
 Run: pytest mcp/agent-service -q  (job-matcher package must be installed)
@@ -35,7 +40,7 @@ def sse_events(text: str) -> list[dict]:
 
 @pytest.fixture()
 def stubbed_chat(monkeypatch):
-    async def fake_run_chat(message, tool_notices: asyncio.Queue):
+    async def fake_run_chat(message, tool_notices: asyncio.Queue, history=None):
         await tool_notices.put("analyze_job_fit")
         yield "Score is "
         yield "79 (good_match)."
@@ -61,7 +66,7 @@ def test_chat_stream_empty_message_is_error():
 
 
 def test_chat_stream_exception_becomes_error_event(monkeypatch):
-    async def broken(message, tool_notices):
+    async def broken(message, tool_notices, history=None):
         raise RuntimeError("loop exploded")
         yield  # pragma: no cover — makes this an async generator
 
@@ -69,6 +74,49 @@ def test_chat_stream_exception_becomes_error_event(monkeypatch):
     events = sse_events(client.post("/chat/stream", json={"message": "hi"}).text)
     assert any("error" in e for e in events)
     assert not any(e.get("done") for e in events)
+
+
+def test_history_is_threaded_to_run_chat(monkeypatch):
+    received: dict = {}
+
+    async def capturing_run_chat(message, tool_notices, history=None):
+        received["history"] = history
+        yield "ok"
+
+    monkeypatch.setattr(agent_app, "run_chat", capturing_run_chat)
+    history = [{"role": "user", "content": "first question"}, {"role": "assistant", "content": "first answer"}]
+    client.post("/chat/stream", json={"message": "follow-up", "history": history})
+    assert received["history"] == history
+
+
+def test_missing_history_behaves_exactly_as_before(monkeypatch):
+    received: dict = {}
+
+    async def capturing_run_chat(message, tool_notices, history=None):
+        received["history"] = history
+        yield "ok"
+
+    monkeypatch.setattr(agent_app, "run_chat", capturing_run_chat)
+    client.post("/chat/stream", json={"message": "hi"})
+    assert received["history"] == []
+
+
+def test_to_model_history_converts_and_handles_empty():
+    from pydantic_ai.messages import ModelRequest, ModelResponse
+
+    from app import _to_model_history
+
+    assert _to_model_history(None) == []
+    assert _to_model_history([]) == []
+
+    converted = _to_model_history(
+        [{"role": "user", "content": "hi"}, {"role": "assistant", "content": "hello"}]
+    )
+    assert len(converted) == 2
+    assert isinstance(converted[0], ModelRequest)
+    assert converted[0].parts[0].content == "hi"
+    assert isinstance(converted[1], ModelResponse)
+    assert converted[1].parts[0].content == "hello"
 
 
 def test_upload_round_trip(tmp_path, monkeypatch):
