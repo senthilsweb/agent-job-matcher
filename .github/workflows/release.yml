@@ -17,7 +17,11 @@ permissions:
   contents: write
 
 concurrency:
-  group: release
+  # Shared with graphify.yml — both push directly to main on the same
+  # trigger event; a shared group serializes them instead of racing
+  # (observed 2026-07-11: this job's git push was rejected non-fast-forward
+  # because graphify's push landed on main first, mid-run).
+  group: main-writers
   cancel-in-progress: false
 
 jobs:

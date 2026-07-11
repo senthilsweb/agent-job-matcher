@@ -11,7 +11,12 @@ This service bridges chat to MCP by:
 1. POST /chat/stream — SSE in the ctms-compatible shape the owner's
    neutral chatbot already speaks: data:{"content": ...} chunks,
    data:{"done": true}, data:{"error": ...}. Tool invocations surface
-   as content notices ("🔧 tool...").
+   as content notices ("🔧 tool..."). The request body's optional
+   `history` field (an array of {role, content} prior turns, additive
+   and backward compatible) is threaded into the model call every turn
+   — the service holds no server-side session state (see
+   openspec/changes/add-history-branding-and-release-assets in
+   mcp-chat-client for the design and its rationale).
 2. The loop is pydantic-ai's MCP client (MCPToolset over stdio to
    ../index.js) — no hand-rolled function-calling loop. The system
    prompt (job_matcher package data: chat_system.txt) forbids invented
@@ -45,6 +50,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic_ai import Agent
 from pydantic_ai.mcp import MCPToolset, StdioTransport
+from pydantic_ai.messages import ModelRequest, ModelResponse, TextPart, UserPromptPart
 
 from job_matcher.config import resolve_model
 from job_matcher.logging import get_logger
@@ -88,7 +94,25 @@ def _sse(payload: dict) -> str:
     return f"data: {json.dumps(payload)}\n\n"
 
 
-async def run_chat(message: str, tool_notices: asyncio.Queue) -> "asyncio.Iterator[str]":
+def _to_model_history(history: list[dict] | None) -> list:
+    """Convert the wire-format {role, content} turns into pydantic-ai's
+    native message history. The agent service stays stateless: history is
+    threaded by the caller every turn, never held in server-side session
+    state (see openspec/changes/add-history-branding-and-release-assets)."""
+    if not history:
+        return []
+    messages: list = []
+    for turn in history:
+        if turn.get("role") == "user":
+            messages.append(ModelRequest(parts=[UserPromptPart(content=turn.get("content", ""))]))
+        else:
+            messages.append(ModelResponse(parts=[TextPart(content=turn.get("content", ""))]))
+    return messages
+
+
+async def run_chat(
+    message: str, tool_notices: asyncio.Queue, history: list[dict] | None = None
+) -> "asyncio.Iterator[str]":
     """The one LLM-2 invocation per chat turn; wrapped so tests can stub it."""
     agent = build_agent()
 
@@ -102,7 +126,7 @@ async def run_chat(message: str, tool_notices: asyncio.Queue) -> "asyncio.Iterat
             toolset.process_tool_call = notice
 
     async with agent:
-        async with agent.run_stream(message) as stream:
+        async with agent.run_stream(message, message_history=_to_model_history(history)) as stream:
             async for delta in stream.stream_text(delta=True):
                 yield delta
 
@@ -112,15 +136,16 @@ async def chat_stream(request: Request):
     """Stream a chat answer over SSE (ctms contract: content / done / error)."""
     body = await request.json()
     message = (body.get("message") or "").strip()
+    history = body.get("history") or []
 
     async def event_stream():
-        with start_span("chat_turn", session_id=body.get("session_id", "default")):
+        with start_span("chat_turn", session_id=body.get("session_id", "default"), history_turns=len(history)):
             if not message:
                 yield _sse({"error": "empty message"})
                 return
             tool_notices: asyncio.Queue = asyncio.Queue()
             try:
-                async for delta in run_chat(message, tool_notices):
+                async for delta in run_chat(message, tool_notices, history):
                     while not tool_notices.empty():
                         yield _sse({"content": f"🔧 {tool_notices.get_nowait()}...\n"})
                     yield _sse({"content": delta})

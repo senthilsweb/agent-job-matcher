@@ -27,8 +27,14 @@ permissions:
   issues: write
 
 concurrency:
-  group: graphify
-  cancel-in-progress: true
+  # Shared with release.yml — both push directly to main on the same
+  # trigger event; a shared group serializes them instead of racing
+  # (observed 2026-07-11: release.yml's push was rejected non-fast-forward
+  # because this workflow's push landed on main first, mid-run). Queuing
+  # (not cancelling) is required here since release.yml must never be
+  # cancelled mid-push.
+  group: main-writers
+  cancel-in-progress: false
 
 jobs:
   graphify:
