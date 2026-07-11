@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "node_count": 443,
-  "edge_count": 887,
+  "node_count": 445,
+  "edge_count": 890,
   "module_count": 7,
   "modules": {
     "backend/job_matcher": {
@@ -59,8 +59,8 @@
         "build_agent()",
         "upload_dir()",
         "_sse()",
-        "run_chat()",
-        "chat_stream()"
+        "_to_model_history()",
+        "run_chat()"
       ],
       "calls": [
         "backend/job_matcher"
