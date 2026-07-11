@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "node_count": 412,
-  "edge_count": 815,
+  "node_count": 443,
+  "edge_count": 887,
   "module_count": 7,
   "modules": {
     "backend/job_matcher": {
@@ -9,9 +9,9 @@
         "__init__.py",
         "analyze.py",
         "api.py",
+        "candidate.py",
         "cli.py",
-        "config.py",
-        "fetch.py"
+        "config.py"
       ],
       "labels": [
         ".on_span_start()",
@@ -32,9 +32,9 @@
         "__init__.py",
         "conftest.py",
         "test_api.py",
-        "test_embeddable_core.py",
-        "test_evidence_grounding.py",
-        "test_fetch_guards.py"
+        "test_candidate.py",
+        "test_cover_letter.py",
+        "test_embeddable_core.py"
       ],
       "labels": [
         "__init__.py",
