@@ -3,6 +3,13 @@
 > Status: **APPROVED** — 2026-07-11 (inception gate passed: all six
 > open questions resolved by owner; construction may begin at Bolt 1)
 > Owner: @senthilsweb
+> Revision: 5 (owner, 2026-07-11: two scope additions — a **JSON Resume
+> extraction** capability (`POST /resume/jsonresume` + CLI + core:
+> resume in → strongly-typed https://jsonresume.org document out) as
+> new Bolt 6, and the **MCP server pulled from roadmap into scope** as
+> a root `mcp/` folder (Node, stdio, modelled on ctms-mcp-server — its
+> MCP part only, not its REST/agent service) as new Bolt 7; live evals
+> + verification renumbered to Bolt 8 so verification stays last)
 > Revision: 4 (owner, 2026-07-11: telemetry must support **Arize AX,
 > Arize Phoenix, and OpenObserve (with or without OTel)** selected
 > purely by env vars — this reverses revision 3's "no OTel SDK"
@@ -44,7 +51,9 @@ evals. It is the "before" picture and will be replaced by this change.
      [--job ...] [--out runs/]`; the primary surface for this change.
   2. **REST API (FastAPI)** — the *key operations only*: submit an
      analysis (`POST /analyze`, synchronous, returns the typed JSON
-     array of per-job outcomes as the response payload) and health
+     array of per-job outcomes as the response payload), convert a
+     resume to a standard JSON Resume document
+     (`POST /resume/jsonresume`, revision 5), and health
      (`GET /health`); served by
      uvicorn; the surface the later frontend change and the roadmap MCP
      bridge will consume. **No run-browsing endpoints** (`GET /runs...`
@@ -145,6 +154,25 @@ evals. It is the "before" picture and will be replaced by this change.
 - Multi-job fan-out becomes **code-bounded concurrency in-process**
   (a worker pool over the analysis call) — an upgrade over Eve, where
   subagent pacing could only be instruction-paced.
+- **JSON Resume extraction** *(revision 5)*: given a resume file, return
+  it as a **strongly-typed [JSON Resume](https://jsonresume.org)
+  document** (schema v1.0.0 — basics/work/education/skills/projects/…),
+  available on all three surfaces: `POST /resume/jsonresume`,
+  `jobmatch jsonresume --resume <file>`, and
+  `extract_jsonresume()` in the embeddable core. One typed LLM
+  extraction call (same pattern and model resolution as the analysis
+  call); Pydantic models mirror the standard field-for-field, so the
+  output is schema-valid by construction or the request fails loudly.
+- **MCP server at root `mcp/`** *(revision 5 — promoted from roadmap)*:
+  a Node (≥18, ES module) server on the official
+  `@modelcontextprotocol/sdk` over **stdio**, modelled on the owner's
+  `ctms-mcp-server` — **its MCP part only** (the reference's REST/agent
+  service is explicitly not copied; our REST layer is the backend
+  itself). It bridges MCP tools → the backend REST API
+  (`JOBMATCHER_API_URL`, default `http://localhost:8000`): tools
+  `analyze_job_fit`, `extract_jsonresume`, `health`. Ships with
+  `configs/claude-desktop.json` + `configs/vscode-mcp.json` samples so
+  the owner's existing chatbot can mount it.
 - Root `.env.example` documenting every variable, per privacyshield
   convention.
 
@@ -161,11 +189,10 @@ evals. It is the "before" picture and will be replaced by this change.
 - Running/operating any telemetry backend (Phoenix, Arize account,
   OpenObserve instance) — this change ships the client-side sinks and
   bridge only.
-- **MCP REST bridge (roadmap, design must not block it):** an MCP tool
-  server wrapping this REST API so the owner's existing chatbot can call
-  it (chatbot → MCP tool → `POST /analyze`). The stable typed JSON array
-  contract is what makes this a thin future addition; it lands as its own
-  `openspec/changes/<name>/`.
+- ~~MCP REST bridge (roadmap)~~ — **pulled into scope by revision 5**
+  as the root `mcp/` folder (Bolt 7). Still out of scope for the MCP
+  server itself: HTTP/SSE transports (stdio only in v1), auth, and any
+  REST endpoints of its own — it is a pure bridge to the backend API.
 - DOCX/PDF/HTML rendering — cover-letter content stays text inside the
   JSON, same v1 boundary as the Eve project.
 - OCR / scanned-PDF support, legacy `.doc`.
@@ -230,6 +257,16 @@ evals. It is the "before" picture and will be replaced by this change.
 13. A CLI run writes `results.json` (the typed array) alongside the
     per-job files under `runs/<ts>/`; an API run writes nothing under
     `runs/`.
+14. `POST /resume/jsonresume` with the synthetic resume fixture returns
+    a document that validates against the JSON Resume v1.0.0 schema
+    (typed Pydantic mirror), with `basics.name`/`basics.email` matching
+    the fixture's fictional identity; `jobmatch jsonresume` produces the
+    identical document for the same input.
+15. `node mcp/index.js` (with the API running) answers an MCP
+    `tools/list` with `analyze_job_fit`, `extract_jsonresume`, and
+    `health`, and a `tools/call` of `analyze_job_fit` against a local
+    JD fixture returns the same typed JSON array as `POST /analyze`.
+    The `mcp/` folder contains no REST endpoints of its own.
 
 ## Open questions for the inception gate
 

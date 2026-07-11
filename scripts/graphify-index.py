@@ -8,9 +8,11 @@ LLM orientation.
 
 Adapted from templrgo/scripts/graphify-index.py: module roots swapped for this
 repo's layout and the templrgo-specific RBAC cross-referencing removed.
+Reads both cytoscape-style graphs (elements.nodes/edges) and the node-link
+format `graphify update` emits (nodes/links, absolute source_file paths).
 
 Usage:
-    python scripts/graphify-index.py <input-graph.json> <output-index.json>
+    python scripts/graphify-index.py <input-graph.json> <output-index.json> [repo-root]
 
 Behaviour:
 - Groups nodes by their module path (top-level dir under backend/, frontend/src/,
@@ -33,6 +35,7 @@ TOP_EDGES_PER_MODULE = 8
 TOP_LABELS_PER_MODULE = 6
 MODULE_ROOTS = (
     "backend/",
+    "mcp/",
     "frontend/src/",
     "openspec/",
     "scripts/",
@@ -40,11 +43,14 @@ MODULE_ROOTS = (
 )
 
 
-def module_for(path: str) -> str | None:
+def module_for(path: str, repo_root: str = "") -> str | None:
     """Return the module key for a given file path, or None if unrecognised."""
     if not path:
         return None
-    p = path.lstrip("./")
+    # `graphify update` records absolute source_file paths — relativize first.
+    if repo_root and path.startswith(repo_root):
+        path = path[len(repo_root):]
+    p = path.lstrip("./").lstrip("/")
     for root in MODULE_ROOTS:
         if p.startswith(root):
             tail = p[len(root):].split("/", 1)[0]
@@ -52,9 +58,10 @@ def module_for(path: str) -> str | None:
     return None
 
 
-def build_index(graph: dict) -> dict:
+def build_index(graph: dict, repo_root: str = "") -> dict:
     nodes = graph.get("nodes") or graph.get("elements", {}).get("nodes") or []
-    edges = graph.get("edges") or graph.get("elements", {}).get("edges") or []
+    # Edges live under `edges` (cytoscape) or `links` (node-link format).
+    edges = graph.get("edges") or graph.get("links") or graph.get("elements", {}).get("edges") or []
 
     # Normalise cytoscape `{data: {...}}` envelopes.
     def _data(item):
@@ -78,7 +85,7 @@ def build_index(graph: dict) -> dict:
 
     for nid, d in nodes_by_id.items():
         path = d.get("source_file") or d.get("file") or d.get("path") or d.get("source") or ""
-        mod = module_for(path)
+        mod = module_for(path, repo_root)
         if not mod:
             continue
         modules[mod]["entry_files"].add(Path(path).name)
@@ -92,8 +99,8 @@ def build_index(graph: dict) -> dict:
         tgt = nodes_by_id.get(str(d.get("target")))
         if not src or not tgt:
             continue
-        src_mod = module_for(src.get("source_file") or src.get("file") or src.get("path") or "")
-        tgt_mod = module_for(tgt.get("source_file") or tgt.get("file") or tgt.get("path") or "")
+        src_mod = module_for(src.get("source_file") or src.get("file") or src.get("path") or "", repo_root)
+        tgt_mod = module_for(tgt.get("source_file") or tgt.get("file") or tgt.get("path") or "", repo_root)
         if not src_mod or not tgt_mod or src_mod == tgt_mod:
             continue
         modules[src_mod]["calls"][tgt_mod] += 1
@@ -141,8 +148,8 @@ def build_index(graph: dict) -> dict:
 
 
 def main(argv: list[str]) -> int:
-    if len(argv) != 3:
-        print("Usage: graphify-index.py <input-graph.json> <output-index.json>", file=sys.stderr)
+    if len(argv) not in (3, 4):
+        print("Usage: graphify-index.py <input-graph.json> <output-index.json> [repo-root]", file=sys.stderr)
         return 2
 
     src = Path(argv[1])
@@ -151,8 +158,9 @@ def main(argv: list[str]) -> int:
         print(f"Input not found: {src}", file=sys.stderr)
         return 1
 
+    repo_root = str(Path(argv[3]).resolve()) + "/" if len(argv) == 4 else str(Path.cwd()) + "/"
     graph = json.loads(src.read_text())
-    index = build_index(graph)
+    index = build_index(graph, repo_root)
     dst.parent.mkdir(parents=True, exist_ok=True)
     dst.write_text(json.dumps(index, indent=2))
     size_kb = dst.stat().st_size / 1024

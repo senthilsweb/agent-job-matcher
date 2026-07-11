@@ -1,0 +1,49 @@
+name: Release
+
+# Semantic versioning automated from Conventional Commits (feat: → minor,
+# fix: → patch, BREAKING CHANGE → major) via python-semantic-release.
+# On a releasable commit it bumps backend/pyproject.toml +
+# job_matcher/__init__.py, writes the changelog, commits, tags v<X.Y.Z>,
+# and creates the GitHub Release. The v* tag then triggers
+# build-and-publish.yml, which adds semver tags to the GHCR image.
+# Non-conventional commits produce no release (the run exits cleanly).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    # Skip the bot's own commits (release stamps and graph refreshes).
+    if: "!startsWith(github.event.head_commit.message, 'chore(release):') && !startsWith(github.event.head_commit.message, 'graph:')"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install python-semantic-release
+        run: pip install "python-semantic-release>=9.8,<10"
+
+      - name: Semantic release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "semantic-release-bot"
+          git config user.email "semantic-release-bot@users.noreply.github.com"
+          cd backend
+          semantic-release version

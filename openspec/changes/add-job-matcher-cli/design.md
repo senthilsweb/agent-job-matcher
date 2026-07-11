@@ -41,6 +41,9 @@ backend/
 │   ├── config.py             # env resolution: MODEL_ANALYST → MODEL → error
 │   ├── schemas.py            # Pydantic: SkillMatch, JobAnalysis, ScoreBreakdown,
 │   │                         #   MatchStatus, JobReport, JobFetchFailure
+│   ├── jsonresume.py         # Bolt 6 — Pydantic mirror of the JSON Resume v1.0.0
+│   │                         #   schema (jsonresume.org) + extract_jsonresume():
+│   │                         #   one typed LLM call, resume text → JSONResume
 │   ├── scoring.py            # score_job_fit, match_band_for, recommendation_for
 │   ├── resume.py             # extract_resume_text: pypdf / python-docx / txt / md,
 │   │                         #   normalized + wrapped output; scanned PDFs rejected
@@ -137,13 +140,66 @@ not promise feature parity — same use case, different ergonomics:
 | Surface | Module | Shape | Notes / deliberate divergence |
 |---|---|---|---|
 | CLI | `cli.py` (Typer) | `jobmatch analyze ...` | Persists the typed array + per-job files under `runs/<ts>/`, prints ranked summary, exit-code contract |
-| REST | `api.py` (FastAPI) | `POST /analyze` (multipart resume upload or server-path + job sources) → **typed JSON array of `JobOutcome`** with `run_id`; `GET /health` | Key operations only, synchronous. The array **is** the deliverable — nothing persisted server-side, and no `/runs` browsing endpoints (no workflow layer; owner correction 2026-07-11). Localhost binding by default; no auth in this change. This is the contract the roadmap MCP REST bridge wraps. No standalone `/score` endpoint — scoring is part of the `/analyze` flow; the core `score_job_fit()` function is available to the embeddable surface if needed |
+| REST | `api.py` (FastAPI) | `POST /analyze` (multipart resume upload or server-path + job sources) → **typed JSON array of `JobOutcome`** with `run_id`; `POST /resume/jsonresume` (resume in → typed JSON Resume document out); `GET /health` | Key operations only, synchronous. The array **is** the deliverable — nothing persisted server-side, and no `/runs` browsing endpoints (no workflow layer; owner correction 2026-07-11). Localhost binding by default; no auth in this change. This is the contract the `mcp/` server bridges. No standalone `/score` endpoint — scoring is part of the `/analyze` flow; the core `score_job_fit()` function is available to the embeddable surface if needed |
 | Embeddable core | `job_matcher` package itself | `from job_matcher import run_analysis, score_job_fit, ...` | The GenAI-integration path: an agent can wrap `run_analysis` or just `score_job_fit` as tools in-process. `__init__.py` re-exports the stable core API; anything not re-exported is internal and may change |
 
-`POST /score` exists on the API (and `score_job_fit` in the core) as a
-standalone deterministic operation because downstream GenAI callers may
-bring their own extraction and only need the pinned formula — an example
-of surfaces diverging while the use case stays the same.
+## JSON Resume extraction (Bolt 6, revision 5)
+
+Second product capability, same architecture as the analysis flow: one
+typed LLM extraction call, everything around it deterministic.
+
+- `jsonresume.py` defines a Pydantic mirror of the **JSON Resume
+  v1.0.0** schema (jsonresume.org/schema): `basics` (with `location`,
+  `profiles`), `work[]`, `volunteer[]`, `education[]`, `awards[]`,
+  `certificates[]`, `publications[]`, `skills[]`, `languages[]`,
+  `interests[]`, `references[]`, `projects[]`, `meta` (stamped
+  `version: "v1.0.0"`). Fields optional exactly where the standard says
+  so; unknown fields rejected — "strongly typed per the standard" means
+  a consumer can trust the shape without re-validating.
+- `extract_jsonresume(resume_text) -> JSONResume` reuses the analysis
+  call's pattern and prompt framing (resume text as fenced data) and the
+  same model resolution (`MODEL_ANALYST` → `MODEL` → error). Grounding
+  rule carried over: contact fields must appear in the resume text —
+  the extractor must not invent an email or phone.
+- Surfaces: `POST /resume/jsonresume` (multipart or server path,
+  returns the document, persists nothing), `jobmatch jsonresume
+  --resume <file> [--out <file>]` (writes/prints the document), and the
+  core function for in-process callers. No run folder — this is a pure
+  conversion, not a run.
+
+## MCP server (`mcp/`, Bolt 7, revision 5)
+
+Modelled on the owner's `ctms-mcp-server` (zynomi-projects) — **the MCP
+part only**; the reference's REST/agent-service half is deliberately not
+copied, because this repo's REST layer is the backend itself.
+
+```
+mcp/
+├── package.json          # type: module; bin: jobmatcher-mcp; dep: @modelcontextprotocol/sdk
+├── index.js              # the whole server, single file like the reference:
+│                         #   Server + StdioServerTransport
+│                         #   ListTools → analyze_job_fit | extract_jsonresume | health
+│                         #   CallTool  → fetch() against the backend REST API
+├── .env.example          # JOBMATCHER_API_URL=http://localhost:8000
+├── configs/
+│   ├── claude-desktop.json   # ready-to-paste client config
+│   └── vscode-mcp.json
+└── README.md             # run: API up first, then `node mcp/index.js` (or npx via bin)
+```
+
+- Pure bridge: tool input schemas mirror the REST contracts
+  (`resume_path` server-side path + `job_sources[]` for analyze;
+  `resume_path` for jsonresume); tool results are the backend's typed
+  JSON passed through untouched — the MCP layer adds no logic, no
+  parsing, no state (stateless like the API it wraps).
+- stdio transport only in v1 (the chatbot mounts it as a local
+  process); HTTP/SSE transports, auth, and containerization are out of
+  scope until a deployment change needs them.
+- Env-driven like everything else: `JOBMATCHER_API_URL`; no secrets —
+  the backend it calls holds the model keys.
+- Tests: a Node-side smoke (`tools/list` + one `tools/call` against a
+  stubbed fetch) — kept minimal; the contract weight stays in the
+  backend's own evals.
 
 ## Observability as aspects (AOP via decorators)
 

@@ -12,6 +12,7 @@ agent-job-matcher/
 ├── .env              # all secrets/config — never committed (.gitignore enforces)
 ├── openspec/         # AI-DLC change specs; check status with /openspec-status
 ├── backend/          # Python GenAI backend (CLI + FastAPI + embeddable core)
+├── mcp/              # Node MCP server (stdio) — pure bridge to the backend REST API
 ├── frontend/         # later phase
 ├── scripts/          # repo automation (graphify)
 └── graph*.json       # CI-generated knowledge graph — never edit by hand
@@ -59,3 +60,17 @@ agent-job-matcher/
    run-management layer: no queues, no state machines, no run-browsing
    endpoints. CLI runs persist artifacts to disk; API runs return the
    payload.
+8. **Conventional Commits.** Commit messages follow
+   `type(scope): subject` (`feat:`, `fix:`, `docs:`, `chore:`, …) —
+   the Release workflow computes semantic versions from them (`fix` →
+   patch, `feat` → minor, `BREAKING CHANGE:` footer → major). See
+   `RUNBOOK.md` for the release flow.
+9. **The API contract ships with every release.** The OpenAPI document
+   is generated from the FastAPI app (never hand-maintained) and
+   attached to each GitHub Release as `openapi.json`/`openapi.yaml` by
+   the dedicated OpenAPI workflow. The bar for merging an endpoint:
+   non-empty summary, detailed Markdown description, and
+   request/response examples sourced from the committed eval fixtures;
+   app metadata carries the project description, version, license, and
+   the repo link (`externalDocs`). An offline test enforces this — an
+   undocumented endpoint is a failing build, not a review comment.

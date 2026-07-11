@@ -1,12 +1,11 @@
 # syntax=docker/dockerfile:1.6
 # =====================================================================
-# agent-job-matcher — INTERIM image
+# agent-job-matcher — backend CLI image (jobmatch)
 #
-# Packages the current talent-align prototype CLI (backend/cli.py) so
-# the GHCR publish pipeline is live from day one. Superseded when the
-# add-job-matcher-cli change lands: the runtime becomes the job_matcher
-# package (jobmatch CLI + FastAPI), following privacyshield's combined
-# backend+frontend image pattern.
+# Packages the job_matcher backend (add-job-matcher-cli Bolt 3). The
+# FastAPI surface (Bolt 4) will extend this with a served entrypoint,
+# following privacyshield's combined-image pattern when the frontend
+# lands.
 # =====================================================================
 
 FROM python:3.12-slim
@@ -23,21 +22,18 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-# Python deps — install first for better layer caching.
-COPY backend/requirements-job-fit.txt ./requirements.txt
 # cryptography 49.0.0's aarch64 wheel crashes with SIGILL at import
-# (pulled in transitively via pydantic-ai → Authlib/google-auth); pin to
-# the last known-good major until a fixed wheel ships.
+# (pulled in transitively via pydantic-ai); pin to the last known-good
+# major until a fixed wheel ships.
+COPY backend/ ./backend/
 RUN pip install --upgrade pip \
- && pip install -r requirements.txt "cryptography<49"
+ && pip install ./backend "cryptography<49"
 
-# Application code.
-COPY backend/ ./
-
-# Drop privileges.
+# Drop privileges. Runs and logs land under /work (mount it).
 RUN useradd --system --create-home --uid 1001 app \
- && chown -R app:app /app
+ && mkdir -p /work && chown -R app:app /app /work
 USER app
+WORKDIR /work
 
-ENTRYPOINT ["python", "cli.py"]
+ENTRYPOINT ["jobmatch"]
 CMD ["--help"]

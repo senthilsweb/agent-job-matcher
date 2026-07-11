@@ -2,6 +2,29 @@
 
 Owner-directed change: specified and implemented together (2026-07-11).
 
+## Revision 2 (owner, 2026-07-11) — done with its commit
+
+- [x] Full graphify generation enabled: workflow now runs
+      `graphify update` (extraction + Leiden/Louvain communities +
+      graph.html + GRAPH_REPORT.md, deterministic, no LLM);
+      `scripts/graphify-build.py` deleted as obsolete;
+      `graphify-index.py` extended for node-link format + absolute-path
+      relativization; graph.html + GRAPH_REPORT.md now committed at root
+- [x] `.github/workflows/release.yml` — python-semantic-release from
+      Conventional Commits; bumps backend version files, tags `v*`,
+      GitHub Release; Conventional Commits rule added to AGENTS.md
+- [x] `RUNBOOK.md` — setup, gh secrets-from-.env, workflow ops, release
+      flow, Docker, local graphify
+- [x] `.env.example` — concise, grouped, minimal comments
+
+## Revision 2 verification (after push)
+
+- [ ] Graphify run green with `graphify update`; root gains
+      `graph.html` + `GRAPH_REPORT.md`; index still ≤ 50 KB
+- [ ] Release workflow: non-conventional push exits cleanly (no
+      release); first `feat:`/`fix:` commit produces `v0.x.y` tag +
+      GitHub Release + semver Docker tags
+
 ## Implementation (done with this change's commit)
 
 - [x] Copy `scripts/graphify-build.py` from templrgo (repo-generic, verbatim)

@@ -20,7 +20,8 @@ Target shape (modelled on `privacyshield`):
 agent-job-matcher/
 ├── .env                # secrets, never committed (.env.example is)
 ├── openspec/           # AI-DLC change specs — every non-trivial change
-├── backend/            # Python GenAI backend, CLI-triggered
+├── backend/            # Python GenAI backend: CLI + FastAPI + embeddable core
+├── mcp/                # Node MCP server (stdio), bridges tools → backend REST
 └── frontend/           # later phase, not yet started
 ```
 

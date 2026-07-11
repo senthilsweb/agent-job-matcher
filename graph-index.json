@@ -1,9 +1,22 @@
 {
   "version": 1,
   "node_count": 79,
-  "edge_count": 171,
+  "edge_count": 125,
   "module_count": 5,
   "modules": {
+    "backend/job_fit_from_files.py": {
+      "entry_files": [
+        "job_fit_from_files.py"
+      ],
+      "labels": [
+        "job_fit_from_files.py",
+        "main()"
+      ],
+      "calls": [
+        "backend/app.py"
+      ],
+      "called_by": []
+    },
     "backend/app.py": {
       "entry_files": [
         "app.py"
@@ -21,29 +34,17 @@
         "backend/job_fit_from_files.py"
       ]
     },
-    "backend/job_fit_from_files.py": {
+    "backend/cli.py": {
       "entry_files": [
-        "job_fit_from_files.py"
+        "cli.py"
       ],
       "labels": [
-        "job_fit_from_files.py",
-        "main()"
-      ],
-      "calls": [
-        "backend/app.py"
-      ],
-      "called_by": []
-    },
-    "scripts/graphify-index.py": {
-      "entry_files": [
-        "graphify-index.py"
-      ],
-      "labels": [
-        "graphify-index.py",
-        "module_for()",
-        "build_index()",
-        "main()",
-        "Return the module key for a given file path, or None if unrecognised."
+        "cli.py",
+        "render_template()",
+        "load_template()",
+        "load_prompt()",
+        "get_system_prompt()",
+        "get_analysis_prompt()"
       ],
       "calls": [],
       "called_by": []
@@ -59,17 +60,16 @@
       "calls": [],
       "called_by": []
     },
-    "backend/cli.py": {
+    "scripts/graphify-index.py": {
       "entry_files": [
-        "cli.py"
+        "graphify-index.py"
       ],
       "labels": [
-        "cli.py",
-        "render_template()",
-        "load_template()",
-        "load_prompt()",
-        "get_system_prompt()",
-        "get_analysis_prompt()"
+        "graphify-index.py",
+        "module_for()",
+        "build_index()",
+        "main()",
+        "Return the module key for a given file path, or None if unrecognised."
       ],
       "calls": [],
       "called_by": []

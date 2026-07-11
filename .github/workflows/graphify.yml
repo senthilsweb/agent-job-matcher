@@ -55,17 +55,20 @@ jobs:
         id: gen
         continue-on-error: true
         env:
-          # graphify reads OPENAI_API_KEY for semantic extraction; without it,
-          # only AST-based structural extraction runs (still useful, no LLM cost).
+          # OPENAI_API_KEY is wired for graphify's LLM-backed semantic pass;
+          # `graphify update` itself is deterministic and free (extraction +
+          # community clustering + report, no LLM), so the key is a no-op
+          # today and activates automatically if graphify grows CI-side
+          # semantic extraction.
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5' }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5-mini' }}
         run: |
           set -e
-          # CI runs the deterministic, free, no-LLM portion of graphify:
-          # AST/structural extraction (imports/calls/defines edges), which is
-          # exactly what graphify-index.py needs for the token-cheap slice.
-          python scripts/graphify-build.py "${GITHUB_WORKSPACE:-.}"
-          python scripts/graphify-index.py graphify-out/graph.json graphify-out/graph-index.json
+          # Full deterministic generation: AST extraction + graph build +
+          # Leiden/Louvain community clustering + interactive graph.html +
+          # GRAPH_REPORT.md — everything graphify can do without an LLM.
+          graphify update "${GITHUB_WORKSPACE:-.}"
+          python scripts/graphify-index.py graphify-out/graph.json graphify-out/graph-index.json "${GITHUB_WORKSPACE:-.}"
 
       - name: Commit graph to repo root
         if: steps.gen.outcome == 'success'
@@ -73,6 +76,8 @@ jobs:
           set -e
           cp graphify-out/graph.json graph.json
           cp graphify-out/graph-index.json graph-index.json
+          cp graphify-out/graph.html graph.html
+          cp graphify-out/GRAPH_REPORT.md GRAPH_REPORT.md
           cat > graph-manifest.json <<EOF
           {
             "version": 1,
@@ -86,11 +91,13 @@ jobs:
           EOF
           git config user.name "graphify-bot"
           git config user.email "graphify-bot@users.noreply.github.com"
-          git add graph.json graph-index.json graph-manifest.json
+          git add graph.json graph-index.json graph-manifest.json graph.html GRAPH_REPORT.md
           if git diff --cached --quiet; then
             echo "Graph unchanged — nothing to commit."
           else
             git commit -m "graph: update knowledge graph for ${GITHUB_SHA::7} [skip graphify]"
+            # The release bot may push to main concurrently — rebase, don't race
+            git pull --rebase origin main
             git push
           fi
 

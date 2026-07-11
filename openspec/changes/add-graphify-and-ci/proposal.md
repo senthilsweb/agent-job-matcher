@@ -2,6 +2,12 @@
 
 > Status: **APPROVED** (owner-directed, 2026-07-11) — implemented in the
 > same commit; verification = first green runs of both workflows
+> Revision: 2 (owner, 2026-07-11): full graphify generation enabled
+> (`graphify update`: extraction + community clustering + graph.html +
+> GRAPH_REPORT.md — deterministic, no LLM; replaces the AST-only
+> script); semantic-release workflow added (Conventional Commits →
+> auto version/tag/GitHub Release → semver Docker tags); RUNBOOK.md
+> added; concise `.env.example` added
 > Owner: @senthilsweb
 > Modelled on: `templrgo` (graphify scripts + workflow),
 > `privacyshield` (GHCR build-and-publish workflow)

@@ -1,2637 +1,2221 @@
 {
-  "elements": {
-    "nodes": [
-      {
-        "data": {
-          "id": "scripts_graphify_index_py",
-          "label": "graphify-index.py",
-          "file_type": "code",
-          "source_file": "scripts/graphify-index.py",
-          "source_location": "L1"
-        }
-      },
-      {
-        "data": {
-          "id": "graphify_index_module_for",
-          "label": "module_for()",
-          "file_type": "code",
-          "source_file": "scripts/graphify-index.py",
-          "source_location": "L43"
-        }
-      },
-      {
-        "data": {
-          "id": "graphify_index_build_index",
-          "label": "build_index()",
-          "file_type": "code",
-          "source_file": "scripts/graphify-index.py",
-          "source_location": "L55"
-        }
-      },
-      {
-        "data": {
-          "id": "graphify_index_main",
-          "label": "main()",
-          "file_type": "code",
-          "source_file": "scripts/graphify-index.py",
-          "source_location": "L143"
-        }
-      },
-      {
-        "data": {
-          "id": "graphify_index_rationale_44",
-          "label": "Return the module key for a given file path, or None if unrecognised.",
-          "file_type": "rationale",
-          "source_file": "scripts/graphify-index.py",
-          "source_location": "L44"
-        }
-      },
-      {
-        "data": {
-          "id": "scripts_graphify_build_py",
-          "label": "graphify-build.py",
-          "file_type": "code",
-          "source_file": "scripts/graphify-build.py",
-          "source_location": "L1"
-        }
-      },
-      {
-        "data": {
-          "id": "graphify_build_main",
-          "label": "main()",
-          "file_type": "code",
-          "source_file": "scripts/graphify-build.py",
-          "source_location": "L27"
-        }
-      },
-      {
-        "data": {
-          "id": "backend_app_py",
-          "label": "app.py",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L1"
-        }
-      },
-      {
-        "data": {
-          "id": "app_render_template",
-          "label": "render_template()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L59"
-        }
-      },
-      {
-        "data": {
-          "id": "app_load_template",
-          "label": "load_template()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L67"
-        }
-      },
-      {
-        "data": {
-          "id": "app_load_prompt",
-          "label": "load_prompt()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L75"
-        }
-      },
-      {
-        "data": {
-          "id": "app_matchstatus",
-          "label": "MatchStatus",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L87"
-        }
-      },
-      {
-        "data": {
-          "id": "str",
-          "label": "str",
-          "file_type": "code",
-          "source_file": "",
-          "source_location": ""
-        }
-      },
-      {
-        "data": {
-          "id": "enum",
-          "label": "Enum",
-          "file_type": "code",
-          "source_file": "",
-          "source_location": ""
-        }
-      },
-      {
-        "data": {
-          "id": "app_skillmatch",
-          "label": "SkillMatch",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L95"
-        }
-      },
-      {
-        "data": {
-          "id": "basemodel",
-          "label": "BaseModel",
-          "file_type": "code",
-          "source_file": "",
-          "source_location": ""
-        }
-      },
-      {
-        "data": {
-          "id": "app_scorebreakdown",
-          "label": "ScoreBreakdown",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L102"
-        }
-      },
-      {
-        "data": {
-          "id": "app_coverlettercontent",
-          "label": "CoverLetterContent",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L110"
-        }
-      },
-      {
-        "data": {
-          "id": "app_jobfitreport",
-          "label": "JobFitReport",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L117"
-        }
-      },
-      {
-        "data": {
-          "id": "app_generate_pdf",
-          "label": "generate_pdf()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L146"
-        }
-      },
-      {
-        "data": {
-          "id": "app_generate_docx",
-          "label": "generate_docx()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L185"
-        }
-      },
-      {
-        "data": {
-          "id": "app_generate_md",
-          "label": "generate_md()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L218"
-        }
-      },
-      {
-        "data": {
-          "id": "app_format_cover_letter",
-          "label": "format_cover_letter()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L243"
-        }
-      },
-      {
-        "data": {
-          "id": "app_fetch_job_description",
-          "label": "fetch_job_description()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L292"
-        }
-      },
-      {
-        "data": {
-          "id": "app_read_resume",
-          "label": "read_resume()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L312"
-        }
-      },
-      {
-        "data": {
-          "id": "app_get_system_prompt",
-          "label": "get_system_prompt()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L332"
-        }
-      },
-      {
-        "data": {
-          "id": "app_get_analysis_prompt",
-          "label": "get_analysis_prompt()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L342"
-        }
-      },
-      {
-        "data": {
-          "id": "app_create_agent",
-          "label": "create_agent()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L364"
-        }
-      },
-      {
-        "data": {
-          "id": "app_analyze",
-          "label": "analyze()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L373"
-        }
-      },
-      {
-        "data": {
-          "id": "app_get_status_class",
-          "label": "get_status_class()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L492"
-        }
-      },
-      {
-        "data": {
-          "id": "app_get_status_emoji",
-          "label": "get_status_emoji()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L502"
-        }
-      },
-      {
-        "data": {
-          "id": "app_render_skill_table",
-          "label": "render_skill_table()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L512"
-        }
-      },
-      {
-        "data": {
-          "id": "app_fullreport",
-          "label": "FullReport",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L553"
-        }
-      },
-      {
-        "data": {
-          "id": "app_render_dashboard",
-          "label": "render_dashboard()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L574"
-        }
-      },
-      {
-        "data": {
-          "id": "app_main",
-          "label": "main()",
-          "file_type": "code",
-          "source_file": "backend/app.py",
-          "source_location": "L731"
-        }
-      },
-      {
-        "data": {
-          "id": "app_rationale_1",
-          "label": "Job Fit Analyzer - Production Version Clean, consolidated app with deterministic",
-          "file_type": "rationale",
-          "source_file": "backend/app.py",
-          "source_location": "L1"
-        }
-      },
-      {
-        "data": {
-          "id": "app_rationale_60",
-          "label": "Render mustache-style template with {{variable}} placeholders.",
-          "file_type": "rationale",
-          "source_file": "backend/app.py",
-          "source_location": "L60"
-        }
-      },
-      {
-        "data": {
-          "id": "app_rationale_68",
-          "label": "Load template from templates folder.",
-          "file_type": "rationale",
-          "source_file": "backend/app.py",
-          "source_location": "L68"
-        }
-      },
-      {
-        "data": {
-          "id": "app_rationale_76",
-          "label": "Load prompt from prompts folder.",
-          "file_type": "rationale",
-          "source_file": "backend/app.py",
-          "source_location": "L76"
-        }
-      },
-      {
-        "data": {
-          "id": "app_rationale_147",
-          "label": "Generate PDF from text.",
-          "file_type": "rationale",
-          "source_file": "backend/app.py",
-          "source_location": "L147"
-        }
-      },
-      {
-        "data": {
-          "id": "app_rationale_186",
-          "label": "Generate DOCX from text.",
-          "file_type": "rationale",
-          "source_file": "backend/app.py",
-          "source_location": "L186"
-        }
-      },
-      {
-        "data": {
-          "id": "app_rationale_219",
-          "label": "Generate Markdown from text.",
-          "file_type": "rationale",
-          "source_file": "backend/app.py",
-          "source_location": "L219"
-        }
-      },
-      {
-        "data": {
-          "id": "app_rationale_244",
-          "label": "Format cover letter using external template.",
-          "file_type": "rationale",
-          "source_file": "backend/app.py",
-          "source_location": "L244"
-        }
-      },
-      {
-        "data": {
-          "id": "app_rationale_293",
-          "label": "Fetch and parse job description from URL.",
-          "file_type": "rationale",
-          "source_file": "backend/app.py",
-          "source_location": "L293"
-        }
-      },
-      {
-        "data": {
-          "id": "app_rationale_313",
-          "label": "Parse resume from uploaded file.",
-          "file_type": "rationale",
-          "source_file": "backend/app.py",
-          "source_location": "L313"
-        }
-      },
-      {
-        "data": {
-          "id": "app_rationale_333",
-          "label": "Load system prompt from external file.",
-          "file_type": "rationale",
-          "source_file": "backend/app.py",
-          "source_location": "L333"
-        }
-      },
-      {
-        "data": {
-          "id": "app_rationale_343",
-          "label": "Load and render analysis prompt from external file.",
-          "file_type": "rationale",
-          "source_file": "backend/app.py",
-          "source_location": "L343"
-        }
-      },
-      {
-        "data": {
-          "id": "app_rationale_365",
-          "label": "Create analysis agent.",
-          "file_type": "rationale",
-          "source_file": "backend/app.py",
-          "source_location": "L365"
-        }
-      },
-      {
-        "data": {
-          "id": "app_rationale_513",
-          "label": "Render skills using native Streamlit components.",
-          "file_type": "rationale",
-          "source_file": "backend/app.py",
-          "source_location": "L513"
-        }
-      },
-      {
-        "data": {
-          "id": "app_rationale_554",
-          "label": "Complete report with all input and output data.",
-          "file_type": "rationale",
-          "source_file": "backend/app.py",
-          "source_location": "L554"
-        }
-      },
-      {
-        "data": {
-          "id": "app_rationale_575",
-          "label": "Render the analysis dashboard.",
-          "file_type": "rationale",
-          "source_file": "backend/app.py",
-          "source_location": "L575"
-        }
-      },
-      {
-        "data": {
-          "id": "backend_job_fit_from_files_py",
-          "label": "job_fit_from_files.py",
-          "file_type": "code",
-          "source_file": "backend/job_fit_from_files.py",
-          "source_location": "L1"
-        }
-      },
-      {
-        "data": {
-          "id": "job_fit_from_files_main",
-          "label": "main()",
-          "file_type": "code",
-          "source_file": "backend/job_fit_from_files.py",
-          "source_location": "L11"
-        }
-      },
-      {
-        "data": {
-          "id": "backend_cli_py",
-          "label": "cli.py",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L1"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_render_template",
-          "label": "render_template()",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L52"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_load_template",
-          "label": "load_template()",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L60"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_load_prompt",
-          "label": "load_prompt()",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L68"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_get_system_prompt",
-          "label": "get_system_prompt()",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L76"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_get_analysis_prompt",
-          "label": "get_analysis_prompt()",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L85"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_matchstatus",
-          "label": "MatchStatus",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L110"
-        }
-      },
-      {
-        "data": {
-          "id": "str",
-          "label": "str",
-          "file_type": "code",
-          "source_file": "",
-          "source_location": ""
-        }
-      },
-      {
-        "data": {
-          "id": "enum",
-          "label": "Enum",
-          "file_type": "code",
-          "source_file": "",
-          "source_location": ""
-        }
-      },
-      {
-        "data": {
-          "id": "cli_skillmatch",
-          "label": "SkillMatch",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L118"
-        }
-      },
-      {
-        "data": {
-          "id": "basemodel",
-          "label": "BaseModel",
-          "file_type": "code",
-          "source_file": "",
-          "source_location": ""
-        }
-      },
-      {
-        "data": {
-          "id": "cli_scorebreakdown",
-          "label": "ScoreBreakdown",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L125"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_coverlettercontent",
-          "label": "CoverLetterContent",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L133"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_jobfitreport",
-          "label": "JobFitReport",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L140"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_fullreport",
-          "label": "FullReport",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L157"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_fetch_job_description",
-          "label": "fetch_job_description()",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L183"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_read_resume",
-          "label": "read_resume()",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L203"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_format_cover_letter",
-          "label": "format_cover_letter()",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L220"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_analyze",
-          "label": "analyze()",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L263"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_main",
-          "label": "main()",
-          "file_type": "code",
-          "source_file": "backend/cli.py",
-          "source_location": "L276"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_rationale_53",
-          "label": "Render mustache-style template with {{variable}} placeholders.",
-          "file_type": "rationale",
-          "source_file": "backend/cli.py",
-          "source_location": "L53"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_rationale_61",
-          "label": "Load template from templates folder.",
-          "file_type": "rationale",
-          "source_file": "backend/cli.py",
-          "source_location": "L61"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_rationale_69",
-          "label": "Load prompt from prompts folder.",
-          "file_type": "rationale",
-          "source_file": "backend/cli.py",
-          "source_location": "L69"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_rationale_77",
-          "label": "Load system prompt from external file.",
-          "file_type": "rationale",
-          "source_file": "backend/cli.py",
-          "source_location": "L77"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_rationale_86",
-          "label": "Load and render analysis prompt from external file.",
-          "file_type": "rationale",
-          "source_file": "backend/cli.py",
-          "source_location": "L86"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_rationale_158",
-          "label": "Complete report with all input and output data.",
-          "file_type": "rationale",
-          "source_file": "backend/cli.py",
-          "source_location": "L158"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_rationale_184",
-          "label": "Fetch and parse job description from URL.",
-          "file_type": "rationale",
-          "source_file": "backend/cli.py",
-          "source_location": "L184"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_rationale_204",
-          "label": "Parse resume from file.",
-          "file_type": "rationale",
-          "source_file": "backend/cli.py",
-          "source_location": "L204"
-        }
-      },
-      {
-        "data": {
-          "id": "cli_rationale_221",
-          "label": "Format cover letter using external template.",
-          "file_type": "rationale",
-          "source_file": "backend/cli.py",
-          "source_location": "L221"
-        }
-      }
-    ],
-    "edges": [
-      {
-        "data": {
-          "source": "scripts_graphify_index_py",
-          "target": "json",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "scripts/graphify-index.py",
-          "source_location": "L26",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "scripts_graphify_index_py",
-          "target": "sys",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "scripts/graphify-index.py",
-          "source_location": "L27",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "scripts_graphify_index_py",
-          "target": "collections",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "scripts/graphify-index.py",
-          "source_location": "L28",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "scripts_graphify_index_py",
-          "target": "pathlib",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "scripts/graphify-index.py",
-          "source_location": "L29",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "scripts_graphify_index_py",
-          "target": "graphify_index_module_for",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "scripts/graphify-index.py",
-          "source_location": "L43",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "scripts_graphify_index_py",
-          "target": "graphify_index_build_index",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "scripts/graphify-index.py",
-          "source_location": "L55",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "scripts_graphify_index_py",
-          "target": "graphify_index_main",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "scripts/graphify-index.py",
-          "source_location": "L143",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "graphify_index_build_index",
-          "target": "graphify_index_module_for",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "scripts/graphify-index.py",
-          "source_location": "L81",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "graphify_index_main",
-          "target": "graphify_index_build_index",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "scripts/graphify-index.py",
-          "source_location": "L155",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "graphify_index_rationale_44",
-          "target": "graphify_index_module_for",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "scripts/graphify-index.py",
-          "source_location": "L44",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "scripts_graphify_build_py",
-          "target": "json",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "scripts/graphify-build.py",
-          "source_location": "L20",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "scripts_graphify_build_py",
-          "target": "os",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "scripts/graphify-build.py",
-          "source_location": "L21",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "scripts_graphify_build_py",
-          "target": "sys",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "scripts/graphify-build.py",
-          "source_location": "L22",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "scripts_graphify_build_py",
-          "target": "time",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "scripts/graphify-build.py",
-          "source_location": "L23",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "scripts_graphify_build_py",
-          "target": "pathlib",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "scripts/graphify-build.py",
-          "source_location": "L24",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "scripts_graphify_build_py",
-          "target": "graphify_build_main",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "scripts/graphify-build.py",
-          "source_location": "L27",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "streamlit",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L6",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "requests",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L7",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "bs4",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L8",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "pathlib",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L9",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "typing",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L10",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "io",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L11",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "enum",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L12",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "datetime",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L13",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "pydantic",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L14",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "pydantic_ai",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L15",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "pypdf",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L16",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "docx",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L17",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "docx_shared",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L18",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "fpdf",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L19",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "os",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L20",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "time",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L21",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "json",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L22",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "re",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L23",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "urllib_parse",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L24",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_render_template",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L59",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_load_template",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L67",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_load_prompt",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L75",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_matchstatus",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L87",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_matchstatus",
-          "target": "str",
-          "relation": "inherits",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L87",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_matchstatus",
-          "target": "enum",
-          "relation": "inherits",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L87",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_skillmatch",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L95",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_skillmatch",
-          "target": "basemodel",
-          "relation": "inherits",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L95",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_scorebreakdown",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L102",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_scorebreakdown",
-          "target": "basemodel",
-          "relation": "inherits",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L102",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_coverlettercontent",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L110",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_coverlettercontent",
-          "target": "basemodel",
-          "relation": "inherits",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L110",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_jobfitreport",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L117",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_jobfitreport",
-          "target": "basemodel",
-          "relation": "inherits",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L117",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_generate_pdf",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L146",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_generate_docx",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L185",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_generate_md",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L218",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_format_cover_letter",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L243",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_fetch_job_description",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L292",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_read_resume",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L312",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_get_system_prompt",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L332",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_get_analysis_prompt",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L342",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_create_agent",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L364",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_analyze",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L373",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_get_status_class",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L492",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_get_status_emoji",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L502",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_render_skill_table",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L512",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_fullreport",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L553",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_fullreport",
-          "target": "basemodel",
-          "relation": "inherits",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L553",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_render_dashboard",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L574",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "app_main",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L731",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_app_py",
-          "target": "dotenv",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L878",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_format_cover_letter",
-          "target": "app_load_template",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L264",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_format_cover_letter",
-          "target": "app_render_template",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L265",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_get_system_prompt",
-          "target": "app_load_prompt",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L335",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_get_analysis_prompt",
-          "target": "app_load_prompt",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L345",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_get_analysis_prompt",
-          "target": "app_render_template",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L346",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_create_agent",
-          "target": "app_get_system_prompt",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L369",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_analyze",
-          "target": "app_get_analysis_prompt",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L375",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_render_dashboard",
-          "target": "app_get_status_class",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L595",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_render_dashboard",
-          "target": "app_get_status_emoji",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L596",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_render_dashboard",
-          "target": "app_render_skill_table",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L682",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_render_dashboard",
-          "target": "app_generate_md",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L702",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_render_dashboard",
-          "target": "app_generate_pdf",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L705",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_render_dashboard",
-          "target": "app_generate_docx",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L708",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_render_dashboard",
-          "target": "app_fullreport",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L716",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_main",
-          "target": "app_create_agent",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L742",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_main",
-          "target": "app_read_resume",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L753",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_main",
-          "target": "app_render_dashboard",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L785",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_main",
-          "target": "app_jobfitreport",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L786",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_main",
-          "target": "app_fetch_job_description",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L817",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_main",
-          "target": "str",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L822",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_main",
-          "target": "app_analyze",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L838",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_main",
-          "target": "app_format_cover_letter",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L846",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_rationale_1",
-          "target": "backend_app_py",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L1",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_rationale_60",
-          "target": "app_render_template",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L60",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_rationale_68",
-          "target": "app_load_template",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L68",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_rationale_76",
-          "target": "app_load_prompt",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L76",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_rationale_147",
-          "target": "app_generate_pdf",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L147",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_rationale_186",
-          "target": "app_generate_docx",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L186",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_rationale_219",
-          "target": "app_generate_md",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L219",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_rationale_244",
-          "target": "app_format_cover_letter",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L244",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_rationale_293",
-          "target": "app_fetch_job_description",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L293",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_rationale_313",
-          "target": "app_read_resume",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L313",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_rationale_333",
-          "target": "app_get_system_prompt",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L333",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_rationale_343",
-          "target": "app_get_analysis_prompt",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L343",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_rationale_365",
-          "target": "app_create_agent",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L365",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_rationale_513",
-          "target": "app_render_skill_table",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L513",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_rationale_554",
-          "target": "app_fullreport",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L554",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "app_rationale_575",
-          "target": "app_render_dashboard",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/app.py",
-          "source_location": "L575",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_job_fit_from_files_py",
-          "target": "argparse",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/job_fit_from_files.py",
-          "source_location": "L2",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_job_fit_from_files_py",
-          "target": "job_fit_core",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/job_fit_from_files.py",
-          "source_location": "L3",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_job_fit_from_files_py",
-          "target": "job_fit_from_files_main",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/job_fit_from_files.py",
-          "source_location": "L11",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "argparse",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L10",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "json",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L11",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "re",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L12",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "sys",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L13",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "datetime",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L14",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "pathlib",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L15",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "io",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L16",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "typing",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L17",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "enum",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L18",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "requests",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L20",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "bs4",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L21",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "pydantic",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L22",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "pydantic_ai",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L23",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "pypdf",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L24",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "docx",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L25",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "cli_render_template",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L52",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "cli_load_template",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L60",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "cli_load_prompt",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L68",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "cli_get_system_prompt",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L76",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "cli_get_analysis_prompt",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L85",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "cli_matchstatus",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L110",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_matchstatus",
-          "target": "str",
-          "relation": "inherits",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L110",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_matchstatus",
-          "target": "enum",
-          "relation": "inherits",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L110",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "cli_skillmatch",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L118",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_skillmatch",
-          "target": "basemodel",
-          "relation": "inherits",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L118",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "cli_scorebreakdown",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L125",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_scorebreakdown",
-          "target": "basemodel",
-          "relation": "inherits",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L125",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "cli_coverlettercontent",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L133",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_coverlettercontent",
-          "target": "basemodel",
-          "relation": "inherits",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L133",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "cli_jobfitreport",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L140",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_jobfitreport",
-          "target": "basemodel",
-          "relation": "inherits",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L140",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "cli_fullreport",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L157",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_fullreport",
-          "target": "basemodel",
-          "relation": "inherits",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L157",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "cli_fetch_job_description",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L183",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "cli_read_resume",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L203",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "cli_format_cover_letter",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L220",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "cli_analyze",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L263",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "cli_main",
-          "relation": "contains",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L276",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "dotenv",
-          "relation": "imports_from",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L349",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "backend_cli_py",
-          "target": "os",
-          "relation": "imports",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L350",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_get_system_prompt",
-          "target": "cli_load_prompt",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L79",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_get_analysis_prompt",
-          "target": "cli_load_prompt",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L88",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_get_analysis_prompt",
-          "target": "cli_render_template",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L89",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_format_cover_letter",
-          "target": "cli_load_template",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L239",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_format_cover_letter",
-          "target": "cli_render_template",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L240",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_analyze",
-          "target": "cli_get_system_prompt",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L268",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_analyze",
-          "target": "cli_get_analysis_prompt",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L271",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_main",
-          "target": "cli_read_resume",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L302",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_main",
-          "target": "cli_fetch_job_description",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L306",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_main",
-          "target": "cli_analyze",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L310",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_main",
-          "target": "cli_format_cover_letter",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L313",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_main",
-          "target": "cli_fullreport",
-          "relation": "calls",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L316",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_rationale_53",
-          "target": "cli_render_template",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L53",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_rationale_61",
-          "target": "cli_load_template",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L61",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_rationale_69",
-          "target": "cli_load_prompt",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L69",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_rationale_77",
-          "target": "cli_get_system_prompt",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L77",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_rationale_86",
-          "target": "cli_get_analysis_prompt",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L86",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_rationale_158",
-          "target": "cli_fullreport",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L158",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_rationale_184",
-          "target": "cli_fetch_job_description",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L184",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_rationale_204",
-          "target": "cli_read_resume",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L204",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "cli_rationale_221",
-          "target": "cli_format_cover_letter",
-          "relation": "rationale_for",
-          "confidence": "EXTRACTED",
-          "source_file": "backend/cli.py",
-          "source_location": "L221",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "graphify_index_build_index",
-          "target": "str",
-          "relation": "calls",
-          "confidence": "INFERRED",
-          "confidence_score": 0.8,
-          "source_file": "scripts/graphify-index.py",
-          "source_location": "L68",
-          "weight": 1.0
-        }
-      },
-      {
-        "data": {
-          "source": "job_fit_from_files_main",
-          "target": "app_create_agent",
-          "relation": "calls",
-          "confidence": "INFERRED",
-          "confidence_score": 0.8,
-          "source_file": "backend/job_fit_from_files.py",
-          "source_location": "L24",
-          "weight": 1.0
-        }
-      }
-    ]
-  },
-  "metadata": {
-    "generator": "scripts/graphify-build.py (AST-only)",
-    "generated_at": "2026-07-11T16:58:58Z",
-    "source_sha": "5efefc04d49ce844a65b34acb896ebdae7617b6f",
-    "source_ref": "refs/heads/main",
-    "node_count": 82,
-    "edge_count": 171
-  }
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "job_fit_from_files.py",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/job_fit_from_files.py",
+      "source_location": "L1",
+      "id": "users_krs_work_agent_job_matcher_backend_job_fit_from_files_py",
+      "community": 5,
+      "norm_label": "job_fit_from_files.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/job_fit_from_files.py",
+      "source_location": "L11",
+      "id": "job_fit_from_files_main",
+      "community": 5,
+      "norm_label": "main()"
+    },
+    {
+      "label": "cli.py",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L1",
+      "id": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "community": 3,
+      "norm_label": "cli.py"
+    },
+    {
+      "label": "render_template()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L52",
+      "id": "cli_render_template",
+      "community": 7,
+      "norm_label": "render_template()"
+    },
+    {
+      "label": "load_template()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L60",
+      "id": "cli_load_template",
+      "community": 7,
+      "norm_label": "load_template()"
+    },
+    {
+      "label": "load_prompt()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L68",
+      "id": "cli_load_prompt",
+      "community": 3,
+      "norm_label": "load_prompt()"
+    },
+    {
+      "label": "get_system_prompt()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L76",
+      "id": "cli_get_system_prompt",
+      "community": 3,
+      "norm_label": "get_system_prompt()"
+    },
+    {
+      "label": "get_analysis_prompt()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L85",
+      "id": "cli_get_analysis_prompt",
+      "community": 3,
+      "norm_label": "get_analysis_prompt()"
+    },
+    {
+      "label": "MatchStatus",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L110",
+      "id": "cli_matchstatus",
+      "community": 2,
+      "norm_label": "matchstatus"
+    },
+    {
+      "label": "str",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "str",
+      "community": 2,
+      "norm_label": "str"
+    },
+    {
+      "label": "Enum",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "enum",
+      "community": 2,
+      "norm_label": "enum"
+    },
+    {
+      "label": "SkillMatch",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L118",
+      "id": "cli_skillmatch",
+      "community": 4,
+      "norm_label": "skillmatch"
+    },
+    {
+      "label": "BaseModel",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "basemodel",
+      "community": 4,
+      "norm_label": "basemodel"
+    },
+    {
+      "label": "ScoreBreakdown",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L125",
+      "id": "cli_scorebreakdown",
+      "community": 4,
+      "norm_label": "scorebreakdown"
+    },
+    {
+      "label": "CoverLetterContent",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L133",
+      "id": "cli_coverlettercontent",
+      "community": 4,
+      "norm_label": "coverlettercontent"
+    },
+    {
+      "label": "JobFitReport",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L140",
+      "id": "cli_jobfitreport",
+      "community": 4,
+      "norm_label": "jobfitreport"
+    },
+    {
+      "label": "FullReport",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L157",
+      "id": "cli_fullreport",
+      "community": 6,
+      "norm_label": "fullreport"
+    },
+    {
+      "label": "fetch_job_description()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L183",
+      "id": "cli_fetch_job_description",
+      "community": 6,
+      "norm_label": "fetch_job_description()"
+    },
+    {
+      "label": "read_resume()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L203",
+      "id": "cli_read_resume",
+      "community": 6,
+      "norm_label": "read_resume()"
+    },
+    {
+      "label": "format_cover_letter()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L220",
+      "id": "cli_format_cover_letter",
+      "community": 7,
+      "norm_label": "format_cover_letter()"
+    },
+    {
+      "label": "analyze()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L263",
+      "id": "cli_analyze",
+      "community": 3,
+      "norm_label": "analyze()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L276",
+      "id": "cli_main",
+      "community": 6,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Render mustache-style template with {{variable}} placeholders.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L53",
+      "id": "cli_rationale_53",
+      "community": 7,
+      "norm_label": "render mustache-style template with {{variable}} placeholders."
+    },
+    {
+      "label": "Load template from templates folder.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L61",
+      "id": "cli_rationale_61",
+      "community": 7,
+      "norm_label": "load template from templates folder."
+    },
+    {
+      "label": "Load prompt from prompts folder.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L69",
+      "id": "cli_rationale_69",
+      "community": 3,
+      "norm_label": "load prompt from prompts folder."
+    },
+    {
+      "label": "Load system prompt from external file.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L77",
+      "id": "cli_rationale_77",
+      "community": 3,
+      "norm_label": "load system prompt from external file."
+    },
+    {
+      "label": "Load and render analysis prompt from external file.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L86",
+      "id": "cli_rationale_86",
+      "community": 3,
+      "norm_label": "load and render analysis prompt from external file."
+    },
+    {
+      "label": "Complete report with all input and output data.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L158",
+      "id": "cli_rationale_158",
+      "community": 6,
+      "norm_label": "complete report with all input and output data."
+    },
+    {
+      "label": "Fetch and parse job description from URL.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L184",
+      "id": "cli_rationale_184",
+      "community": 6,
+      "norm_label": "fetch and parse job description from url."
+    },
+    {
+      "label": "Parse resume from file.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L204",
+      "id": "cli_rationale_204",
+      "community": 6,
+      "norm_label": "parse resume from file."
+    },
+    {
+      "label": "Format cover letter using external template.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L221",
+      "id": "cli_rationale_221",
+      "community": 7,
+      "norm_label": "format cover letter using external template."
+    },
+    {
+      "label": "app.py",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L1",
+      "id": "users_krs_work_agent_job_matcher_backend_app_py",
+      "community": 0,
+      "norm_label": "app.py"
+    },
+    {
+      "label": "render_template()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L59",
+      "id": "app_render_template",
+      "community": 1,
+      "norm_label": "render_template()"
+    },
+    {
+      "label": "load_template()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L67",
+      "id": "app_load_template",
+      "community": 1,
+      "norm_label": "load_template()"
+    },
+    {
+      "label": "load_prompt()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L75",
+      "id": "app_load_prompt",
+      "community": 5,
+      "norm_label": "load_prompt()"
+    },
+    {
+      "label": "MatchStatus",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L87",
+      "id": "app_matchstatus",
+      "community": 2,
+      "norm_label": "matchstatus"
+    },
+    {
+      "label": "SkillMatch",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L95",
+      "id": "app_skillmatch",
+      "community": 4,
+      "norm_label": "skillmatch"
+    },
+    {
+      "label": "ScoreBreakdown",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L102",
+      "id": "app_scorebreakdown",
+      "community": 4,
+      "norm_label": "scorebreakdown"
+    },
+    {
+      "label": "CoverLetterContent",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L110",
+      "id": "app_coverlettercontent",
+      "community": 4,
+      "norm_label": "coverlettercontent"
+    },
+    {
+      "label": "JobFitReport",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L117",
+      "id": "app_jobfitreport",
+      "community": 1,
+      "norm_label": "jobfitreport"
+    },
+    {
+      "label": "generate_pdf()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L146",
+      "id": "app_generate_pdf",
+      "community": 0,
+      "norm_label": "generate_pdf()"
+    },
+    {
+      "label": "generate_docx()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L185",
+      "id": "app_generate_docx",
+      "community": 0,
+      "norm_label": "generate_docx()"
+    },
+    {
+      "label": "generate_md()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L218",
+      "id": "app_generate_md",
+      "community": 0,
+      "norm_label": "generate_md()"
+    },
+    {
+      "label": "format_cover_letter()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L243",
+      "id": "app_format_cover_letter",
+      "community": 1,
+      "norm_label": "format_cover_letter()"
+    },
+    {
+      "label": "fetch_job_description()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L292",
+      "id": "app_fetch_job_description",
+      "community": 1,
+      "norm_label": "fetch_job_description()"
+    },
+    {
+      "label": "read_resume()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L312",
+      "id": "app_read_resume",
+      "community": 1,
+      "norm_label": "read_resume()"
+    },
+    {
+      "label": "get_system_prompt()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L332",
+      "id": "app_get_system_prompt",
+      "community": 5,
+      "norm_label": "get_system_prompt()"
+    },
+    {
+      "label": "get_analysis_prompt()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L342",
+      "id": "app_get_analysis_prompt",
+      "community": 1,
+      "norm_label": "get_analysis_prompt()"
+    },
+    {
+      "label": "create_agent()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L364",
+      "id": "app_create_agent",
+      "community": 5,
+      "norm_label": "create_agent()"
+    },
+    {
+      "label": "analyze()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L373",
+      "id": "app_analyze",
+      "community": 1,
+      "norm_label": "analyze()"
+    },
+    {
+      "label": "get_status_class()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L492",
+      "id": "app_get_status_class",
+      "community": 0,
+      "norm_label": "get_status_class()"
+    },
+    {
+      "label": "get_status_emoji()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L502",
+      "id": "app_get_status_emoji",
+      "community": 0,
+      "norm_label": "get_status_emoji()"
+    },
+    {
+      "label": "render_skill_table()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L512",
+      "id": "app_render_skill_table",
+      "community": 0,
+      "norm_label": "render_skill_table()"
+    },
+    {
+      "label": "FullReport",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L553",
+      "id": "app_fullreport",
+      "community": 0,
+      "norm_label": "fullreport"
+    },
+    {
+      "label": "render_dashboard()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L574",
+      "id": "app_render_dashboard",
+      "community": 0,
+      "norm_label": "render_dashboard()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L731",
+      "id": "app_main",
+      "community": 1,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Job Fit Analyzer - Production Version Clean, consolidated app with deterministic",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L1",
+      "id": "app_rationale_1",
+      "community": 0,
+      "norm_label": "job fit analyzer - production version clean, consolidated app with deterministic"
+    },
+    {
+      "label": "Render mustache-style template with {{variable}} placeholders.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L60",
+      "id": "app_rationale_60",
+      "community": 1,
+      "norm_label": "render mustache-style template with {{variable}} placeholders."
+    },
+    {
+      "label": "Load template from templates folder.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L68",
+      "id": "app_rationale_68",
+      "community": 1,
+      "norm_label": "load template from templates folder."
+    },
+    {
+      "label": "Load prompt from prompts folder.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L76",
+      "id": "app_rationale_76",
+      "community": 5,
+      "norm_label": "load prompt from prompts folder."
+    },
+    {
+      "label": "Generate PDF from text.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L147",
+      "id": "app_rationale_147",
+      "community": 0,
+      "norm_label": "generate pdf from text."
+    },
+    {
+      "label": "Generate DOCX from text.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L186",
+      "id": "app_rationale_186",
+      "community": 0,
+      "norm_label": "generate docx from text."
+    },
+    {
+      "label": "Generate Markdown from text.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L219",
+      "id": "app_rationale_219",
+      "community": 0,
+      "norm_label": "generate markdown from text."
+    },
+    {
+      "label": "Format cover letter using external template.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L244",
+      "id": "app_rationale_244",
+      "community": 1,
+      "norm_label": "format cover letter using external template."
+    },
+    {
+      "label": "Fetch and parse job description from URL.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L293",
+      "id": "app_rationale_293",
+      "community": 1,
+      "norm_label": "fetch and parse job description from url."
+    },
+    {
+      "label": "Parse resume from uploaded file.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L313",
+      "id": "app_rationale_313",
+      "community": 1,
+      "norm_label": "parse resume from uploaded file."
+    },
+    {
+      "label": "Load system prompt from external file.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L333",
+      "id": "app_rationale_333",
+      "community": 5,
+      "norm_label": "load system prompt from external file."
+    },
+    {
+      "label": "Load and render analysis prompt from external file.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L343",
+      "id": "app_rationale_343",
+      "community": 1,
+      "norm_label": "load and render analysis prompt from external file."
+    },
+    {
+      "label": "Create analysis agent.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L365",
+      "id": "app_rationale_365",
+      "community": 5,
+      "norm_label": "create analysis agent."
+    },
+    {
+      "label": "Render skills using native Streamlit components.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L513",
+      "id": "app_rationale_513",
+      "community": 0,
+      "norm_label": "render skills using native streamlit components."
+    },
+    {
+      "label": "Complete report with all input and output data.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L554",
+      "id": "app_rationale_554",
+      "community": 0,
+      "norm_label": "complete report with all input and output data."
+    },
+    {
+      "label": "Render the analysis dashboard.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L575",
+      "id": "app_rationale_575",
+      "community": 0,
+      "norm_label": "render the analysis dashboard."
+    },
+    {
+      "label": "graphify-build.py",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/scripts/graphify-build.py",
+      "source_location": "L1",
+      "id": "users_krs_work_agent_job_matcher_scripts_graphify_build_py",
+      "community": 8,
+      "norm_label": "graphify-build.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/scripts/graphify-build.py",
+      "source_location": "L27",
+      "id": "graphify_build_main",
+      "community": 8,
+      "norm_label": "main()"
+    },
+    {
+      "label": "graphify-index.py",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/scripts/graphify-index.py",
+      "source_location": "L1",
+      "id": "users_krs_work_agent_job_matcher_scripts_graphify_index_py",
+      "community": 2,
+      "norm_label": "graphify-index.py"
+    },
+    {
+      "label": "module_for()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/scripts/graphify-index.py",
+      "source_location": "L43",
+      "id": "graphify_index_module_for",
+      "community": 2,
+      "norm_label": "module_for()"
+    },
+    {
+      "label": "build_index()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/scripts/graphify-index.py",
+      "source_location": "L55",
+      "id": "graphify_index_build_index",
+      "community": 2,
+      "norm_label": "build_index()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "/Users/krs/work/agent-job-matcher/scripts/graphify-index.py",
+      "source_location": "L143",
+      "id": "graphify_index_main",
+      "community": 2,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Return the module key for a given file path, or None if unrecognised.",
+      "file_type": "rationale",
+      "source_file": "/Users/krs/work/agent-job-matcher/scripts/graphify-index.py",
+      "source_location": "L44",
+      "id": "graphify_index_rationale_44",
+      "community": 2,
+      "norm_label": "return the module key for a given file path, or none if unrecognised."
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/job_fit_from_files.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_job_fit_from_files_py",
+      "_tgt": "job_fit_from_files_main",
+      "source": "users_krs_work_agent_job_matcher_backend_job_fit_from_files_py",
+      "target": "job_fit_from_files_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/job_fit_from_files.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_src": "job_fit_from_files_main",
+      "_tgt": "app_create_agent",
+      "source": "job_fit_from_files_main",
+      "target": "app_create_agent"
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "enum",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "enum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "cli_render_template",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "cli_render_template",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "cli_load_template",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "cli_load_template",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L68",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "cli_load_prompt",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "cli_load_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L76",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "cli_get_system_prompt",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "cli_get_system_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L85",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "cli_get_analysis_prompt",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "cli_get_analysis_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L110",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "cli_matchstatus",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "cli_matchstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L118",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "cli_skillmatch",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "cli_skillmatch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L125",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "cli_scorebreakdown",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "cli_scorebreakdown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L133",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "cli_coverlettercontent",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "cli_coverlettercontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L140",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "cli_jobfitreport",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "cli_jobfitreport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L157",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "cli_fullreport",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "cli_fullreport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L183",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "cli_fetch_job_description",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "cli_fetch_job_description",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L203",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "cli_read_resume",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "cli_read_resume",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L220",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "cli_format_cover_letter",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "cli_format_cover_letter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L263",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "cli_analyze",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "cli_analyze",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L276",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "_tgt": "cli_main",
+      "source": "users_krs_work_agent_job_matcher_backend_cli_py",
+      "target": "cli_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L89",
+      "weight": 1.0,
+      "_src": "cli_get_analysis_prompt",
+      "_tgt": "cli_render_template",
+      "source": "cli_render_template",
+      "target": "cli_get_analysis_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L240",
+      "weight": 1.0,
+      "_src": "cli_format_cover_letter",
+      "_tgt": "cli_render_template",
+      "source": "cli_render_template",
+      "target": "cli_format_cover_letter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "_src": "cli_rationale_53",
+      "_tgt": "cli_render_template",
+      "source": "cli_render_template",
+      "target": "cli_rationale_53",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L239",
+      "weight": 1.0,
+      "_src": "cli_format_cover_letter",
+      "_tgt": "cli_load_template",
+      "source": "cli_load_template",
+      "target": "cli_format_cover_letter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "_src": "cli_rationale_61",
+      "_tgt": "cli_load_template",
+      "source": "cli_load_template",
+      "target": "cli_rationale_61",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L79",
+      "weight": 1.0,
+      "_src": "cli_get_system_prompt",
+      "_tgt": "cli_load_prompt",
+      "source": "cli_load_prompt",
+      "target": "cli_get_system_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L88",
+      "weight": 1.0,
+      "_src": "cli_get_analysis_prompt",
+      "_tgt": "cli_load_prompt",
+      "source": "cli_load_prompt",
+      "target": "cli_get_analysis_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "_src": "cli_rationale_69",
+      "_tgt": "cli_load_prompt",
+      "source": "cli_load_prompt",
+      "target": "cli_rationale_69",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L268",
+      "weight": 1.0,
+      "_src": "cli_analyze",
+      "_tgt": "cli_get_system_prompt",
+      "source": "cli_get_system_prompt",
+      "target": "cli_analyze",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L77",
+      "weight": 1.0,
+      "_src": "cli_rationale_77",
+      "_tgt": "cli_get_system_prompt",
+      "source": "cli_get_system_prompt",
+      "target": "cli_rationale_77",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L271",
+      "weight": 1.0,
+      "_src": "cli_analyze",
+      "_tgt": "cli_get_analysis_prompt",
+      "source": "cli_get_analysis_prompt",
+      "target": "cli_analyze",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L86",
+      "weight": 1.0,
+      "_src": "cli_rationale_86",
+      "_tgt": "cli_get_analysis_prompt",
+      "source": "cli_get_analysis_prompt",
+      "target": "cli_rationale_86",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L110",
+      "weight": 1.0,
+      "_src": "cli_matchstatus",
+      "_tgt": "str",
+      "source": "cli_matchstatus",
+      "target": "str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L110",
+      "weight": 1.0,
+      "_src": "cli_matchstatus",
+      "_tgt": "enum",
+      "source": "cli_matchstatus",
+      "target": "enum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "_src": "app_matchstatus",
+      "_tgt": "str",
+      "source": "str",
+      "target": "app_matchstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L822",
+      "weight": 1.0,
+      "_src": "app_main",
+      "_tgt": "str",
+      "source": "str",
+      "target": "app_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/Users/krs/work/agent-job-matcher/scripts/graphify-index.py",
+      "source_location": "L68",
+      "weight": 1.0,
+      "_src": "graphify_index_build_index",
+      "_tgt": "str",
+      "source": "str",
+      "target": "graphify_index_build_index"
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "enum",
+      "source": "enum",
+      "target": "users_krs_work_agent_job_matcher_backend_app_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "_src": "app_matchstatus",
+      "_tgt": "enum",
+      "source": "enum",
+      "target": "app_matchstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L118",
+      "weight": 1.0,
+      "_src": "cli_skillmatch",
+      "_tgt": "basemodel",
+      "source": "cli_skillmatch",
+      "target": "basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L125",
+      "weight": 1.0,
+      "_src": "cli_scorebreakdown",
+      "_tgt": "basemodel",
+      "source": "basemodel",
+      "target": "cli_scorebreakdown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L133",
+      "weight": 1.0,
+      "_src": "cli_coverlettercontent",
+      "_tgt": "basemodel",
+      "source": "basemodel",
+      "target": "cli_coverlettercontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L140",
+      "weight": 1.0,
+      "_src": "cli_jobfitreport",
+      "_tgt": "basemodel",
+      "source": "basemodel",
+      "target": "cli_jobfitreport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L157",
+      "weight": 1.0,
+      "_src": "cli_fullreport",
+      "_tgt": "basemodel",
+      "source": "basemodel",
+      "target": "cli_fullreport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L95",
+      "weight": 1.0,
+      "_src": "app_skillmatch",
+      "_tgt": "basemodel",
+      "source": "basemodel",
+      "target": "app_skillmatch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "_src": "app_scorebreakdown",
+      "_tgt": "basemodel",
+      "source": "basemodel",
+      "target": "app_scorebreakdown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L110",
+      "weight": 1.0,
+      "_src": "app_coverlettercontent",
+      "_tgt": "basemodel",
+      "source": "basemodel",
+      "target": "app_coverlettercontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L117",
+      "weight": 1.0,
+      "_src": "app_jobfitreport",
+      "_tgt": "basemodel",
+      "source": "basemodel",
+      "target": "app_jobfitreport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L553",
+      "weight": 1.0,
+      "_src": "app_fullreport",
+      "_tgt": "basemodel",
+      "source": "basemodel",
+      "target": "app_fullreport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L316",
+      "weight": 1.0,
+      "_src": "cli_main",
+      "_tgt": "cli_fullreport",
+      "source": "cli_fullreport",
+      "target": "cli_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L158",
+      "weight": 1.0,
+      "_src": "cli_rationale_158",
+      "_tgt": "cli_fullreport",
+      "source": "cli_fullreport",
+      "target": "cli_rationale_158",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L306",
+      "weight": 1.0,
+      "_src": "cli_main",
+      "_tgt": "cli_fetch_job_description",
+      "source": "cli_fetch_job_description",
+      "target": "cli_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L184",
+      "weight": 1.0,
+      "_src": "cli_rationale_184",
+      "_tgt": "cli_fetch_job_description",
+      "source": "cli_fetch_job_description",
+      "target": "cli_rationale_184",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L302",
+      "weight": 1.0,
+      "_src": "cli_main",
+      "_tgt": "cli_read_resume",
+      "source": "cli_read_resume",
+      "target": "cli_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L204",
+      "weight": 1.0,
+      "_src": "cli_rationale_204",
+      "_tgt": "cli_read_resume",
+      "source": "cli_read_resume",
+      "target": "cli_rationale_204",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L313",
+      "weight": 1.0,
+      "_src": "cli_main",
+      "_tgt": "cli_format_cover_letter",
+      "source": "cli_format_cover_letter",
+      "target": "cli_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L221",
+      "weight": 1.0,
+      "_src": "cli_rationale_221",
+      "_tgt": "cli_format_cover_letter",
+      "source": "cli_format_cover_letter",
+      "target": "cli_rationale_221",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/cli.py",
+      "source_location": "L310",
+      "weight": 1.0,
+      "_src": "cli_main",
+      "_tgt": "cli_analyze",
+      "source": "cli_analyze",
+      "target": "cli_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_render_template",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_render_template",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_load_template",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_load_template",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_load_prompt",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_load_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_matchstatus",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_matchstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L95",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_skillmatch",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_skillmatch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_scorebreakdown",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_scorebreakdown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L110",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_coverlettercontent",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_coverlettercontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L117",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_jobfitreport",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_jobfitreport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L146",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_generate_pdf",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_generate_pdf",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L185",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_generate_docx",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_generate_docx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L218",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_generate_md",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_generate_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L243",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_format_cover_letter",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_format_cover_letter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L292",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_fetch_job_description",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_fetch_job_description",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L312",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_read_resume",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_read_resume",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L332",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_get_system_prompt",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_get_system_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L342",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_get_analysis_prompt",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_get_analysis_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L364",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_create_agent",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_create_agent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L373",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_analyze",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_analyze",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L492",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_get_status_class",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_get_status_class",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L502",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_get_status_emoji",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_get_status_emoji",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L512",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_render_skill_table",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_render_skill_table",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L553",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_fullreport",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_fullreport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L574",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_render_dashboard",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_render_dashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L731",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_backend_app_py",
+      "_tgt": "app_main",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "app_rationale_1",
+      "_tgt": "users_krs_work_agent_job_matcher_backend_app_py",
+      "source": "users_krs_work_agent_job_matcher_backend_app_py",
+      "target": "app_rationale_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L265",
+      "weight": 1.0,
+      "_src": "app_format_cover_letter",
+      "_tgt": "app_render_template",
+      "source": "app_render_template",
+      "target": "app_format_cover_letter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L346",
+      "weight": 1.0,
+      "_src": "app_get_analysis_prompt",
+      "_tgt": "app_render_template",
+      "source": "app_render_template",
+      "target": "app_get_analysis_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "_src": "app_rationale_60",
+      "_tgt": "app_render_template",
+      "source": "app_render_template",
+      "target": "app_rationale_60",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L264",
+      "weight": 1.0,
+      "_src": "app_format_cover_letter",
+      "_tgt": "app_load_template",
+      "source": "app_load_template",
+      "target": "app_format_cover_letter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L68",
+      "weight": 1.0,
+      "_src": "app_rationale_68",
+      "_tgt": "app_load_template",
+      "source": "app_load_template",
+      "target": "app_rationale_68",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L335",
+      "weight": 1.0,
+      "_src": "app_get_system_prompt",
+      "_tgt": "app_load_prompt",
+      "source": "app_load_prompt",
+      "target": "app_get_system_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L345",
+      "weight": 1.0,
+      "_src": "app_get_analysis_prompt",
+      "_tgt": "app_load_prompt",
+      "source": "app_load_prompt",
+      "target": "app_get_analysis_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L76",
+      "weight": 1.0,
+      "_src": "app_rationale_76",
+      "_tgt": "app_load_prompt",
+      "source": "app_load_prompt",
+      "target": "app_rationale_76",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L786",
+      "weight": 1.0,
+      "_src": "app_main",
+      "_tgt": "app_jobfitreport",
+      "source": "app_jobfitreport",
+      "target": "app_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L705",
+      "weight": 1.0,
+      "_src": "app_render_dashboard",
+      "_tgt": "app_generate_pdf",
+      "source": "app_generate_pdf",
+      "target": "app_render_dashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L147",
+      "weight": 1.0,
+      "_src": "app_rationale_147",
+      "_tgt": "app_generate_pdf",
+      "source": "app_generate_pdf",
+      "target": "app_rationale_147",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L708",
+      "weight": 1.0,
+      "_src": "app_render_dashboard",
+      "_tgt": "app_generate_docx",
+      "source": "app_generate_docx",
+      "target": "app_render_dashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L186",
+      "weight": 1.0,
+      "_src": "app_rationale_186",
+      "_tgt": "app_generate_docx",
+      "source": "app_generate_docx",
+      "target": "app_rationale_186",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L702",
+      "weight": 1.0,
+      "_src": "app_render_dashboard",
+      "_tgt": "app_generate_md",
+      "source": "app_generate_md",
+      "target": "app_render_dashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L219",
+      "weight": 1.0,
+      "_src": "app_rationale_219",
+      "_tgt": "app_generate_md",
+      "source": "app_generate_md",
+      "target": "app_rationale_219",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L846",
+      "weight": 1.0,
+      "_src": "app_main",
+      "_tgt": "app_format_cover_letter",
+      "source": "app_format_cover_letter",
+      "target": "app_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L244",
+      "weight": 1.0,
+      "_src": "app_rationale_244",
+      "_tgt": "app_format_cover_letter",
+      "source": "app_format_cover_letter",
+      "target": "app_rationale_244",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L817",
+      "weight": 1.0,
+      "_src": "app_main",
+      "_tgt": "app_fetch_job_description",
+      "source": "app_fetch_job_description",
+      "target": "app_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L293",
+      "weight": 1.0,
+      "_src": "app_rationale_293",
+      "_tgt": "app_fetch_job_description",
+      "source": "app_fetch_job_description",
+      "target": "app_rationale_293",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L753",
+      "weight": 1.0,
+      "_src": "app_main",
+      "_tgt": "app_read_resume",
+      "source": "app_read_resume",
+      "target": "app_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L313",
+      "weight": 1.0,
+      "_src": "app_rationale_313",
+      "_tgt": "app_read_resume",
+      "source": "app_read_resume",
+      "target": "app_rationale_313",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L369",
+      "weight": 1.0,
+      "_src": "app_create_agent",
+      "_tgt": "app_get_system_prompt",
+      "source": "app_get_system_prompt",
+      "target": "app_create_agent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L333",
+      "weight": 1.0,
+      "_src": "app_rationale_333",
+      "_tgt": "app_get_system_prompt",
+      "source": "app_get_system_prompt",
+      "target": "app_rationale_333",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L375",
+      "weight": 1.0,
+      "_src": "app_analyze",
+      "_tgt": "app_get_analysis_prompt",
+      "source": "app_get_analysis_prompt",
+      "target": "app_analyze",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L343",
+      "weight": 1.0,
+      "_src": "app_rationale_343",
+      "_tgt": "app_get_analysis_prompt",
+      "source": "app_get_analysis_prompt",
+      "target": "app_rationale_343",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L742",
+      "weight": 1.0,
+      "_src": "app_main",
+      "_tgt": "app_create_agent",
+      "source": "app_create_agent",
+      "target": "app_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L365",
+      "weight": 1.0,
+      "_src": "app_rationale_365",
+      "_tgt": "app_create_agent",
+      "source": "app_create_agent",
+      "target": "app_rationale_365",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L838",
+      "weight": 1.0,
+      "_src": "app_main",
+      "_tgt": "app_analyze",
+      "source": "app_analyze",
+      "target": "app_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L595",
+      "weight": 1.0,
+      "_src": "app_render_dashboard",
+      "_tgt": "app_get_status_class",
+      "source": "app_get_status_class",
+      "target": "app_render_dashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L596",
+      "weight": 1.0,
+      "_src": "app_render_dashboard",
+      "_tgt": "app_get_status_emoji",
+      "source": "app_get_status_emoji",
+      "target": "app_render_dashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L682",
+      "weight": 1.0,
+      "_src": "app_render_dashboard",
+      "_tgt": "app_render_skill_table",
+      "source": "app_render_skill_table",
+      "target": "app_render_dashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L513",
+      "weight": 1.0,
+      "_src": "app_rationale_513",
+      "_tgt": "app_render_skill_table",
+      "source": "app_render_skill_table",
+      "target": "app_rationale_513",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L716",
+      "weight": 1.0,
+      "_src": "app_render_dashboard",
+      "_tgt": "app_fullreport",
+      "source": "app_fullreport",
+      "target": "app_render_dashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L554",
+      "weight": 1.0,
+      "_src": "app_rationale_554",
+      "_tgt": "app_fullreport",
+      "source": "app_fullreport",
+      "target": "app_rationale_554",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L785",
+      "weight": 1.0,
+      "_src": "app_main",
+      "_tgt": "app_render_dashboard",
+      "source": "app_render_dashboard",
+      "target": "app_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/backend/app.py",
+      "source_location": "L575",
+      "weight": 1.0,
+      "_src": "app_rationale_575",
+      "_tgt": "app_render_dashboard",
+      "source": "app_render_dashboard",
+      "target": "app_rationale_575",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/scripts/graphify-build.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_scripts_graphify_build_py",
+      "_tgt": "graphify_build_main",
+      "source": "users_krs_work_agent_job_matcher_scripts_graphify_build_py",
+      "target": "graphify_build_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/scripts/graphify-index.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_scripts_graphify_index_py",
+      "_tgt": "graphify_index_module_for",
+      "source": "users_krs_work_agent_job_matcher_scripts_graphify_index_py",
+      "target": "graphify_index_module_for",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/scripts/graphify-index.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_scripts_graphify_index_py",
+      "_tgt": "graphify_index_build_index",
+      "source": "users_krs_work_agent_job_matcher_scripts_graphify_index_py",
+      "target": "graphify_index_build_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/scripts/graphify-index.py",
+      "source_location": "L143",
+      "weight": 1.0,
+      "_src": "users_krs_work_agent_job_matcher_scripts_graphify_index_py",
+      "_tgt": "graphify_index_main",
+      "source": "users_krs_work_agent_job_matcher_scripts_graphify_index_py",
+      "target": "graphify_index_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/scripts/graphify-index.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "_src": "graphify_index_build_index",
+      "_tgt": "graphify_index_module_for",
+      "source": "graphify_index_module_for",
+      "target": "graphify_index_build_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/scripts/graphify-index.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "_src": "graphify_index_rationale_44",
+      "_tgt": "graphify_index_module_for",
+      "source": "graphify_index_module_for",
+      "target": "graphify_index_rationale_44",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/krs/work/agent-job-matcher/scripts/graphify-index.py",
+      "source_location": "L155",
+      "weight": 1.0,
+      "_src": "graphify_index_main",
+      "_tgt": "graphify_index_build_index",
+      "source": "graphify_index_build_index",
+      "target": "graphify_index_main",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": []
 }

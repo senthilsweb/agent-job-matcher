@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "job-matcher"
+version = "0.1.0"
+description = "Resume vs job postings: evidence-grounded, deterministically scored fit reports (CLI + FastAPI + embeddable core)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Senthilnathan Karuppaiah" }]
+dependencies = [
+    "pydantic>=2.7",
+    "pydantic-ai>=0.3",
+    "typer>=0.12",
+    "fastapi>=0.111",
+    "uvicorn>=0.30",
+    "structlog>=24.1",
+    "httpx>=0.27",
+    "beautifulsoup4>=4.12",
+    "pypdf>=4.2",
+    "python-docx>=1.1",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+otel = [
+    "opentelemetry-sdk>=1.25",
+    "opentelemetry-exporter-otlp-proto-http>=1.25",
+    "openinference-semantic-conventions>=0.1.9",
+]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.23",
+]
+
+[project.scripts]
+jobmatch = "job_matcher.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["job_matcher*"]
+
+[tool.setuptools.package-data]
+job_matcher = ["prompts/*.txt"]
+
+[tool.pytest.ini_options]
+markers = ["live: requires a configured model and network access"]
+asyncio_mode = "auto"
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+version_variables = ["job_matcher/__init__.py:__version__"]
+tag_format = "v{version}"
+commit_message = "chore(release): v{version} [skip graphify]"
+allow_zero_version = true
