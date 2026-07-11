@@ -1,6 +1,51 @@
 # CHANGELOG
 
 
+## v0.3.0 (2026-07-11)
+
+### Documentation
+
+- **openspec**: Record OpenAPI release-artifact verification evidence (v0.2.1)
+  ([`d0a7d7d`](https://github.com/senthilsweb/agent-job-matcher/commit/d0a7d7d9af29d313e20a14e335e56153973f7d39))
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+- **openspec**: Revision 6 — agent service chat bridge, ADR 0001, architecture diagram
+  ([`ed0c7f3`](https://github.com/senthilsweb/agent-job-matcher/commit/ed0c7f37b5e8d26886936a0916825a67a49dab4c))
+
+Owner-approved evaluation outcome: a thin REST→MCP passthrough is rejected (our REST API already
+  exists); the ctms-style agent service is adopted as mcp/agent-service/ — POST /chat/stream (SSE),
+  POST /upload (→ configured temp dir, then the existing resume_path flow), GET /health with tool
+  list. LLM loop = pydantic-ai MCP client over mcp/index.js; imports job_matcher
+  logging/observability/config (max reuse, grep-gated). System invariant recorded: exactly two LLM
+  operations — extraction (MODEL_ANALYST) and orchestration (MODEL_CHAT). New Bolt 8; live evals
+  renumbered to Bolt 9. First ADR at openspec/adr/0001; mermaid system diagram added to design.md.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+### Features
+
+- **mcp**: Json Resume extraction, MCP server, and agent service chat bridge
+  ([`0df1212`](https://github.com/senthilsweb/agent-job-matcher/commit/0df12126de5dd4f2db93aa5feeea290cb3df6f6c))
+
+Bolts 6-8 of add-job-matcher-cli (96 backend + 6 agent-service tests + 5-assertion MCP smoke, all
+  green; every bolt verified live on the mini model): - jsonresume.py: strongly-typed Pydantic
+  mirror of JSON Resume v1.0.0 (unknown fields rejected at every level), extract_jsonresume with a
+  deterministic contact-grounding guard, POST /resume/jsonresume + jobmatch jsonresume + core
+  re-export. Live: synthetic resume → correct fictional identity, meta v1.0.0 - mcp/index.js: stdio
+  MCP server on @modelcontextprotocol/sdk (ctms model, MCP part only) — analyze_job_fit /
+  extract_jsonresume / health passed through to the REST API untouched; client configs for Claude
+  Desktop + VS Code; stub-backend smoke test - mcp/agent-service/app.py: the ADR-0001 chat bridge —
+  /chat/stream (ctms SSE contract with tool notices), /upload (sanitized → AGENT_UPLOAD_DIR, returns
+  server-side path), /health with MCP tool discovery; LLM-2 = pydantic-ai Agent +
+  MCPToolset(StdioTransport); reuses job_matcher logging/observability/config/prompts (test-pinned).
+  Full-chain live smoke: upload → chat → MCP → API → 81/100 strong_match streamed with the
+  deterministic recommendation - resolve_model gains fallback chains (MODEL_CHAT → MODEL_ANALYST →
+  MODEL); graphify watches mcp/**; .env.example updated
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+
 ## v0.2.1 (2026-07-11)
 
 ### Bug Fixes
