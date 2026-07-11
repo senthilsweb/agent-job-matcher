@@ -3,6 +3,16 @@
 > Status: **APPROVED** — 2026-07-11 (inception gate passed: all six
 > open questions resolved by owner; construction may begin at Bolt 1)
 > Owner: @senthilsweb
+> Revision: 6 (owner, 2026-07-11: **agent service added to `mcp/`** —
+> the ctms-style REST/SSE chat bridge (`/chat/stream`, `/upload`) that
+> lets the owner's existing neutral chatbot drive the MCP tools, while
+> Claude Desktop mounts the same MCP server over stdio. Reverses
+> revision 5's "MCP code only" — evaluation showed a thin REST→MCP
+> passthrough is worthless (our REST API already exists) but an LLM
+> orchestration loop is genuinely new capability. The system now has
+> exactly TWO LLM operations: typed extraction (backend) and chat
+> orchestration (agent service). See ADR
+> `openspec/adr/0001-agent-service-chat-bridge.md`)
 > Revision: 5 (owner, 2026-07-11: two scope additions — a **JSON Resume
 > extraction** capability (`POST /resume/jsonresume` + CLI + core:
 > resume in → strongly-typed https://jsonresume.org document out) as
@@ -163,6 +173,22 @@ evals. It is the "before" picture and will be replaced by this change.
   extraction call (same pattern and model resolution as the analysis
   call); Pydantic models mirror the standard field-for-field, so the
   output is schema-valid by construction or the request fails loudly.
+- **Agent service in `mcp/agent-service/`** *(revision 6)*: the
+  conversational REST bridge modelled on the owner's ctms
+  `agent_service_mcp_client.py` — a small FastAPI app exposing
+  `POST /chat/stream` (SSE, ctms-compatible contract so the existing
+  neutral chatbot connects with config only), `POST /upload` (multipart
+  → a **configured temp directory**, returning the server-side path the
+  chat then references), and `GET /health` (with the discovered tool
+  list). It hosts the system's **second and final LLM operation**: an
+  orchestration loop that receives natural language and picks MCP tools.
+  Max-reuse rules: the loop is **pydantic-ai's MCP client** (stdio
+  toolset over `mcp/index.js` — no hand-rolled function-calling loop);
+  being Python, it imports the `job_matcher` package's existing
+  `logging`, `observability`, and `config` modules rather than
+  duplicating them; model resolution `MODEL_CHAT` → `MODEL_ANALYST` →
+  `MODEL` (mini tier per the cost policy). It contains no business
+  logic — it orchestrates, never scores, parses, or fetches.
 - **MCP server at root `mcp/`** *(revision 5 — promoted from roadmap)*:
   a Node (≥18, ES module) server on the official
   `@modelcontextprotocol/sdk` over **stdio**, modelled on the owner's
@@ -190,9 +216,13 @@ evals. It is the "before" picture and will be replaced by this change.
   OpenObserve instance) — this change ships the client-side sinks and
   bridge only.
 - ~~MCP REST bridge (roadmap)~~ — **pulled into scope by revision 5**
-  as the root `mcp/` folder (Bolt 7). Still out of scope for the MCP
-  server itself: HTTP/SSE transports (stdio only in v1), auth, and any
-  REST endpoints of its own — it is a pure bridge to the backend API.
+  as the root `mcp/` folder (Bolt 7), and **revision 6 added the agent
+  service** (Bolt 8) as the chat-facing REST/SSE layer. Still out of
+  scope: HTTP/SSE transports on the MCP server itself (stdio only —
+  the agent service is the HTTP face), auth on either, chat
+  sessions/memory beyond a single conversation buffer, and a thin
+  no-LLM REST→MCP passthrough (evaluated and rejected: our REST API
+  already exists; see ADR 0001).
 - DOCX/PDF/HTML rendering — cover-letter content stays text inside the
   JSON, same v1 boundary as the Eve project.
 - OCR / scanned-PDF support, legacy `.doc`.
@@ -266,7 +296,18 @@ evals. It is the "before" picture and will be replaced by this change.
     `tools/list` with `analyze_job_fit`, `extract_jsonresume`, and
     `health`, and a `tools/call` of `analyze_job_fit` against a local
     JD fixture returns the same typed JSON array as `POST /analyze`.
-    The `mcp/` folder contains no REST endpoints of its own.
+    The MCP server itself contains no REST endpoints (the agent
+    service is the only HTTP face inside `mcp/`).
+16. With the backend API and agent service running: `POST /upload`
+    stores a resume into the configured temp directory and returns its
+    server-side path; `POST /chat/stream` with a natural-language
+    message referencing that path streams SSE events in the
+    ctms-compatible shape, and the answer's scores are grounded in a
+    real `analyze_job_fit` MCP tool call (verified via the tool-call
+    events in the stream). `GET /health` lists the discovered MCP
+    tools. The agent service imports `job_matcher`'s logging/
+    observability/config modules — a grep gate shows no duplicated
+    logging or sink configuration inside `mcp/agent-service/`.
 
 ## Open questions for the inception gate
 
@@ -283,6 +324,13 @@ evals. It is the "before" picture and will be replaced by this change.
 4. ~~Rounding convention~~ — **Resolved (owner, 2026-07-11):** **JS
    `Math.round` semantics** via a `floor(x + 0.5)` helper, keeping the
    ported eval fixtures byte-identical to the Eve reference.
+7. ~~Resume-into-chat mechanism (revision 6)~~ — **Resolved (owner,
+   2026-07-11):** the chatbot uses an **upload option**: the agent
+   service's `POST /upload` stores the file into a configured temp
+   directory (`AGENT_UPLOAD_DIR`; a shared volume when containerized)
+   and returns the server-side path, which the conversation then
+   references — from there the existing analyze flow continues
+   unchanged (the MCP tool's `resume_path` input).
 5. ~~Observability backend behind the decorators~~ — **Resolved (owner,
    2026-07-11):** JSON logs always on; OpenObserve via its REST
    JSON-ingestion API when configured. **Correction (owner, revision

@@ -12,7 +12,10 @@ agent-job-matcher/
 ├── .env              # all secrets/config — never committed (.gitignore enforces)
 ├── openspec/         # AI-DLC change specs; check status with /openspec-status
 ├── backend/          # Python GenAI backend (CLI + FastAPI + embeddable core)
-├── mcp/              # Node MCP server (stdio) — pure bridge to the backend REST API
+├── mcp/              # Node MCP server (stdio, pure bridge to the backend REST API)
+│                     #   + agent-service/ — chat REST/SSE bridge hosting LLM-2
+│                     #   (system invariant: exactly two LLM ops — extraction in
+│                     #   backend core, orchestration here; see openspec/adr/0001)
 ├── frontend/         # later phase
 ├── scripts/          # repo automation (graphify)
 └── graph*.json       # CI-generated knowledge graph — never edit by hand

@@ -1,5 +1,35 @@
 # Design — `job-matcher` CLI backend
 
+## System architecture (revision 6)
+
+Two LLM operations in the whole system, each in exactly one place:
+**LLM-1** — typed extraction inside the backend core; **LLM-2** — chat
+orchestration inside the agent service. Everything else is deterministic.
+
+```mermaid
+flowchart LR
+    CB([Neutral chatbot]) -->|"REST/SSE: /chat/stream, /upload"| AS
+    CD([Claude Desktop]) -->|stdio| MCP
+    U([Terminal]) --> CLI
+    PY([Python callers]) --> CORE
+
+    subgraph M["mcp/"]
+        AS["Agent service<br/>(LLM-2: orchestration)"] -->|MCP tools| MCP["MCP server"]
+    end
+
+    subgraph B["backend/"]
+        API["FastAPI /analyze"] --> CORE["job_matcher core<br/>fetch → extract (LLM-1) → score"]
+        CLI["jobmatch CLI"] --> CORE
+    end
+
+    MCP -->|REST| API
+```
+
+One tool-definition surface (the MCP server) serves both AI clients; one
+service layer (the core) serves every surface; results are the same
+typed JSON array everywhere. Decision record: ADR
+`openspec/adr/0001-agent-service-chat-bridge.md`.
+
 ## Context: what we keep, drop, and upgrade from the Eve reference
 
 | Eve `agents/job-matcher/` | This change | Why |
@@ -180,12 +210,46 @@ mcp/
 │                         #   Server + StdioServerTransport
 │                         #   ListTools → analyze_job_fit | extract_jsonresume | health
 │                         #   CallTool  → fetch() against the backend REST API
+├── agent-service/        # revision 6 — the chat REST bridge (Bolt 8)
+│   └── app.py            #   FastAPI: POST /chat/stream (SSE, ctms contract),
+│                         #   POST /upload (→ AGENT_UPLOAD_DIR, returns path),
+│                         #   GET /health (tool list). LLM-2 loop = pydantic-ai
+│                         #   Agent with an MCP stdio toolset over ../index.js.
+│                         #   Imports job_matcher.{logging,observability,config}
+│                         #   — zero duplicated plumbing (max-reuse rule)
 ├── .env.example          # JOBMATCHER_API_URL=http://localhost:8000
 ├── configs/
 │   ├── claude-desktop.json   # ready-to-paste client config
 │   └── vscode-mcp.json
 └── README.md             # run: API up first, then `node mcp/index.js` (or npx via bin)
 ```
+
+### Agent service (revision 6) — how the pieces reuse each other
+
+- **The loop is not hand-rolled.** ctms wrote a manual OpenAI
+  function-calling loop; we get the same behaviour from pydantic-ai's
+  MCP client support (`MCPServerStdio` toolset pointed at
+  `mcp/index.js`) — tool discovery, call routing, and retries come from
+  the library. The agent's system prompt confines it to job-matching
+  assistance and forbids inventing scores (scores only ever come from
+  tool results).
+- **Chat contract is ctms-compatible** (`/chat/stream` SSE events,
+  `/upload`, `/health` with tools) so the owner's existing neutral
+  chatbot connects by pointing `VITE_API_ENDPOINT` at it — no chatbot
+  code changes.
+- **Upload flow (owner decision):** `POST /upload` → file lands in
+  `AGENT_UPLOAD_DIR` (a configured temp directory; a shared volume
+  between agent service and backend when containerized) → response
+  returns the server-side path → the conversation references it → the
+  LLM passes it as the MCP tool's `resume_path` → the backend's
+  existing server-path mode takes over. No new resume handling code
+  anywhere downstream.
+- **Two model roles, one policy:** `MODEL_CHAT` → `MODEL_ANALYST` →
+  `MODEL` → error (mini tier default per the cost policy). LLM-2's
+  spans ride the same observability facade (`openinference.span.kind`
+  distinguishes the orchestration LLM from the extraction LLM).
+- Compose gains an `agent` service wiring the three processes:
+  chatbot → agent service (:8006) → MCP (stdio child) → API (:8000).
 
 - Pure bridge: tool input schemas mirror the REST contracts
   (`resume_path` server-side path + `job_sources[]` for analyze;

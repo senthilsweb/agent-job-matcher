@@ -195,10 +195,29 @@ moves to **approved**.
       client samples; `mcp/.env.example`; `mcp/README.md`
 - [ ] Node smoke test: `tools/list` + one `tools/call` against a
       stubbed backend fetch; verify no REST endpoints exist in `mcp/`
-- [ ] Manual: mount in the owner's chatbot via the claude-desktop
-      config and run one end-to-end analyze — record evidence here
+- [ ] Manual: mount in Claude Desktop via the claude-desktop config and
+      run one end-to-end analyze — record evidence here
 
-## Bolt 8 — Live evals + verification
+## Bolt 8 — Agent service (`mcp/agent-service/`, revision 6)
+
+- [ ] `app.py` — FastAPI: `POST /chat/stream` (SSE, ctms-compatible
+      event shape), `POST /upload` (→ `AGENT_UPLOAD_DIR`, returns
+      server-side path), `GET /health` (+ discovered tool list);
+      imports `job_matcher.{logging,observability,config}` (grep gate:
+      no duplicated logging/sink plumbing)
+- [ ] LLM-2 loop: pydantic-ai Agent + `MCPServerStdio` toolset over
+      `mcp/index.js`; system prompt confines to job-matching, forbids
+      invented scores; model `MODEL_CHAT` → `MODEL_ANALYST` → `MODEL`
+- [ ] Compose: `agent` service (:8006) sharing the upload volume with
+      `api`; `.env.example` gains `MODEL_CHAT`, `AGENT_UPLOAD_DIR`,
+      `AGENT_PORT`
+- [ ] Tests (offline, LLM + MCP stubbed): upload→path round trip, SSE
+      event shape, health tool list, no-invented-scores prompt pinned
+- [ ] Manual: point the owner's neutral chatbot at the agent service
+      (`VITE_API_ENDPOINT`) and run upload → chat → analyze end to end —
+      record evidence here (acceptance criterion 16)
+
+## Bolt 9 — Live evals + verification
 
 - [ ] Live suites under `tests/live/` behind `-m live`: grounding,
       injection, single/multi-job, mixed-failure run

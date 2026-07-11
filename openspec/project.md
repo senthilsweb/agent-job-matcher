@@ -21,7 +21,8 @@ agent-job-matcher/
 ├── .env                # secrets, never committed (.env.example is)
 ├── openspec/           # AI-DLC change specs — every non-trivial change
 ├── backend/            # Python GenAI backend: CLI + FastAPI + embeddable core
-├── mcp/                # Node MCP server (stdio), bridges tools → backend REST
+├── mcp/                # Node MCP server (stdio) + agent-service/ (chat REST/SSE
+│                       #   bridge, LLM-2 orchestration — ADR 0001)
 └── frontend/           # later phase, not yet started
 ```
 
