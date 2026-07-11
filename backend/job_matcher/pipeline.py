@@ -38,6 +38,7 @@ import structlog
 from pydantic import TypeAdapter
 
 from job_matcher.analyze import analyze_job_fit
+from job_matcher.candidate import CandidateIdentity, contact_line, extract_candidate_identity
 from job_matcher.config import fanout_concurrency, resolve_model
 from job_matcher.fetch import FetchResult, fetch_job_source
 from job_matcher.observability import root_span, traced
@@ -70,17 +71,23 @@ def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-def _cover_letter_text(analysis) -> str:
-    """Paragraphs joined by blank lines, optionally through a staged template."""
+def _cover_letter_text(analysis, identity: CandidateIdentity, date_str: str) -> str:
+    """Render through the cover-letter template (operator override, else the
+    package-shipped default — both resolved by load_template()). The
+    identity block is deterministically sourced (candidate.py), computed
+    once per run and reused across every job; a missing field is simply
+    omitted from the contact line, never a placeholder."""
     body = "\n\n".join(analysis.cover_letter_paragraphs)
-    template = load_template("cover_letter")
-    if template is None:
-        return body
+    re_line = f"Re: {analysis.job_title}"
+    if analysis.company_name:
+        re_line += f" at {analysis.company_name}"
     return render(
-        template,
+        load_template("cover_letter"),
         cover_letter_body=body,
-        job_title=analysis.job_title,
-        company_name=analysis.company_name or "",
+        candidate_name=identity.name or "",
+        candidate_contact_line=contact_line(identity),
+        date=date_str,
+        re_line=re_line,
     )
 
 
@@ -94,6 +101,8 @@ async def _job_task(
     run_id: str,
     semaphore: asyncio.Semaphore,
     fetches: dict[int, FetchResult],
+    identity: CandidateIdentity,
+    date_str: str,
 ) -> JobOutcome:
     """One job source, end to end. Any failure becomes this job's outcome only."""
     async with semaphore:
@@ -118,7 +127,7 @@ async def _job_task(
                 score_breakdown=breakdown,
                 match_status=band,
                 recommendation=recommendation_for(band),
-                cover_letter_text=_cover_letter_text(analysis),
+                cover_letter_text=_cover_letter_text(analysis, identity, date_str),
             )
             log.info("job_analyzed", run_id=run_id, job_source=source,
                      total_score=breakdown.total_score, band=band, **usage)
@@ -207,13 +216,18 @@ async def run_analysis(
     with root_span("run_analysis", run_id=run_id, job_count=len(job_sources)):
         resume_path = Path(resume_path)
         resume_text = extract_resume_text(resume_path)
+        # Deterministic, no LLM call — computed once, reused across every job
+        # in the fan-out, never re-run per job (candidate.py).
+        identity = extract_candidate_identity(resume_text)
+        date_str = datetime.now(timezone.utc).strftime("%B %-d, %Y")
 
         semaphore = asyncio.Semaphore(fanout_concurrency())
         fetches: dict[int, FetchResult] = {}
         outcomes = list(
             await asyncio.gather(
                 *(
-                    _job_task(i, source, resume_text, resume_path.name, model, run_id, semaphore, fetches)
+                    _job_task(i, source, resume_text, resume_path.name, model, run_id,
+                              semaphore, fetches, identity, date_str)
                     for i, source in enumerate(job_sources)
                 )
             )

@@ -282,30 +282,45 @@ moves to **approved**.
       manual evidence items: Claude Desktop mount (Bolt 7) and the
       neutral-chatbot UI run (Bolt 8); then archive per convention
 
-## Bolt 10 — Cover letter rendering (revision 7, not yet built)
+## Bolt 10 — Cover letter rendering (revision 7) ✅ (2026-07-11)
 
-- [ ] `candidate.py` — deterministic extractors (email, phone, github,
+- [x] `candidate.py` — deterministic extractors (email, phone, github,
       linkedin, website, name) over already-extracted resume text;
       `contact_line()` joins whichever fields were found; every field
-      `Optional[str]`, a miss is `None` never a guess
-- [ ] `job_matcher/templates/cover_letter.txt` — package-data default
-      template (concise two-line header + `Re:` line + body +
-      signature, per the design doc's exact text)
-- [ ] `prompts.py`'s `load_template()` gains a package-default fallback
-      (matching `load_prompt()`'s resolution order) — corrects the
-      earlier "no package default" statement
-- [ ] `pipeline.py`: extract candidate identity once per run (after
-      `extract_resume_text()`, not per job); `_cover_letter_text()`
-      passes the identity block + `re_line` + `date` to `render()`
-- [ ] Tests: `candidate.py` unit tests incl. deliberately-missing-field
-      fixtures (omission, not placeholder); template render test
-      (default active with no config, operator override takes
-      precedence, degrades line-by-line on missing fields); a
-      substring-grounding assertion tying every rendered identity value
-      back to `resume.txt` — all offline, `stub_analysis()` reused
-- [ ] Live smoke: one real run's `cover_letter_text` inspected for the
-      full header, `Re: <title> at <company>`, and the LLM body —
-      record evidence here
-- [ ] Re-run the full offline + live sweep to confirm no regression,
-      then this bolt's completion re-opens the VERIFIED gate check
-      alongside the two pre-existing manual evidence items
+      `Optional[str]`, a miss is `None` never a guess. **Correction
+      during implementation:** the email-exclusion lookbehind in the
+      URL scanner blocked matching a domain *after* an email's `@`, but
+      not the email's own local-part before it (e.g. "sam.lee" in
+      "sam.lee@example.com" was briefly misread as a bare website
+      domain) — fixed by blanking every email match out of the text
+      before URL scanning, not just guarding the regex boundary
+- [x] `job_matcher/templates/cover_letter.txt` — package-data default
+      template, exact text from the design doc; added to
+      `pyproject.toml`'s package-data alongside `prompts/*.txt`
+- [x] `prompts.py`'s `load_template()` gains the package-default
+      fallback (matching `load_prompt()`'s resolution order) — corrects
+      the earlier "no package default" statement; return type is now
+      `str` (no longer `str | None`, since a template always resolves)
+- [x] `pipeline.py`: candidate identity + a run-level date string
+      extracted once in `run_analysis()` (after `extract_resume_text()`,
+      not per job) and threaded through `_job_task` to
+      `_cover_letter_text()`, which builds `re_line` and passes the full
+      identity block to `render()`
+- [x] Tests (13 new: 8 `test_candidate.py`, 5 `test_cover_letter.py`)
+      incl. deliberately-missing-field fixtures (omission, not
+      placeholder), default-template-with-no-config, operator-override
+      precedence, `Re:` line omitting an unknown company, and a
+      full-run substring-grounding assertion tying every rendered
+      identity value back to `resume.txt` — **offline suite now 109
+      passed**
+- [x] **Live smoke (2026-07-11, `openai:gpt-5.4-mini`):** synthetic
+      resume vs the Anthropic JD → 79/good_match, and
+      `cover_letter_text` rendered the full header with zero operator
+      configuration: `JORDAN RIVERA` / `jordan.rivera@example.com ·
+      +1 (555) 010-4477 · linkedin.example.com/in/jordanrivera ·
+      github.example.com/jordanrivera`, `Re: Data Engineering Manager,
+      Product at Anthropic`, the LLM body, and the signature — every
+      identity value present and none fabricated
+- [x] Full offline sweep re-run clean (109/109); this bolt's completion
+      re-opens the VERIFIED gate check alongside the two pre-existing
+      manual evidence items (Claude Desktop mount, chatbot UI run)

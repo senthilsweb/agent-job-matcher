@@ -11,9 +11,12 @@ This module loads text assets by:
 1. Resolution order for a prompt <name>: $PROMPTS_DIR/<name>.txt →
    ./prompts/<name>.txt (working directory) → the package's built-in
    default under job_matcher/prompts/.
-2. The same order for templates via $TEMPLATES_DIR / ./templates/ —
-   with no package default: a missing template degrades to plain text,
-   it never fails a run.
+2. The same resolution order for templates via $TEMPLATES_DIR →
+   ./templates/ → the package's built-in default under
+   job_matcher/templates/ (revision 7 correction: a template feature
+   that never activates without operator configuration isn't shipped —
+   templates now have a package default exactly like prompts do; an
+   operator can still fully override at either preceding path).
 3. render() — mustache-lite {{variable}} substitution (the owner's
    established template style); unknown placeholders are left intact.
 
@@ -39,14 +42,14 @@ def load_prompt(name: str) -> str:
     return (resources.files("job_matcher") / "prompts" / f"{name}.txt").read_text(encoding="utf-8")
 
 
-def load_template(name: str) -> str | None:
-    """Load an optional template; None means 'degrade to plain text'."""
+def load_template(name: str) -> str:
+    """Load a template by name via override dirs, falling back to package data."""
     for base in (os.getenv("TEMPLATES_DIR", "").strip(), "templates"):
         if base:
             candidate = Path(base) / f"{name}.txt"
             if candidate.is_file():
                 return candidate.read_text(encoding="utf-8")
-    return None
+    return (resources.files("job_matcher") / "templates" / f"{name}.txt").read_text(encoding="utf-8")
 
 
 def render(template: str, **values: str) -> str:

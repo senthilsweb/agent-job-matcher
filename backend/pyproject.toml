@@ -45,7 +45,7 @@ jobmatch = "job_matcher.cli:main"
 include = ["job_matcher*"]
 
 [tool.setuptools.package-data]
-job_matcher = ["prompts/*.txt"]
+job_matcher = ["prompts/*.txt", "templates/*.txt"]
 
 [tool.pytest.ini_options]
 markers = ["live: requires a configured model and network access"]

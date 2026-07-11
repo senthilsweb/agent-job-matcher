@@ -1,0 +1,13 @@
+{{candidate_name}}
+{{candidate_contact_line}}
+
+{{date}}
+
+{{re_line}}
+
+Dear Hiring Manager,
+
+{{cover_letter_body}}
+
+Sincerely,
+{{candidate_name}}

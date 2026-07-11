@@ -1,11 +1,12 @@
 # Proposal: Add `job-matcher` backend (CLI + REST + embeddable core)
 
-> Status: **IMPLEMENTED**, Bolt 10 pending — 2026-07-11. Bolts 1-9 built;
-> HARD eval sweep green (96 offline + 11 live on the mini model); SOFT
+> Status: **IMPLEMENTED** — 2026-07-11. All ten bolts built; HARD eval
+> sweep green (109 offline + 11 live on the mini model); SOFT
 > observations reviewed and the band table recalibrated (rubrics.md §3).
-> Revision 7 adds cover-letter rendering (Bolt 10, not yet built).
+> Revision 7's cover-letter rendering (Bolt 10) is live and verified by
+> a real run's rendered output.
 > → VERIFIED awaits two owner manual evidence items (Claude Desktop
-> mount, neutral-chatbot UI run) AND Bolt 10, then archive.
+> mount, neutral-chatbot UI run), then archive.
 > (APPROVED 2026-07-11: inception gate passed, all six questions resolved)
 >
 > Revision 7 (owner, 2026-07-11): cover-letter text rendering through a
