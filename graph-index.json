@@ -1,31 +1,9 @@
 {
   "version": 1,
-  "node_count": 313,
-  "edge_count": 634,
-  "module_count": 4,
+  "node_count": 384,
+  "edge_count": 773,
+  "module_count": 7,
   "modules": {
-    "backend/tests": {
-      "entry_files": [
-        "__init__.py",
-        "test_api.py",
-        "test_embeddable_core.py",
-        "test_fetch_guards.py",
-        "test_match_banding.py",
-        "test_observability.py"
-      ],
-      "labels": [
-        "test_pipeline_offline.py",
-        "stub_analysis()",
-        "stubbed_analyze()",
-        "test_mixed_run_isolates_failures()",
-        "test_all_failed_run_completes_cleanly()",
-        "test_fanout_one_analysis_call_per_good_job()"
-      ],
-      "calls": [
-        "backend/job_matcher"
-      ],
-      "called_by": []
-    },
     "backend/job_matcher": {
       "entry_files": [
         "__init__.py",
@@ -41,12 +19,53 @@
         "__init__.py",
         "run_analysis()",
         "extract_resume_text()",
-        "_now()"
+        "extract_jsonresume()"
       ],
       "calls": [],
       "called_by": [
-        "backend/tests"
+        "backend/tests",
+        "mcp/agent-service"
       ]
+    },
+    "backend/tests": {
+      "entry_files": [
+        "__init__.py",
+        "test_api.py",
+        "test_embeddable_core.py",
+        "test_fetch_guards.py",
+        "test_jsonresume.py",
+        "test_match_banding.py"
+      ],
+      "labels": [
+        "test_pipeline_offline.py",
+        "stub_analysis()",
+        "stubbed_analyze()",
+        "test_mixed_run_isolates_failures()",
+        "test_all_failed_run_completes_cleanly()",
+        "test_fanout_one_analysis_call_per_good_job()"
+      ],
+      "calls": [
+        "backend/job_matcher"
+      ],
+      "called_by": []
+    },
+    "mcp/agent-service": {
+      "entry_files": [
+        "app.py",
+        "test_app.py"
+      ],
+      "labels": [
+        "app.py",
+        "build_agent()",
+        "upload_dir()",
+        "_sse()",
+        "run_chat()",
+        "chat_stream()"
+      ],
+      "calls": [
+        "backend/job_matcher"
+      ],
+      "called_by": []
     },
     "scripts/export-openapi.py": {
       "entry_files": [
@@ -69,6 +88,27 @@
         "build_index()",
         "main()",
         "Return the module key for a given file path, or None if unrecognised."
+      ],
+      "calls": [],
+      "called_by": []
+    },
+    "mcp/index.js": {
+      "entry_files": [
+        "index.js"
+      ],
+      "labels": [
+        "index.js",
+        "callBackend()"
+      ],
+      "calls": [],
+      "called_by": []
+    },
+    "mcp/test": {
+      "entry_files": [
+        "smoke.mjs"
+      ],
+      "labels": [
+        "smoke.mjs"
       ],
       "calls": [],
       "called_by": []
