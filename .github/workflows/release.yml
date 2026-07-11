@@ -49,5 +49,14 @@ jobs:
         run: |
           git config user.name "semantic-release-bot"
           git config user.email "semantic-release-bot@users.noreply.github.com"
+          # The checkout above is pinned to this run's original trigger SHA.
+          # The shared concurrency group only serializes EXECUTION with
+          # graphify.yml — it does not stop that job's commit (pushed on
+          # top of the same trigger SHA) from landing on main first. Sync
+          # to the current tip before semantic-release computes/commits/
+          # pushes, or its push is rejected non-fast-forward every time
+          # graphify wins the race (observed twice, 2026-07-11).
+          git fetch origin main
+          git reset --hard origin/main
           cd backend
           semantic-release version
