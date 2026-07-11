@@ -1,11 +1,18 @@
 name: OpenAPI artifact
 
 # Separate from release.yml by design (owner direction): releases are cut
-# by semantic-release; this workflow reacts to the published release and
-# attaches the API contract to it. Until the API lands (add-job-matcher-cli
-# Bolt 4), the export script skips gracefully and nothing is attached.
+# by semantic-release; this workflow attaches the API contract to them.
+#
+# Trigger note: a release created with the workflow's own GITHUB_TOKEN does
+# NOT emit `release: published` to other workflows (GitHub recursion
+# prevention), so the primary trigger is workflow_run on the Release
+# workflow; `release` stays for manually created releases, and dispatch
+# backfills any tag.
 
 on:
+  workflow_run:
+    workflows: ["Release"]
+    types: [completed]
   release:
     types: [published]
   workflow_dispatch:
@@ -15,23 +22,44 @@ permissions:
 
 jobs:
   openapi:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout release tag
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.release.tag_name || github.ref }}
+          fetch-depth: 0
+
+      - name: Resolve target release tag
+        id: tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            TAG="${{ github.event.release.tag_name }}"
+          else
+            TAG=$(gh release view --json tagName --jq .tagName 2>/dev/null || true)
+          fi
+          if [ -z "$TAG" ]; then
+            echo "No release exists yet — nothing to attach."
+            echo "tag=" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+            git checkout "$TAG"
+          fi
 
       - name: Setup Python
+        if: steps.tag.outputs.tag != ''
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
       - name: Install backend + tooling
-        run: |
-          pip install -e ./backend pyyaml openapi-spec-validator
+        if: steps.tag.outputs.tag != ''
+        run: pip install -e ./backend pyyaml openapi-spec-validator
 
       - name: Export OpenAPI spec
+        if: steps.tag.outputs.tag != ''
         id: export
         run: |
           python scripts/export-openapi.py dist
@@ -46,16 +74,9 @@ jobs:
         run: openapi-spec-validator dist/openapi.json
 
       - name: Attach to GitHub Release
-        if: steps.export.outputs.generated == 'true' && github.event_name == 'release'
+        if: steps.export.outputs.generated == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release upload "${{ github.event.release.tag_name }}" \
+          gh release upload "${{ steps.tag.outputs.tag }}" \
             dist/openapi.json dist/openapi.yaml --clobber
-
-      - name: Upload as workflow artifact (dispatch runs)
-        if: steps.export.outputs.generated == 'true' && github.event_name != 'release'
-        uses: actions/upload-artifact@v4
-        with:
-          name: openapi-spec
-          path: dist/openapi.*
