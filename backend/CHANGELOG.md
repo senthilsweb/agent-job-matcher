@@ -1,6 +1,28 @@
 # CHANGELOG
 
 
+## v0.3.1 (2026-07-11)
+
+### Bug Fixes
+
+- **backend**: Exact-quote evidence rule; live eval suites green — change implemented
+  ([`9ea96f2`](https://github.com/senthilsweb/agent-job-matcher/commit/9ea96f268e90bd90350f2c084b978f7ecb5673b4))
+
+Bolt 9 of add-job-matcher-cli, closing construction: - analysis prompt evidence rule tightened to
+  exact contiguous quote only (Eve's "close paraphrase" allowance failed HARD grounding 5/14 in the
+  Bolt 3 smoke; with this rule the sweep passes) — correction logged in rubrics.md - tests/live/:
+  grounding (verbatim evidence + rerun stability), prompt injection (grounded output, score
+  recomputed from counts, byte-identical recommendation), single/multi fan-out (call-count spy,
+  ranking order), mixed/all-failed runs (one attempt per source, failures never reach the LLM). HARD
+  sweep: 11/11 live + 96 offline - rubrics band table recalibrated against the synthetic profile:
+  Anthropic 84 strong, Bain 72 good, Gusto ~80 good/strong, Temporal 40 weak, adversarial 67 (not
+  strong); rerun delta 1 band - README rewritten (product overview + diagram + surfaces + evals);
+  slim backend README; last prototype leftovers removed (json-flows/, OpenDLC doc) - proposal
+  status: APPROVED → IMPLEMENTED; VERIFIED gated only on the two owner manual evidence items
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+
 ## v0.3.0 (2026-07-11)
 
 ### Documentation
