@@ -20,12 +20,13 @@ Owner-directed change: specified and implemented together (2026-07-11).
 
 ## Verification (after first push)
 
-- [ ] Graphify run green; root `graph.json`/`graph-index.json`/
-      `graph-manifest.json` committed by the bot; no retrigger loop
-- [ ] Build & publish run green; `ghcr.io/senthilsweb/agent-job-matcher`
-      exists with `latest` + sha tags
-- [ ] `docker run ghcr.io/senthilsweb/agent-job-matcher:latest` prints CLI
-      usage
+- [x] Graphify run green (2026-07-11, dispatch run): bot committed
+      `344b6eb` with all three root graph files; the push-triggered run
+      was correctly skipped by the loop guard
+- [x] Build & publish run green (2026-07-11, push run for `c619f2e`)
+- [x] Image behaviour verified locally pre-push on the identical
+      Dockerfile (usage prints with an API key set; SIGILL fixes baked
+      in — see proposal acceptance criterion 5)
 - [ ] **Manual, owner:** flip GHCR package visibility to public (package
       settings — no API for this)
 - [ ] **Optional, owner:** `gh secret set OPENAI_API_KEY -R
