@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "node_count": 384,
-  "edge_count": 773,
+  "node_count": 412,
+  "edge_count": 815,
   "module_count": 7,
   "modules": {
     "backend/job_matcher": {
@@ -30,19 +30,19 @@
     "backend/tests": {
       "entry_files": [
         "__init__.py",
+        "conftest.py",
         "test_api.py",
         "test_embeddable_core.py",
-        "test_fetch_guards.py",
-        "test_jsonresume.py",
-        "test_match_banding.py"
+        "test_evidence_grounding.py",
+        "test_fetch_guards.py"
       ],
       "labels": [
+        "__init__.py",
         "test_pipeline_offline.py",
         "stub_analysis()",
         "stubbed_analyze()",
         "test_mixed_run_isolates_failures()",
-        "test_all_failed_run_completes_cleanly()",
-        "test_fanout_one_analysis_call_per_good_job()"
+        "test_all_failed_run_completes_cleanly()"
       ],
       "calls": [
         "backend/job_matcher"

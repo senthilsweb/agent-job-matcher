@@ -9,7 +9,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/scripts/export-openapi.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_scripts_export_openapi_py",
-      "community": 16,
+      "community": 15,
       "norm_label": "export-openapi.py"
     },
     {
@@ -18,7 +18,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/scripts/export-openapi.py",
       "source_location": "L34",
       "id": "export_openapi_main",
-      "community": 16,
+      "community": 15,
       "norm_label": "main()"
     },
     {
@@ -27,7 +27,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/scripts/graphify-index.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_scripts_graphify_index_py",
-      "community": 15,
+      "community": 14,
       "norm_label": "graphify-index.py"
     },
     {
@@ -36,7 +36,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/scripts/graphify-index.py",
       "source_location": "L46",
       "id": "graphify_index_module_for",
-      "community": 15,
+      "community": 14,
       "norm_label": "module_for()"
     },
     {
@@ -45,7 +45,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/scripts/graphify-index.py",
       "source_location": "L61",
       "id": "graphify_index_build_index",
-      "community": 15,
+      "community": 14,
       "norm_label": "build_index()"
     },
     {
@@ -54,7 +54,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/scripts/graphify-index.py",
       "source_location": "L150",
       "id": "graphify_index_main",
-      "community": 15,
+      "community": 14,
       "norm_label": "main()"
     },
     {
@@ -63,7 +63,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/scripts/graphify-index.py",
       "source_location": "L47",
       "id": "graphify_index_rationale_47",
-      "community": 15,
+      "community": 14,
       "norm_label": "return the module key for a given file path, or none if unrecognised."
     },
     {
@@ -72,7 +72,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/index.js",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_mcp_index_js",
-      "community": 17,
+      "community": 16,
       "norm_label": "index.js"
     },
     {
@@ -81,7 +81,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/index.js",
       "source_location": "L88",
       "id": "index_callbackend",
-      "community": 17,
+      "community": 16,
       "norm_label": "callbackend()"
     },
     {
@@ -90,7 +90,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/app.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_mcp_agent_service_app_py",
-      "community": 11,
+      "community": 6,
       "norm_label": "app.py"
     },
     {
@@ -99,7 +99,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/app.py",
       "source_location": "L64",
       "id": "app_build_agent",
-      "community": 11,
+      "community": 6,
       "norm_label": "build_agent()"
     },
     {
@@ -108,7 +108,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/app.py",
       "source_location": "L80",
       "id": "app_upload_dir",
-      "community": 11,
+      "community": 6,
       "norm_label": "upload_dir()"
     },
     {
@@ -117,7 +117,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/app.py",
       "source_location": "L87",
       "id": "app_sse",
-      "community": 11,
+      "community": 6,
       "norm_label": "_sse()"
     },
     {
@@ -126,7 +126,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/app.py",
       "source_location": "L91",
       "id": "app_run_chat",
-      "community": 11,
+      "community": 6,
       "norm_label": "run_chat()"
     },
     {
@@ -135,7 +135,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/app.py",
       "source_location": "L111",
       "id": "app_chat_stream",
-      "community": 11,
+      "community": 6,
       "norm_label": "chat_stream()"
     },
     {
@@ -144,7 +144,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/app.py",
       "source_location": "L138",
       "id": "app_upload",
-      "community": 11,
+      "community": 6,
       "norm_label": "upload()"
     },
     {
@@ -153,7 +153,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/app.py",
       "source_location": "L151",
       "id": "app_health",
-      "community": 11,
+      "community": 6,
       "norm_label": "health()"
     },
     {
@@ -162,7 +162,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/app.py",
       "source_location": "L1",
       "id": "app_rationale_1",
-      "community": 11,
+      "community": 6,
       "norm_label": "file name: app.py author: senthilnathan karuppaiah date: 11-jul-2026 description"
     },
     {
@@ -171,7 +171,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/app.py",
       "source_location": "L65",
       "id": "app_rationale_65",
-      "community": 11,
+      "community": 6,
       "norm_label": "llm-2: pydantic-ai agent with the mcp server as its only toolset."
     },
     {
@@ -180,7 +180,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/app.py",
       "source_location": "L92",
       "id": "app_rationale_92",
-      "community": 11,
+      "community": 6,
       "norm_label": "the one llm-2 invocation per chat turn; wrapped so tests can stub it."
     },
     {
@@ -189,7 +189,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/app.py",
       "source_location": "L112",
       "id": "app_rationale_112",
-      "community": 11,
+      "community": 6,
       "norm_label": "stream a chat answer over sse (ctms contract: content / done / error)."
     },
     {
@@ -198,7 +198,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/app.py",
       "source_location": "L139",
       "id": "app_rationale_139",
-      "community": 11,
+      "community": 6,
       "norm_label": "store an uploaded resume in the configured temp dir; return its path."
     },
     {
@@ -207,7 +207,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/app.py",
       "source_location": "L152",
       "id": "app_rationale_152",
-      "community": 11,
+      "community": 6,
       "norm_label": "liveness + the mcp tool list discovered over stdio."
     },
     {
@@ -216,7 +216,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/test_app.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_mcp_agent_service_test_app_py",
-      "community": 12,
+      "community": 11,
       "norm_label": "test_app.py"
     },
     {
@@ -225,7 +225,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/test_app.py",
       "source_location": "L32",
       "id": "test_app_sse_events",
-      "community": 12,
+      "community": 11,
       "norm_label": "sse_events()"
     },
     {
@@ -234,7 +234,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/test_app.py",
       "source_location": "L37",
       "id": "test_app_stubbed_chat",
-      "community": 12,
+      "community": 11,
       "norm_label": "stubbed_chat()"
     },
     {
@@ -243,7 +243,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/test_app.py",
       "source_location": "L46",
       "id": "test_app_test_chat_stream_ctms_contract",
-      "community": 12,
+      "community": 11,
       "norm_label": "test_chat_stream_ctms_contract()"
     },
     {
@@ -252,7 +252,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/test_app.py",
       "source_location": "L57",
       "id": "test_app_test_chat_stream_empty_message_is_error",
-      "community": 12,
+      "community": 11,
       "norm_label": "test_chat_stream_empty_message_is_error()"
     },
     {
@@ -261,7 +261,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/test_app.py",
       "source_location": "L63",
       "id": "test_app_test_chat_stream_exception_becomes_error_event",
-      "community": 12,
+      "community": 11,
       "norm_label": "test_chat_stream_exception_becomes_error_event()"
     },
     {
@@ -270,7 +270,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/test_app.py",
       "source_location": "L74",
       "id": "test_app_test_upload_round_trip",
-      "community": 12,
+      "community": 11,
       "norm_label": "test_upload_round_trip()"
     },
     {
@@ -279,7 +279,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/test_app.py",
       "source_location": "L88",
       "id": "test_app_test_upload_rejects_unsupported_format",
-      "community": 12,
+      "community": 11,
       "norm_label": "test_upload_rejects_unsupported_format()"
     },
     {
@@ -288,7 +288,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/test_app.py",
       "source_location": "L94",
       "id": "test_app_test_reuse_no_duplicated_plumbing",
-      "community": 12,
+      "community": 11,
       "norm_label": "test_reuse_no_duplicated_plumbing()"
     },
     {
@@ -297,7 +297,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/agent-service/test_app.py",
       "source_location": "L1",
       "id": "test_app_rationale_1",
-      "community": 12,
+      "community": 11,
       "norm_label": "file name: test_app.py author: senthilnathan karuppaiah date: 11-jul-2026 descri"
     },
     {
@@ -306,7 +306,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/mcp/test/smoke.mjs",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_mcp_test_smoke_mjs",
-      "community": 18,
+      "community": 17,
       "norm_label": "smoke.mjs"
     },
     {
@@ -315,7 +315,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_pipeline_offline.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_test_pipeline_offline_py",
-      "community": 6,
+      "community": 7,
       "norm_label": "test_pipeline_offline.py"
     },
     {
@@ -324,7 +324,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_pipeline_offline.py",
       "source_location": "L40",
       "id": "test_pipeline_offline_stub_analysis",
-      "community": 1,
+      "community": 2,
       "norm_label": "stub_analysis()"
     },
     {
@@ -333,7 +333,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_pipeline_offline.py",
       "source_location": "L56",
       "id": "test_pipeline_offline_stubbed_analyze",
-      "community": 6,
+      "community": 7,
       "norm_label": "stubbed_analyze()"
     },
     {
@@ -342,7 +342,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_pipeline_offline.py",
       "source_location": "L68",
       "id": "test_pipeline_offline_test_mixed_run_isolates_failures",
-      "community": 6,
+      "community": 7,
       "norm_label": "test_mixed_run_isolates_failures()"
     },
     {
@@ -351,7 +351,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_pipeline_offline.py",
       "source_location": "L80",
       "id": "test_pipeline_offline_test_all_failed_run_completes_cleanly",
-      "community": 6,
+      "community": 7,
       "norm_label": "test_all_failed_run_completes_cleanly()"
     },
     {
@@ -360,7 +360,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_pipeline_offline.py",
       "source_location": "L86",
       "id": "test_pipeline_offline_test_fanout_one_analysis_call_per_good_job",
-      "community": 6,
+      "community": 7,
       "norm_label": "test_fanout_one_analysis_call_per_good_job()"
     },
     {
@@ -369,7 +369,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_pipeline_offline.py",
       "source_location": "L93",
       "id": "test_pipeline_offline_test_analysis_exception_isolated_to_its_job",
-      "community": 6,
+      "community": 7,
       "norm_label": "test_analysis_exception_isolated_to_its_job()"
     },
     {
@@ -378,7 +378,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_pipeline_offline.py",
       "source_location": "L108",
       "id": "test_pipeline_offline_test_cli_mode_persistence_contract",
-      "community": 6,
+      "community": 7,
       "norm_label": "test_cli_mode_persistence_contract()"
     },
     {
@@ -387,7 +387,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_pipeline_offline.py",
       "source_location": "L137",
       "id": "test_pipeline_offline_test_api_mode_persists_nothing",
-      "community": 6,
+      "community": 7,
       "norm_label": "test_api_mode_persists_nothing()"
     },
     {
@@ -396,7 +396,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_pipeline_offline.py",
       "source_location": "L1",
       "id": "test_pipeline_offline_rationale_1",
-      "community": 1,
+      "community": 7,
       "norm_label": "file name: test_pipeline_offline.py author: senthilnathan karuppaiah date: 11-ju"
     },
     {
@@ -405,7 +405,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_jsonresume.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_test_jsonresume_py",
-      "community": 3,
+      "community": 4,
       "norm_label": "test_jsonresume.py"
     },
     {
@@ -414,7 +414,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_jsonresume.py",
       "source_location": "L56",
       "id": "test_jsonresume_test_valid_document_round_trips",
-      "community": 3,
+      "community": 4,
       "norm_label": "test_valid_document_round_trips()"
     },
     {
@@ -423,7 +423,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_jsonresume.py",
       "source_location": "L71",
       "id": "test_jsonresume_test_unknown_fields_rejected_at_every_level",
-      "community": 3,
+      "community": 4,
       "norm_label": "test_unknown_fields_rejected_at_every_level()"
     },
     {
@@ -432,7 +432,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_jsonresume.py",
       "source_location": "L76",
       "id": "test_jsonresume_test_grounding_guard_accepts_real_contacts",
-      "community": 3,
+      "community": 4,
       "norm_label": "test_grounding_guard_accepts_real_contacts()"
     },
     {
@@ -441,7 +441,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_jsonresume.py",
       "source_location": "L81",
       "id": "test_jsonresume_test_grounding_guard_rejects_invented_email",
-      "community": 3,
+      "community": 4,
       "norm_label": "test_grounding_guard_rejects_invented_email()"
     },
     {
@@ -450,7 +450,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_jsonresume.py",
       "source_location": "L87",
       "id": "test_jsonresume_test_grounding_guard_rejects_invented_phone",
-      "community": 3,
+      "community": 4,
       "norm_label": "test_grounding_guard_rejects_invented_phone()"
     },
     {
@@ -459,7 +459,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_jsonresume.py",
       "source_location": "L93",
       "id": "test_jsonresume_test_extract_stamps_schema_version",
-      "community": 3,
+      "community": 4,
       "norm_label": "test_extract_stamps_schema_version()"
     },
     {
@@ -468,7 +468,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_jsonresume.py",
       "source_location": "L110",
       "id": "test_jsonresume_test_api_endpoint_returns_document",
-      "community": 3,
+      "community": 4,
       "norm_label": "test_api_endpoint_returns_document()"
     },
     {
@@ -477,7 +477,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_jsonresume.py",
       "source_location": "L125",
       "id": "test_jsonresume_test_api_endpoint_operator_error_422",
-      "community": 3,
+      "community": 4,
       "norm_label": "test_api_endpoint_operator_error_422()"
     },
     {
@@ -486,7 +486,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_jsonresume.py",
       "source_location": "L1",
       "id": "test_jsonresume_rationale_1",
-      "community": 3,
+      "community": 4,
       "norm_label": "file name: test_jsonresume.py author: senthilnathan karuppaiah date: 11-jul-2026"
     },
     {
@@ -495,7 +495,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_embeddable_core.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_test_embeddable_core_py",
-      "community": 6,
+      "community": 7,
       "norm_label": "test_embeddable_core.py"
     },
     {
@@ -504,7 +504,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_embeddable_core.py",
       "source_location": "L31",
       "id": "test_embeddable_core_test_full_offline_run_via_package_root",
-      "community": 6,
+      "community": 7,
       "norm_label": "test_full_offline_run_via_package_root()"
     },
     {
@@ -522,7 +522,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_embeddable_core.py",
       "source_location": "L1",
       "id": "test_embeddable_core_rationale_1",
-      "community": 6,
+      "community": 7,
       "norm_label": "file name: test_embeddable_core.py author: senthilnathan karuppaiah date: 11-jul"
     },
     {
@@ -531,7 +531,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/__init__.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_init_py",
-      "community": 19,
+      "community": 18,
       "norm_label": "__init__.py"
     },
     {
@@ -540,7 +540,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_api.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_test_api_py",
-      "community": 13,
+      "community": 12,
       "norm_label": "test_api.py"
     },
     {
@@ -549,7 +549,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_api.py",
       "source_location": "L38",
       "id": "test_api_stubbed",
-      "community": 13,
+      "community": 12,
       "norm_label": "stubbed()"
     },
     {
@@ -558,7 +558,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_api.py",
       "source_location": "L46",
       "id": "test_api_test_health",
-      "community": 13,
+      "community": 12,
       "norm_label": "test_health()"
     },
     {
@@ -567,7 +567,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_api.py",
       "source_location": "L53",
       "id": "test_api_test_analyze_server_path_returns_typed_array",
-      "community": 13,
+      "community": 12,
       "norm_label": "test_analyze_server_path_returns_typed_array()"
     },
     {
@@ -576,7 +576,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_api.py",
       "source_location": "L72",
       "id": "test_api_test_analyze_multipart_upload",
-      "community": 13,
+      "community": 12,
       "norm_label": "test_analyze_multipart_upload()"
     },
     {
@@ -585,7 +585,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_api.py",
       "source_location": "L84",
       "id": "test_api_test_exactly_one_resume_input_required",
-      "community": 13,
+      "community": 12,
       "norm_label": "test_exactly_one_resume_input_required()"
     },
     {
@@ -594,7 +594,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_api.py",
       "source_location": "L95",
       "id": "test_api_test_operator_error_maps_to_422",
-      "community": 13,
+      "community": 12,
       "norm_label": "test_operator_error_maps_to_422()"
     },
     {
@@ -603,7 +603,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_api.py",
       "source_location": "L104",
       "id": "test_api_test_unsupported_upload_format_rejected",
-      "community": 13,
+      "community": 12,
       "norm_label": "test_unsupported_upload_format_rejected()"
     },
     {
@@ -612,7 +612,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_api.py",
       "source_location": "L113",
       "id": "test_api_test_no_workflow_endpoints_exist",
-      "community": 13,
+      "community": 12,
       "norm_label": "test_no_workflow_endpoints_exist()"
     },
     {
@@ -621,7 +621,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_api.py",
       "source_location": "L1",
       "id": "test_api_rationale_1",
-      "community": 13,
+      "community": 12,
       "norm_label": "file name: test_api.py author: senthilnathan karuppaiah date: 11-jul-2026 descri"
     },
     {
@@ -774,7 +774,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_fetch_guards.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_test_fetch_guards_py",
-      "community": 4,
+      "community": 5,
       "norm_label": "test_fetch_guards.py"
     },
     {
@@ -783,7 +783,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_fetch_guards.py",
       "source_location": "L35",
       "id": "test_fetch_guards_test_js_shell_captures_fail_min_words",
-      "community": 4,
+      "community": 5,
       "norm_label": "test_js_shell_captures_fail_min_words()"
     },
     {
@@ -792,7 +792,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_fetch_guards.py",
       "source_location": "L47",
       "id": "test_fetch_guards_test_real_jd_snapshot_passes",
-      "community": 4,
+      "community": 5,
       "norm_label": "test_real_jd_snapshot_passes()"
     },
     {
@@ -801,7 +801,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_fetch_guards.py",
       "source_location": "L67",
       "id": "test_fetch_guards_test_scheme_and_ssrf_guards_block_preconnect",
-      "community": 4,
+      "community": 5,
       "norm_label": "test_scheme_and_ssrf_guards_block_preconnect()"
     },
     {
@@ -810,7 +810,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_fetch_guards.py",
       "source_location": "L73",
       "id": "test_fetch_guards_test_local_file_byte_cap",
-      "community": 4,
+      "community": 5,
       "norm_label": "test_local_file_byte_cap()"
     },
     {
@@ -819,7 +819,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_fetch_guards.py",
       "source_location": "L82",
       "id": "test_fetch_guards_test_missing_local_file_treated_as_bad_source",
-      "community": 4,
+      "community": 5,
       "norm_label": "test_missing_local_file_treated_as_bad_source()"
     },
     {
@@ -828,7 +828,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_fetch_guards.py",
       "source_location": "L87",
       "id": "test_fetch_guards_test_html_to_text_strips_scripts",
-      "community": 4,
+      "community": 5,
       "norm_label": "test_html_to_text_strips_scripts()"
     },
     {
@@ -837,7 +837,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_fetch_guards.py",
       "source_location": "L1",
       "id": "test_fetch_guards_rationale_1",
-      "community": 4,
+      "community": 5,
       "norm_label": "file name: test_fetch_guards.py author: senthilnathan karuppaiah date: 11-jul-20"
     },
     {
@@ -846,7 +846,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_openapi_docs.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_test_openapi_docs_py",
-      "community": 14,
+      "community": 13,
       "norm_label": "test_openapi_docs.py"
     },
     {
@@ -855,7 +855,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_openapi_docs.py",
       "source_location": "L26",
       "id": "test_openapi_docs_spec",
-      "community": 14,
+      "community": 13,
       "norm_label": "spec()"
     },
     {
@@ -864,7 +864,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_openapi_docs.py",
       "source_location": "L30",
       "id": "test_openapi_docs_test_every_operation_documented",
-      "community": 14,
+      "community": 13,
       "norm_label": "test_every_operation_documented()"
     },
     {
@@ -873,7 +873,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_openapi_docs.py",
       "source_location": "L39",
       "id": "test_openapi_docs_test_every_operation_has_response_example",
-      "community": 14,
+      "community": 13,
       "norm_label": "test_every_operation_has_response_example()"
     },
     {
@@ -882,7 +882,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_openapi_docs.py",
       "source_location": "L51",
       "id": "test_openapi_docs_test_body_operations_document_request",
-      "community": 14,
+      "community": 13,
       "norm_label": "test_body_operations_document_request()"
     },
     {
@@ -891,7 +891,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_openapi_docs.py",
       "source_location": "L59",
       "id": "test_openapi_docs_test_info_and_repo_link",
-      "community": 14,
+      "community": 13,
       "norm_label": "test_info_and_repo_link()"
     },
     {
@@ -900,7 +900,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_openapi_docs.py",
       "source_location": "L69",
       "id": "test_openapi_docs_test_spec_validates",
-      "community": 14,
+      "community": 13,
       "norm_label": "test_spec_validates()"
     },
     {
@@ -909,7 +909,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_openapi_docs.py",
       "source_location": "L1",
       "id": "test_openapi_docs_rationale_1",
-      "community": 14,
+      "community": 13,
       "norm_label": "file name: test_openapi_docs.py author: senthilnathan karuppaiah date: 11-jul-20"
     },
     {
@@ -918,7 +918,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_scoring_determinism.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_test_scoring_determinism_py",
-      "community": 9,
+      "community": 1,
       "norm_label": "test_scoring_determinism.py"
     },
     {
@@ -927,7 +927,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_scoring_determinism.py",
       "source_location": "L22",
       "id": "test_scoring_determinism_mk_skills",
-      "community": 9,
+      "community": 1,
       "norm_label": "mk_skills()"
     },
     {
@@ -936,7 +936,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_scoring_determinism.py",
       "source_location": "L35",
       "id": "test_scoring_determinism_test_all_matched_scores_100",
-      "community": 9,
+      "community": 1,
       "norm_label": "test_all_matched_scores_100()"
     },
     {
@@ -945,7 +945,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_scoring_determinism.py",
       "source_location": "L46",
       "id": "test_scoring_determinism_test_none_matched_scores_floor",
-      "community": 9,
+      "community": 1,
       "norm_label": "test_none_matched_scores_floor()"
     },
     {
@@ -954,7 +954,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_scoring_determinism.py",
       "source_location": "L57",
       "id": "test_scoring_determinism_test_empty_preferred_reallocates_to_required",
-      "community": 9,
+      "community": 1,
       "norm_label": "test_empty_preferred_reallocates_to_required()"
     },
     {
@@ -963,7 +963,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_scoring_determinism.py",
       "source_location": "L69",
       "id": "test_scoring_determinism_test_rounding_edges_including_exact_half",
-      "community": 9,
+      "community": 1,
       "norm_label": "test_rounding_edges_including_exact_half()"
     },
     {
@@ -972,7 +972,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_scoring_determinism.py",
       "source_location": "L81",
       "id": "test_scoring_determinism_test_zero_required_never_divides_by_zero",
-      "community": 9,
+      "community": 1,
       "norm_label": "test_zero_required_never_divides_by_zero()"
     },
     {
@@ -981,7 +981,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_scoring_determinism.py",
       "source_location": "L87",
       "id": "test_scoring_determinism_test_same_input_twice_is_identical",
-      "community": 9,
+      "community": 1,
       "norm_label": "test_same_input_twice_is_identical()"
     },
     {
@@ -990,7 +990,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_scoring_determinism.py",
       "source_location": "L92",
       "id": "test_scoring_determinism_test_js_round_semantics",
-      "community": 9,
+      "community": 1,
       "norm_label": "test_js_round_semantics()"
     },
     {
@@ -999,7 +999,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_scoring_determinism.py",
       "source_location": "L1",
       "id": "test_scoring_determinism_rationale_1",
-      "community": 9,
+      "community": 1,
       "norm_label": "file name: test_scoring_determinism.py author: senthilnathan karuppaiah date: 11"
     },
     {
@@ -1008,7 +1008,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_scoring_determinism.py",
       "source_location": "L23",
       "id": "test_scoring_determinism_rationale_23",
-      "community": 9,
+      "community": 1,
       "norm_label": "fixture helper \u2014 mirrors the eve eval's mkskills()."
     },
     {
@@ -1017,7 +1017,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_slug_naming.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_test_slug_naming_py",
-      "community": 10,
+      "community": 2,
       "norm_label": "test_slug_naming.py"
     },
     {
@@ -1026,7 +1026,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_slug_naming.py",
       "source_location": "L31",
       "id": "test_slug_naming_test_slugify_basic",
-      "community": 10,
+      "community": 2,
       "norm_label": "test_slugify_basic()"
     },
     {
@@ -1035,7 +1035,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_slug_naming.py",
       "source_location": "L35",
       "id": "test_slug_naming_test_slugify_strips_traversal_characters",
-      "community": 10,
+      "community": 2,
       "norm_label": "test_slugify_strips_traversal_characters()"
     },
     {
@@ -1044,7 +1044,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_slug_naming.py",
       "source_location": "L41",
       "id": "test_slug_naming_test_slugify_empty_falls_back",
-      "community": 10,
+      "community": 2,
       "norm_label": "test_slugify_empty_falls_back()"
     },
     {
@@ -1053,7 +1053,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_slug_naming.py",
       "source_location": "L45",
       "id": "test_slug_naming_test_report_filename_matches_contract",
-      "community": 10,
+      "community": 2,
       "norm_label": "test_report_filename_matches_contract()"
     },
     {
@@ -1062,7 +1062,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_slug_naming.py",
       "source_location": "L54",
       "id": "test_slug_naming_test_unsafe_artifact_paths_rejected",
-      "community": 10,
+      "community": 2,
       "norm_label": "test_unsafe_artifact_paths_rejected()"
     },
     {
@@ -1071,7 +1071,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_slug_naming.py",
       "source_location": "L65",
       "id": "test_slug_naming_test_write_json_artifact_writes_valid_json",
-      "community": 10,
+      "community": 2,
       "norm_label": "test_write_json_artifact_writes_valid_json()"
     },
     {
@@ -1080,7 +1080,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_slug_naming.py",
       "source_location": "L1",
       "id": "test_slug_naming_rationale_1",
-      "community": 10,
+      "community": 2,
       "norm_label": "file name: test_slug_naming.py author: senthilnathan karuppaiah date: 11-jul-202"
     },
     {
@@ -1089,7 +1089,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_resume_extraction.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_test_resume_extraction_py",
-      "community": 7,
+      "community": 10,
       "norm_label": "test_resume_extraction.py"
     },
     {
@@ -1098,7 +1098,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_resume_extraction.py",
       "source_location": "L27",
       "id": "test_resume_extraction_test_synthetic_pdf_extracts_identity",
-      "community": 7,
+      "community": 10,
       "norm_label": "test_synthetic_pdf_extracts_identity()"
     },
     {
@@ -1107,7 +1107,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_resume_extraction.py",
       "source_location": "L34",
       "id": "test_resume_extraction_test_txt_and_md_pass_through",
-      "community": 7,
+      "community": 10,
       "norm_label": "test_txt_and_md_pass_through()"
     },
     {
@@ -1116,7 +1116,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_resume_extraction.py",
       "source_location": "L40",
       "id": "test_resume_extraction_test_docx_extracts",
-      "community": 7,
+      "community": 10,
       "norm_label": "test_docx_extracts()"
     },
     {
@@ -1125,7 +1125,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_resume_extraction.py",
       "source_location": "L51",
       "id": "test_resume_extraction_test_legacy_doc_rejected",
-      "community": 7,
+      "community": 10,
       "norm_label": "test_legacy_doc_rejected()"
     },
     {
@@ -1134,7 +1134,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_resume_extraction.py",
       "source_location": "L58",
       "id": "test_resume_extraction_test_unknown_extension_rejected",
-      "community": 7,
+      "community": 10,
       "norm_label": "test_unknown_extension_rejected()"
     },
     {
@@ -1143,7 +1143,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_resume_extraction.py",
       "source_location": "L65",
       "id": "test_resume_extraction_test_min_words_guard_rejects_near_empty",
-      "community": 7,
+      "community": 10,
       "norm_label": "test_min_words_guard_rejects_near_empty()"
     },
     {
@@ -1152,7 +1152,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_resume_extraction.py",
       "source_location": "L72",
       "id": "test_resume_extraction_test_byte_cap",
-      "community": 7,
+      "community": 10,
       "norm_label": "test_byte_cap()"
     },
     {
@@ -1161,7 +1161,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_resume_extraction.py",
       "source_location": "L80",
       "id": "test_resume_extraction_test_missing_file_rejected",
-      "community": 7,
+      "community": 10,
       "norm_label": "test_missing_file_rejected()"
     },
     {
@@ -1170,7 +1170,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_resume_extraction.py",
       "source_location": "L1",
       "id": "test_resume_extraction_rationale_1",
-      "community": 7,
+      "community": 10,
       "norm_label": "file name: test_resume_extraction.py author: senthilnathan karuppaiah date: 11-j"
     },
     {
@@ -1251,7 +1251,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_telemetry_backends.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_test_telemetry_backends_py",
-      "community": 5,
+      "community": 8,
       "norm_label": "test_telemetry_backends.py"
     },
     {
@@ -1269,7 +1269,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_telemetry_backends.py",
       "source_location": "L48",
       "id": "test_telemetry_backends_types",
-      "community": 5,
+      "community": 8,
       "norm_label": "_types()"
     },
     {
@@ -1278,7 +1278,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_telemetry_backends.py",
       "source_location": "L52",
       "id": "test_telemetry_backends_test_default_is_json_only",
-      "community": 5,
+      "community": 8,
       "norm_label": "test_default_is_json_only()"
     },
     {
@@ -1287,7 +1287,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_telemetry_backends.py",
       "source_location": "L56",
       "id": "test_telemetry_backends_test_none_disables_everything",
-      "community": 0,
+      "community": 8,
       "norm_label": "test_none_disables_everything()"
     },
     {
@@ -1296,7 +1296,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_telemetry_backends.py",
       "source_location": "L62",
       "id": "test_telemetry_backends_test_openobserve_joins_by_env_alone",
-      "community": 5,
+      "community": 8,
       "norm_label": "test_openobserve_joins_by_env_alone()"
     },
     {
@@ -1305,7 +1305,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_telemetry_backends.py",
       "source_location": "L69",
       "id": "test_telemetry_backends_test_missing_otel_extra_is_clear_startup_error",
-      "community": 0,
+      "community": 8,
       "norm_label": "test_missing_otel_extra_is_clear_startup_error()"
     },
     {
@@ -1314,7 +1314,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_telemetry_backends.py",
       "source_location": "L80",
       "id": "test_telemetry_backends_span",
-      "community": 5,
+      "community": 8,
       "norm_label": "_span()"
     },
     {
@@ -1323,7 +1323,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_telemetry_backends.py",
       "source_location": "L87",
       "id": "test_telemetry_backends_test_openobserve_unreachable_warns_once_never_raises",
-      "community": 5,
+      "community": 8,
       "norm_label": "test_openobserve_unreachable_warns_once_never_raises()"
     },
     {
@@ -1332,7 +1332,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_telemetry_backends.py",
       "source_location": "L99",
       "id": "test_telemetry_backends_test_openobserve_batches_and_flushes_on_root_end",
-      "community": 5,
+      "community": 8,
       "norm_label": "test_openobserve_batches_and_flushes_on_root_end()"
     },
     {
@@ -1341,7 +1341,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_telemetry_backends.py",
       "source_location": "L124",
       "id": "test_telemetry_backends_test_otel_bridge_maps_spans_with_openinference_attrs",
-      "community": 5,
+      "community": 8,
       "norm_label": "test_otel_bridge_maps_spans_with_openinference_attrs()"
     },
     {
@@ -1350,7 +1350,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_telemetry_backends.py",
       "source_location": "L1",
       "id": "test_telemetry_backends_rationale_1",
-      "community": 5,
+      "community": 8,
       "norm_label": "file name: test_telemetry_backends.py author: senthilnathan karuppaiah date: 11-"
     },
     {
@@ -1399,12 +1399,264 @@
       "norm_label": "file name: test_match_banding.py author: senthilnathan karuppaiah date: 11-jul-2"
     },
     {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/__init__.py",
+      "source_location": "L1",
+      "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_init_py",
+      "community": 19,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "test_prompt_injection.py",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L1",
+      "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_prompt_injection_py",
+      "community": 9,
+      "norm_label": "test_prompt_injection.py"
+    },
+    {
+      "label": "injection_run()",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L33",
+      "id": "test_prompt_injection_injection_run",
+      "community": 9,
+      "norm_label": "injection_run()"
+    },
+    {
+      "label": "test_hard_output_grounded_despite_injection()",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L40",
+      "id": "test_prompt_injection_test_hard_output_grounded_despite_injection",
+      "community": 9,
+      "norm_label": "test_hard_output_grounded_despite_injection()"
+    },
+    {
+      "label": "test_hard_score_recomputable_from_counts()",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L50",
+      "id": "test_prompt_injection_test_hard_score_recomputable_from_counts",
+      "community": 1,
+      "norm_label": "test_hard_score_recomputable_from_counts()"
+    },
+    {
+      "label": "test_hard_recommendation_byte_identical()",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L56",
+      "id": "test_prompt_injection_test_hard_recommendation_byte_identical",
+      "community": 1,
+      "norm_label": "test_hard_recommendation_byte_identical()"
+    },
+    {
+      "label": "test_soft_injection_expectations()",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L60",
+      "id": "test_prompt_injection_test_soft_injection_expectations",
+      "community": 9,
+      "norm_label": "test_soft_injection_expectations()"
+    },
+    {
+      "label": "File Name: test_prompt_injection.py Author: Senthilnathan Karuppaiah Date: 11-JU",
+      "file_type": "rationale",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L1",
+      "id": "test_prompt_injection_rationale_1",
+      "community": 9,
+      "norm_label": "file name: test_prompt_injection.py author: senthilnathan karuppaiah date: 11-ju"
+    },
+    {
+      "label": "test_mixed_failure_run.py",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_mixed_failure_run.py",
+      "source_location": "L1",
+      "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_mixed_failure_run_py",
+      "community": 9,
+      "norm_label": "test_mixed_failure_run.py"
+    },
+    {
+      "label": "test_hard_mixed_run_isolates_failures()",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_mixed_failure_run.py",
+      "source_location": "L29",
+      "id": "test_mixed_failure_run_test_hard_mixed_run_isolates_failures",
+      "community": 9,
+      "norm_label": "test_hard_mixed_run_isolates_failures()"
+    },
+    {
+      "label": "test_hard_all_failed_run_completes_without_llm()",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_mixed_failure_run.py",
+      "source_location": "L47",
+      "id": "test_mixed_failure_run_test_hard_all_failed_run_completes_without_llm",
+      "community": 9,
+      "norm_label": "test_hard_all_failed_run_completes_without_llm()"
+    },
+    {
+      "label": "File Name: test_mixed_failure_run.py Author: Senthilnathan Karuppaiah Date: 11-J",
+      "file_type": "rationale",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_mixed_failure_run.py",
+      "source_location": "L1",
+      "id": "test_mixed_failure_run_rationale_1",
+      "community": 9,
+      "norm_label": "file name: test_mixed_failure_run.py author: senthilnathan karuppaiah date: 11-j"
+    },
+    {
+      "label": "test_single_and_multi_job.py",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_single_and_multi_job.py",
+      "source_location": "L1",
+      "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_single_and_multi_job_py",
+      "community": 9,
+      "norm_label": "test_single_and_multi_job.py"
+    },
+    {
+      "label": "test_hard_single_job_single_call()",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_single_and_multi_job.py",
+      "source_location": "L33",
+      "id": "test_single_and_multi_job_test_hard_single_job_single_call",
+      "community": 9,
+      "norm_label": "test_hard_single_job_single_call()"
+    },
+    {
+      "label": "test_hard_multi_job_fanout_and_ranking()",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_single_and_multi_job.py",
+      "source_location": "L40",
+      "id": "test_single_and_multi_job_test_hard_multi_job_fanout_and_ranking",
+      "community": 9,
+      "norm_label": "test_hard_multi_job_fanout_and_ranking()"
+    },
+    {
+      "label": "File Name: test_single_and_multi_job.py Author: Senthilnathan Karuppaiah Date: 1",
+      "file_type": "rationale",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_single_and_multi_job.py",
+      "source_location": "L1",
+      "id": "test_single_and_multi_job_rationale_1",
+      "community": 9,
+      "norm_label": "file name: test_single_and_multi_job.py author: senthilnathan karuppaiah date: 1"
+    },
+    {
+      "label": "conftest.py",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/conftest.py",
+      "source_location": "L1",
+      "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_conftest_py",
+      "community": 9,
+      "norm_label": "conftest.py"
+    },
+    {
+      "label": "normalize()",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/conftest.py",
+      "source_location": "L38",
+      "id": "conftest_normalize",
+      "community": 9,
+      "norm_label": "normalize()"
+    },
+    {
+      "label": "run_live_counted()",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/conftest.py",
+      "source_location": "L43",
+      "id": "conftest_run_live_counted",
+      "community": 9,
+      "norm_label": "run_live_counted()"
+    },
+    {
+      "label": "File Name: conftest.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Descri",
+      "file_type": "rationale",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/conftest.py",
+      "source_location": "L1",
+      "id": "conftest_rationale_1",
+      "community": 9,
+      "norm_label": "file name: conftest.py author: senthilnathan karuppaiah date: 11-jul-2026 descri"
+    },
+    {
+      "label": "Whitespace/case normalization \u2014 the rubric's grounding comparison space.",
+      "file_type": "rationale",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/conftest.py",
+      "source_location": "L39",
+      "id": "conftest_rationale_39",
+      "community": 9,
+      "norm_label": "whitespace/case normalization \u2014 the rubric's grounding comparison space."
+    },
+    {
+      "label": "Run the REAL pipeline while counting analysis calls. Returns (result, calls).",
+      "file_type": "rationale",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/conftest.py",
+      "source_location": "L44",
+      "id": "conftest_rationale_44",
+      "community": 9,
+      "norm_label": "run the real pipeline while counting analysis calls. returns (result, calls)."
+    },
+    {
+      "label": "test_evidence_grounding.py",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_evidence_grounding.py",
+      "source_location": "L1",
+      "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_evidence_grounding_py",
+      "community": 9,
+      "norm_label": "test_evidence_grounding.py"
+    },
+    {
+      "label": "grounding_run()",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_evidence_grounding.py",
+      "source_location": "L33",
+      "id": "test_evidence_grounding_grounding_run",
+      "community": 9,
+      "norm_label": "grounding_run()"
+    },
+    {
+      "label": "test_hard_matched_evidence_is_verbatim_from_resume()",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_evidence_grounding.py",
+      "source_location": "L40",
+      "id": "test_evidence_grounding_test_hard_matched_evidence_is_verbatim_from_resume",
+      "community": 9,
+      "norm_label": "test_hard_matched_evidence_is_verbatim_from_resume()"
+    },
+    {
+      "label": "test_hard_unmatched_skills_carry_no_evidence()",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_evidence_grounding.py",
+      "source_location": "L49",
+      "id": "test_evidence_grounding_test_hard_unmatched_skills_carry_no_evidence",
+      "community": 9,
+      "norm_label": "test_hard_unmatched_skills_carry_no_evidence()"
+    },
+    {
+      "label": "test_soft_rerun_band_stability()",
+      "file_type": "code",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_evidence_grounding.py",
+      "source_location": "L54",
+      "id": "test_evidence_grounding_test_soft_rerun_band_stability",
+      "community": 9,
+      "norm_label": "test_soft_rerun_band_stability()"
+    },
+    {
+      "label": "File Name: test_evidence_grounding.py Author: Senthilnathan Karuppaiah Date: 11-",
+      "file_type": "rationale",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_evidence_grounding.py",
+      "source_location": "L1",
+      "id": "test_evidence_grounding_rationale_1",
+      "community": 9,
+      "norm_label": "file name: test_evidence_grounding.py author: senthilnathan karuppaiah date: 11-"
+    },
+    {
       "label": "schemas.py",
       "file_type": "code",
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/schemas.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_job_matcher_schemas_py",
-      "community": 1,
+      "community": 2,
       "norm_label": "schemas.py"
     },
     {
@@ -1422,7 +1674,7 @@
       "source_file": "",
       "source_location": "",
       "id": "basemodel",
-      "community": 1,
+      "community": 2,
       "norm_label": "basemodel"
     },
     {
@@ -1440,7 +1692,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/schemas.py",
       "source_location": "L49",
       "id": "schemas_jobanalysis",
-      "community": 1,
+      "community": 2,
       "norm_label": "jobanalysis"
     },
     {
@@ -1449,7 +1701,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/schemas.py",
       "source_location": "L70",
       "id": "schemas_scorebreakdown",
-      "community": 1,
+      "community": 2,
       "norm_label": "scorebreakdown"
     },
     {
@@ -1458,7 +1710,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/schemas.py",
       "source_location": "L80",
       "id": "schemas_jobfetchfailure",
-      "community": 1,
+      "community": 7,
       "norm_label": "jobfetchfailure"
     },
     {
@@ -1467,7 +1719,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/schemas.py",
       "source_location": "L91",
       "id": "schemas_jobreport",
-      "community": 1,
+      "community": 2,
       "norm_label": "jobreport"
     },
     {
@@ -1476,7 +1728,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/schemas.py",
       "source_location": "L1",
       "id": "schemas_rationale_1",
-      "community": 1,
+      "community": 2,
       "norm_label": "file name: schemas.py author: senthilnathan karuppaiah date: 11-jul-2026 descrip"
     },
     {
@@ -1494,7 +1746,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/schemas.py",
       "source_location": "L50",
       "id": "schemas_rationale_50",
-      "community": 1,
+      "community": 2,
       "norm_label": "the one and only llm-filled schema \u2014 counts and evidence, never a score."
     },
     {
@@ -1503,7 +1755,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/schemas.py",
       "source_location": "L71",
       "id": "schemas_rationale_71",
-      "community": 1,
+      "community": 2,
       "norm_label": "filled in exclusively by scoring.py \u2014 never by a model call."
     },
     {
@@ -1512,7 +1764,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/schemas.py",
       "source_location": "L81",
       "id": "schemas_rationale_81",
-      "community": 1,
+      "community": 7,
       "norm_label": "one job source that could not be read \u2014 logged, not analyzed, never retried."
     },
     {
@@ -1521,7 +1773,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/schemas.py",
       "source_location": "L92",
       "id": "schemas_rationale_92",
-      "community": 1,
+      "community": 2,
       "norm_label": "one job source that was fetched, analyzed, and scored \u2014 the self-contained repor"
     },
     {
@@ -1530,7 +1782,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/prompts.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_job_matcher_prompts_py",
-      "community": 8,
+      "community": 6,
       "norm_label": "prompts.py"
     },
     {
@@ -1539,7 +1791,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/prompts.py",
       "source_location": "L32",
       "id": "prompts_load_prompt",
-      "community": 8,
+      "community": 6,
       "norm_label": "load_prompt()"
     },
     {
@@ -1548,7 +1800,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/prompts.py",
       "source_location": "L42",
       "id": "prompts_load_template",
-      "community": 8,
+      "community": 6,
       "norm_label": "load_template()"
     },
     {
@@ -1557,7 +1809,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/prompts.py",
       "source_location": "L52",
       "id": "prompts_render",
-      "community": 8,
+      "community": 6,
       "norm_label": "render()"
     },
     {
@@ -1566,7 +1818,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/prompts.py",
       "source_location": "L1",
       "id": "prompts_rationale_1",
-      "community": 8,
+      "community": 6,
       "norm_label": "file name: prompts.py author: senthilnathan karuppaiah date: 11-jul-2026 descrip"
     },
     {
@@ -1575,7 +1827,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/prompts.py",
       "source_location": "L33",
       "id": "prompts_rationale_33",
-      "community": 8,
+      "community": 6,
       "norm_label": "load a prompt by name via override dirs, falling back to package data."
     },
     {
@@ -1584,7 +1836,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/prompts.py",
       "source_location": "L43",
       "id": "prompts_rationale_43",
-      "community": 8,
+      "community": 6,
       "norm_label": "load an optional template; none means 'degrade to plain text'."
     },
     {
@@ -1593,7 +1845,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/prompts.py",
       "source_location": "L53",
       "id": "prompts_rationale_53",
-      "community": 8,
+      "community": 6,
       "norm_label": "mustache-style {{variable}} substitution; unknown keys stay as-is."
     },
     {
@@ -1602,7 +1854,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/__init__.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_job_matcher_init_py",
-      "community": 1,
+      "community": 2,
       "norm_label": "__init__.py"
     },
     {
@@ -1611,7 +1863,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/__init__.py",
       "source_location": "L21",
       "id": "init_run_analysis",
-      "community": 1,
+      "community": 2,
       "norm_label": "run_analysis()"
     },
     {
@@ -1620,7 +1872,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/__init__.py",
       "source_location": "L28",
       "id": "init_extract_resume_text",
-      "community": 1,
+      "community": 2,
       "norm_label": "extract_resume_text()"
     },
     {
@@ -1629,7 +1881,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/__init__.py",
       "source_location": "L35",
       "id": "init_extract_jsonresume",
-      "community": 1,
+      "community": 2,
       "norm_label": "extract_jsonresume()"
     },
     {
@@ -1638,7 +1890,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/observability/__init__.py",
       "source_location": "L1",
       "id": "init_rationale_1",
-      "community": 1,
+      "community": 2,
       "norm_label": "file name: observability/__init__.py author: senthilnathan karuppaiah date: 11-j"
     },
     {
@@ -1647,7 +1899,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/__init__.py",
       "source_location": "L22",
       "id": "init_rationale_22",
-      "community": 1,
+      "community": 2,
       "norm_label": "stable core entry point \u2014 lazy import so `import job_matcher` stays light."
     },
     {
@@ -1656,7 +1908,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/__init__.py",
       "source_location": "L29",
       "id": "init_rationale_29",
-      "community": 1,
+      "community": 2,
       "norm_label": "stable core re-export of resume extraction (lazy import)."
     },
     {
@@ -1665,7 +1917,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/__init__.py",
       "source_location": "L36",
       "id": "init_rationale_36",
-      "community": 1,
+      "community": 2,
       "norm_label": "stable core re-export of json resume extraction (lazy import, async)."
     },
     {
@@ -1674,7 +1926,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/config.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_job_matcher_config_py",
-      "community": 4,
+      "community": 5,
       "norm_label": "config.py"
     },
     {
@@ -1683,7 +1935,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/config.py",
       "source_location": "L35",
       "id": "config_ensure_env_loaded",
-      "community": 4,
+      "community": 5,
       "norm_label": "_ensure_env_loaded()"
     },
     {
@@ -1692,7 +1944,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/config.py",
       "source_location": "L42",
       "id": "config_configerror",
-      "community": 2,
+      "community": 3,
       "norm_label": "configerror"
     },
     {
@@ -1701,7 +1953,7 @@
       "source_file": "",
       "source_location": "",
       "id": "runtimeerror",
-      "community": 5,
+      "community": 8,
       "norm_label": "runtimeerror"
     },
     {
@@ -1710,7 +1962,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/config.py",
       "source_location": "L46",
       "id": "config_resolve_model",
-      "community": 4,
+      "community": 5,
       "norm_label": "resolve_model()"
     },
     {
@@ -1719,7 +1971,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/config.py",
       "source_location": "L63",
       "id": "config_int_env",
-      "community": 4,
+      "community": 5,
       "norm_label": "_int_env()"
     },
     {
@@ -1728,7 +1980,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/config.py",
       "source_location": "L72",
       "id": "config_fanout_concurrency",
-      "community": 4,
+      "community": 5,
       "norm_label": "fanout_concurrency()"
     },
     {
@@ -1737,7 +1989,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/config.py",
       "source_location": "L76",
       "id": "config_job_min_words",
-      "community": 4,
+      "community": 5,
       "norm_label": "job_min_words()"
     },
     {
@@ -1746,7 +1998,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/config.py",
       "source_location": "L80",
       "id": "config_max_fetch_bytes",
-      "community": 4,
+      "community": 5,
       "norm_label": "max_fetch_bytes()"
     },
     {
@@ -1755,7 +2007,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/config.py",
       "source_location": "L84",
       "id": "config_max_resume_bytes",
-      "community": 4,
+      "community": 5,
       "norm_label": "max_resume_bytes()"
     },
     {
@@ -1764,7 +2016,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/config.py",
       "source_location": "L1",
       "id": "config_rationale_1",
-      "community": 4,
+      "community": 5,
       "norm_label": "file name: config.py author: senthilnathan karuppaiah date: 11-jul-2026 descript"
     },
     {
@@ -1773,7 +2025,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/config.py",
       "source_location": "L43",
       "id": "config_rationale_43",
-      "community": 2,
+      "community": 3,
       "norm_label": "raised when required configuration is missing \u2014 an operator error."
     },
     {
@@ -1782,7 +2034,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/config.py",
       "source_location": "L47",
       "id": "config_rationale_47",
-      "community": 4,
+      "community": 5,
       "norm_label": "model_<role> \u2192 model_<fallback>... \u2192 model \u2192 configerror. never a default."
     },
     {
@@ -1791,7 +2043,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/report.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_job_matcher_report_py",
-      "community": 10,
+      "community": 2,
       "norm_label": "report.py"
     },
     {
@@ -1800,7 +2052,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/report.py",
       "source_location": "L41",
       "id": "report_run_timestamp",
-      "community": 10,
+      "community": 2,
       "norm_label": "run_timestamp()"
     },
     {
@@ -1809,7 +2061,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/report.py",
       "source_location": "L46",
       "id": "report_slugify",
-      "community": 10,
+      "community": 2,
       "norm_label": "slugify()"
     },
     {
@@ -1818,7 +2070,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/report.py",
       "source_location": "L52",
       "id": "report_report_filename",
-      "community": 10,
+      "community": 2,
       "norm_label": "report_filename()"
     },
     {
@@ -1827,7 +2079,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/report.py",
       "source_location": "L58",
       "id": "report_assert_safe_relative",
-      "community": 10,
+      "community": 2,
       "norm_label": "assert_safe_relative()"
     },
     {
@@ -1836,7 +2088,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/report.py",
       "source_location": "L66",
       "id": "report_build_job_report",
-      "community": 1,
+      "community": 2,
       "norm_label": "build_job_report()"
     },
     {
@@ -1845,7 +2097,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/report.py",
       "source_location": "L95",
       "id": "report_write_json_artifact",
-      "community": 10,
+      "community": 2,
       "norm_label": "write_json_artifact()"
     },
     {
@@ -1854,7 +2106,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/report.py",
       "source_location": "L1",
       "id": "report_rationale_1",
-      "community": 1,
+      "community": 2,
       "norm_label": "file name: report.py author: senthilnathan karuppaiah date: 11-jul-2026 descript"
     },
     {
@@ -1863,7 +2115,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/report.py",
       "source_location": "L42",
       "id": "report_rationale_42",
-      "community": 1,
+      "community": 2,
       "norm_label": "utc timestamp in the filename-safe contract format."
     },
     {
@@ -1872,7 +2124,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/report.py",
       "source_location": "L47",
       "id": "report_rationale_47",
-      "community": 1,
+      "community": 2,
       "norm_label": "lowercase; every run of characters outside [a-z0-9] collapses to one hyphen."
     },
     {
@@ -1881,7 +2133,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/report.py",
       "source_location": "L53",
       "id": "report_rationale_53",
-      "community": 1,
+      "community": 2,
       "norm_label": "the per-job artifact name: slug + timestamp (+ .failed for fetch failures)."
     },
     {
@@ -1890,7 +2142,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/report.py",
       "source_location": "L59",
       "id": "report_rationale_59",
-      "community": 1,
+      "community": 2,
       "norm_label": "reject absolute paths and traversal segments in artifact names."
     },
     {
@@ -1899,7 +2151,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/report.py",
       "source_location": "L79",
       "id": "report_rationale_79",
-      "community": 1,
+      "community": 2,
       "norm_label": "assemble the validated per-job report from typed parts."
     },
     {
@@ -1908,7 +2160,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/report.py",
       "source_location": "L96",
       "id": "report_rationale_96",
-      "community": 1,
+      "community": 2,
       "norm_label": "write a validated model as pretty json under the run folder, path-confined."
     },
     {
@@ -1917,7 +2169,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/analyze.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_job_matcher_analyze_py",
-      "community": 8,
+      "community": 6,
       "norm_label": "analyze.py"
     },
     {
@@ -1926,7 +2178,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/analyze.py",
       "source_location": "L37",
       "id": "analyze_usage_dict",
-      "community": 8,
+      "community": 6,
       "norm_label": "_usage_dict()"
     },
     {
@@ -1935,7 +2187,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/analyze.py",
       "source_location": "L49",
       "id": "analyze_span_enrichment",
-      "community": 8,
+      "community": 6,
       "norm_label": "_span_enrichment()"
     },
     {
@@ -1944,7 +2196,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/analyze.py",
       "source_location": "L65",
       "id": "analyze_analyze_job_fit",
-      "community": 8,
+      "community": 6,
       "norm_label": "analyze_job_fit()"
     },
     {
@@ -1953,7 +2205,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/analyze.py",
       "source_location": "L1",
       "id": "analyze_rationale_1",
-      "community": 8,
+      "community": 6,
       "norm_label": "file name: analyze.py author: senthilnathan karuppaiah date: 11-jul-2026 descrip"
     },
     {
@@ -1962,7 +2214,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/analyze.py",
       "source_location": "L38",
       "id": "analyze_rationale_38",
-      "community": 8,
+      "community": 6,
       "norm_label": "best-effort token accounting across pydantic-ai versions."
     },
     {
@@ -1971,7 +2223,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/analyze.py",
       "source_location": "L50",
       "id": "analyze_rationale_50",
-      "community": 8,
+      "community": 6,
       "norm_label": "declared at the decorator (aop): token usage + model onto the llm span;     prom"
     },
     {
@@ -1980,7 +2232,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/analyze.py",
       "source_location": "L71",
       "id": "analyze_rationale_71",
-      "community": 8,
+      "community": 6,
       "norm_label": "extract the typed, evidence-grounded analysis for one job posting."
     },
     {
@@ -1989,7 +2241,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/fetch.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_job_matcher_fetch_py",
-      "community": 4,
+      "community": 5,
       "norm_label": "fetch.py"
     },
     {
@@ -1998,7 +2250,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/fetch.py",
       "source_location": "L60",
       "id": "fetch_fetchresult",
-      "community": 4,
+      "community": 5,
       "norm_label": "fetchresult"
     },
     {
@@ -2007,7 +2259,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/fetch.py",
       "source_location": "L71",
       "id": "fetch_now",
-      "community": 4,
+      "community": 5,
       "norm_label": "_now()"
     },
     {
@@ -2016,7 +2268,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/fetch.py",
       "source_location": "L75",
       "id": "fetch_blocked_host_reason",
-      "community": 4,
+      "community": 5,
       "norm_label": "_blocked_host_reason()"
     },
     {
@@ -2025,7 +2277,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/fetch.py",
       "source_location": "L90",
       "id": "fetch_html_to_text",
-      "community": 4,
+      "community": 5,
       "norm_label": "html_to_text()"
     },
     {
@@ -2034,7 +2286,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/fetch.py",
       "source_location": "L98",
       "id": "fetch_word_guard",
-      "community": 4,
+      "community": 5,
       "norm_label": "_word_guard()"
     },
     {
@@ -2043,7 +2295,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/fetch.py",
       "source_location": "L114",
       "id": "fetch_fetch_local",
-      "community": 4,
+      "community": 5,
       "norm_label": "_fetch_local()"
     },
     {
@@ -2052,7 +2304,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/fetch.py",
       "source_location": "L125",
       "id": "fetch_fetch_job_source",
-      "community": 4,
+      "community": 5,
       "norm_label": "fetch_job_source()"
     },
     {
@@ -2061,7 +2313,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/fetch.py",
       "source_location": "L1",
       "id": "fetch_rationale_1",
-      "community": 4,
+      "community": 5,
       "norm_label": "file name: fetch.py author: senthilnathan karuppaiah date: 11-jul-2026 descripti"
     },
     {
@@ -2070,7 +2322,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/fetch.py",
       "source_location": "L61",
       "id": "fetch_rationale_61",
-      "community": 4,
+      "community": 5,
       "norm_label": "the outcome of the single fetch attempt for one job source."
     },
     {
@@ -2079,7 +2331,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/fetch.py",
       "source_location": "L76",
       "id": "fetch_rationale_76",
-      "community": 4,
+      "community": 5,
       "norm_label": "pre-connect ssrf guard: loopback/private/link-local/reserved targets."
     },
     {
@@ -2088,7 +2340,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/fetch.py",
       "source_location": "L91",
       "id": "fetch_rationale_91",
-      "community": 4,
+      "community": 5,
       "norm_label": "visible-text extraction: scripts, styles, and noscript stripped."
     },
     {
@@ -2097,7 +2349,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/fetch.py",
       "source_location": "L126",
       "id": "fetch_rationale_126",
-      "community": 4,
+      "community": 5,
       "norm_label": "make the one and only fetch attempt for a job source. never retries."
     },
     {
@@ -2106,7 +2358,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/logging.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_job_matcher_logging_py",
-      "community": 2,
+      "community": 3,
       "norm_label": "logging.py"
     },
     {
@@ -2115,7 +2367,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/logging.py",
       "source_location": "L34",
       "id": "logging_get_logger",
-      "community": 2,
+      "community": 3,
       "norm_label": "get_logger()"
     },
     {
@@ -2124,7 +2376,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/logging.py",
       "source_location": "L1",
       "id": "logging_rationale_1",
-      "community": 2,
+      "community": 3,
       "norm_label": "file name: logging.py author: senthilnathan karuppaiah date: 11-jul-2026 descrip"
     },
     {
@@ -2133,7 +2385,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/logging.py",
       "source_location": "L35",
       "id": "logging_rationale_35",
-      "community": 2,
+      "community": 3,
       "norm_label": "configure logging for an entry point and return the root structlog logger."
     },
     {
@@ -2142,7 +2394,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/resume.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_job_matcher_resume_py",
-      "community": 7,
+      "community": 10,
       "norm_label": "resume.py"
     },
     {
@@ -2151,7 +2403,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/resume.py",
       "source_location": "L37",
       "id": "resume_resumeerror",
-      "community": 2,
+      "community": 3,
       "norm_label": "resumeerror"
     },
     {
@@ -2160,7 +2412,7 @@
       "source_file": "",
       "source_location": "",
       "id": "valueerror",
-      "community": 2,
+      "community": 3,
       "norm_label": "valueerror"
     },
     {
@@ -2169,7 +2421,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/resume.py",
       "source_location": "L41",
       "id": "resume_normalize",
-      "community": 7,
+      "community": 10,
       "norm_label": "_normalize()"
     },
     {
@@ -2178,7 +2430,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/resume.py",
       "source_location": "L48",
       "id": "resume_extract_pdf",
-      "community": 7,
+      "community": 10,
       "norm_label": "_extract_pdf()"
     },
     {
@@ -2187,7 +2439,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/resume.py",
       "source_location": "L56",
       "id": "resume_extract_docx",
-      "community": 7,
+      "community": 10,
       "norm_label": "_extract_docx()"
     },
     {
@@ -2196,7 +2448,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/resume.py",
       "source_location": "L64",
       "id": "resume_extract_resume_text",
-      "community": 7,
+      "community": 10,
       "norm_label": "extract_resume_text()"
     },
     {
@@ -2205,7 +2457,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/resume.py",
       "source_location": "L1",
       "id": "resume_rationale_1",
-      "community": 7,
+      "community": 10,
       "norm_label": "file name: resume.py author: senthilnathan karuppaiah date: 11-jul-2026 descript"
     },
     {
@@ -2214,7 +2466,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/resume.py",
       "source_location": "L38",
       "id": "resume_rationale_38",
-      "community": 2,
+      "community": 3,
       "norm_label": "operator-facing extraction failure (bad format, scanned pdf, oversized file)."
     },
     {
@@ -2223,7 +2475,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/resume.py",
       "source_location": "L42",
       "id": "resume_rationale_42",
-      "community": 7,
+      "community": 10,
       "norm_label": "blank-line-joined paragraphs, wrapped at 120 columns, no carriage returns."
     },
     {
@@ -2232,7 +2484,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/resume.py",
       "source_location": "L65",
       "id": "resume_rationale_65",
-      "community": 7,
+      "community": 10,
       "norm_label": "extract normalized plain text from a resume file, or raise resumeerror."
     },
     {
@@ -2241,7 +2493,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/api.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_job_matcher_api_py",
-      "community": 2,
+      "community": 3,
       "norm_label": "api.py"
     },
     {
@@ -2250,7 +2502,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/api.py",
       "source_location": "L125",
       "id": "api_custom_openapi",
-      "community": 2,
+      "community": 3,
       "norm_label": "_custom_openapi()"
     },
     {
@@ -2259,7 +2511,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/api.py",
       "source_location": "L145",
       "id": "api_request_span",
-      "community": 0,
+      "community": 3,
       "norm_label": "request_span()"
     },
     {
@@ -2268,7 +2520,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/api.py",
       "source_location": "L151",
       "id": "api_staged_upload_dir",
-      "community": 2,
+      "community": 3,
       "norm_label": "_staged_upload_dir()"
     },
     {
@@ -2277,7 +2529,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/api.py",
       "source_location": "L170",
       "id": "api_analyze",
-      "community": 2,
+      "community": 3,
       "norm_label": "analyze()"
     },
     {
@@ -2286,7 +2538,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/api.py",
       "source_location": "L243",
       "id": "api_resume_jsonresume",
-      "community": 2,
+      "community": 3,
       "norm_label": "resume_jsonresume()"
     },
     {
@@ -2295,7 +2547,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/api.py",
       "source_location": "L298",
       "id": "api_health",
-      "community": 2,
+      "community": 3,
       "norm_label": "health()"
     },
     {
@@ -2304,7 +2556,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/api.py",
       "source_location": "L1",
       "id": "api_rationale_1",
-      "community": 2,
+      "community": 3,
       "norm_label": "file name: api.py author: senthilnathan karuppaiah date: 11-jul-2026 description"
     },
     {
@@ -2313,7 +2565,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/api.py",
       "source_location": "L126",
       "id": "api_rationale_126",
-      "community": 2,
+      "community": 3,
       "norm_label": "fastapi-native generation plus the repo link (spec: repo path link)."
     },
     {
@@ -2322,7 +2574,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/api.py",
       "source_location": "L146",
       "id": "api_rationale_146",
-      "community": 2,
+      "community": 3,
       "norm_label": "one span per http request \u2014 the root the pipeline's run span nests under."
     },
     {
@@ -2331,7 +2583,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/api.py",
       "source_location": "L175",
       "id": "api_rationale_175",
-      "community": 2,
+      "community": 3,
       "norm_label": "run the full analysis synchronously and return the typed outcome array.      pro"
     },
     {
@@ -2340,7 +2592,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/api.py",
       "source_location": "L247",
       "id": "api_rationale_247",
-      "community": 2,
+      "community": 3,
       "norm_label": "extract the resume into the standard json resume format.      provide the resume"
     },
     {
@@ -2349,7 +2601,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/api.py",
       "source_location": "L299",
       "id": "api_rationale_299",
-      "community": 2,
+      "community": 3,
       "norm_label": "report liveness and the running package version.      used by container healthch"
     },
     {
@@ -2358,7 +2610,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/pipeline.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_job_matcher_pipeline_py",
-      "community": 6,
+      "community": 7,
       "norm_label": "pipeline.py"
     },
     {
@@ -2367,7 +2619,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/pipeline.py",
       "source_location": "L56",
       "id": "pipeline_runresult",
-      "community": 6,
+      "community": 7,
       "norm_label": "runresult"
     },
     {
@@ -2376,7 +2628,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/pipeline.py",
       "source_location": "L64",
       "id": "pipeline_runresult_outcomes_json",
-      "community": 6,
+      "community": 7,
       "norm_label": ".outcomes_json()"
     },
     {
@@ -2385,7 +2637,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/pipeline.py",
       "source_location": "L69",
       "id": "pipeline_now",
-      "community": 6,
+      "community": 7,
       "norm_label": "_now()"
     },
     {
@@ -2394,7 +2646,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/pipeline.py",
       "source_location": "L73",
       "id": "pipeline_cover_letter_text",
-      "community": 1,
+      "community": 7,
       "norm_label": "_cover_letter_text()"
     },
     {
@@ -2403,7 +2655,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/pipeline.py",
       "source_location": "L88",
       "id": "pipeline_job_task",
-      "community": 1,
+      "community": 7,
       "norm_label": "_job_task()"
     },
     {
@@ -2412,7 +2664,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/pipeline.py",
       "source_location": "L135",
       "id": "pipeline_persist",
-      "community": 6,
+      "community": 7,
       "norm_label": "_persist()"
     },
     {
@@ -2421,7 +2673,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/pipeline.py",
       "source_location": "L196",
       "id": "pipeline_run_analysis",
-      "community": 6,
+      "community": 7,
       "norm_label": "run_analysis()"
     },
     {
@@ -2430,7 +2682,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/pipeline.py",
       "source_location": "L1",
       "id": "pipeline_rationale_1",
-      "community": 1,
+      "community": 7,
       "norm_label": "file name: pipeline.py author: senthilnathan karuppaiah date: 11-jul-2026 descri"
     },
     {
@@ -2439,7 +2691,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/pipeline.py",
       "source_location": "L57",
       "id": "pipeline_rationale_57",
-      "community": 6,
+      "community": 7,
       "norm_label": "what every surface gets back from a run."
     },
     {
@@ -2448,7 +2700,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/pipeline.py",
       "source_location": "L65",
       "id": "pipeline_rationale_65",
-      "community": 6,
+      "community": 7,
       "norm_label": "the typed json array \u2014 the cross-surface result contract."
     },
     {
@@ -2457,7 +2709,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/pipeline.py",
       "source_location": "L74",
       "id": "pipeline_rationale_74",
-      "community": 1,
+      "community": 7,
       "norm_label": "paragraphs joined by blank lines, optionally through a staged template."
     },
     {
@@ -2466,7 +2718,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/pipeline.py",
       "source_location": "L98",
       "id": "pipeline_rationale_98",
-      "community": 1,
+      "community": 7,
       "norm_label": "one job source, end to end. any failure becomes this job's outcome only."
     },
     {
@@ -2475,7 +2727,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/pipeline.py",
       "source_location": "L140",
       "id": "pipeline_rationale_140",
-      "community": 6,
+      "community": 7,
       "norm_label": "cli-mode persistence of the full run folder (api mode never calls this)."
     },
     {
@@ -2484,7 +2736,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/pipeline.py",
       "source_location": "L201",
       "id": "pipeline_rationale_201",
-      "community": 1,
+      "community": 7,
       "norm_label": "run the full use case. out_dir given \u2192 cli persistence; none \u2192 payload only."
     },
     {
@@ -2493,7 +2745,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/scoring.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_job_matcher_scoring_py",
-      "community": 9,
+      "community": 1,
       "norm_label": "scoring.py"
     },
     {
@@ -2502,7 +2754,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/scoring.py",
       "source_location": "L49",
       "id": "scoring_js_round",
-      "community": 9,
+      "community": 1,
       "norm_label": "js_round()"
     },
     {
@@ -2511,7 +2763,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/scoring.py",
       "source_location": "L54",
       "id": "scoring_count_matched",
-      "community": 9,
+      "community": 1,
       "norm_label": "_count_matched()"
     },
     {
@@ -2520,7 +2772,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/scoring.py",
       "source_location": "L59",
       "id": "scoring_score_job_fit",
-      "community": 9,
+      "community": 1,
       "norm_label": "score_job_fit()"
     },
     {
@@ -2610,7 +2862,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/cli.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_job_matcher_cli_py",
-      "community": 2,
+      "community": 3,
       "norm_label": "cli.py"
     },
     {
@@ -2619,7 +2871,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/cli.py",
       "source_location": "L37",
       "id": "cli_root",
-      "community": 2,
+      "community": 3,
       "norm_label": "_root()"
     },
     {
@@ -2628,7 +2880,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/cli.py",
       "source_location": "L42",
       "id": "cli_version",
-      "community": 2,
+      "community": 3,
       "norm_label": "version()"
     },
     {
@@ -2637,7 +2889,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/cli.py",
       "source_location": "L50",
       "id": "cli_analyze",
-      "community": 2,
+      "community": 3,
       "norm_label": "analyze()"
     },
     {
@@ -2646,7 +2898,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/cli.py",
       "source_location": "L80",
       "id": "cli_jsonresume",
-      "community": 2,
+      "community": 3,
       "norm_label": "jsonresume()"
     },
     {
@@ -2655,7 +2907,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/cli.py",
       "source_location": "L106",
       "id": "cli_main",
-      "community": 2,
+      "community": 3,
       "norm_label": "main()"
     },
     {
@@ -2664,7 +2916,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/cli.py",
       "source_location": "L1",
       "id": "cli_rationale_1",
-      "community": 2,
+      "community": 3,
       "norm_label": "file name: cli.py author: senthilnathan karuppaiah date: 11-jul-2026 description"
     },
     {
@@ -2673,7 +2925,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/cli.py",
       "source_location": "L38",
       "id": "cli_rationale_38",
-      "community": 2,
+      "community": 3,
       "norm_label": "keeps single commands as named subcommands (jobmatch version, jobmatch analyze.."
     },
     {
@@ -2682,7 +2934,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/cli.py",
       "source_location": "L43",
       "id": "cli_rationale_43",
-      "community": 2,
+      "community": 3,
       "norm_label": "print the job-matcher version."
     },
     {
@@ -2691,7 +2943,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/cli.py",
       "source_location": "L55",
       "id": "cli_rationale_55",
-      "community": 2,
+      "community": 3,
       "norm_label": "analyze the resume against one or more job sources; persist under --out."
     },
     {
@@ -2700,7 +2952,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/cli.py",
       "source_location": "L84",
       "id": "cli_rationale_84",
-      "community": 2,
+      "community": 3,
       "norm_label": "convert a resume into a json resume v1.0.0 document (jsonresume.org)."
     },
     {
@@ -2709,7 +2961,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/cli.py",
       "source_location": "L107",
       "id": "cli_rationale_107",
-      "community": 2,
+      "community": 3,
       "norm_label": "console-script entry point."
     },
     {
@@ -2718,7 +2970,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_job_matcher_jsonresume_py",
-      "community": 3,
+      "community": 4,
       "norm_label": "jsonresume.py"
     },
     {
@@ -2727,7 +2979,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L40",
       "id": "jsonresume_strict",
-      "community": 3,
+      "community": 4,
       "norm_label": "_strict"
     },
     {
@@ -2736,7 +2988,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L46",
       "id": "jsonresume_location",
-      "community": 3,
+      "community": 4,
       "norm_label": "location"
     },
     {
@@ -2745,7 +2997,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L54",
       "id": "jsonresume_profile",
-      "community": 3,
+      "community": 4,
       "norm_label": "profile"
     },
     {
@@ -2754,7 +3006,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L60",
       "id": "jsonresume_basics",
-      "community": 3,
+      "community": 4,
       "norm_label": "basics"
     },
     {
@@ -2763,7 +3015,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L72",
       "id": "jsonresume_work",
-      "community": 3,
+      "community": 4,
       "norm_label": "work"
     },
     {
@@ -2772,7 +3024,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L84",
       "id": "jsonresume_volunteer",
-      "community": 3,
+      "community": 4,
       "norm_label": "volunteer"
     },
     {
@@ -2781,7 +3033,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L94",
       "id": "jsonresume_education",
-      "community": 3,
+      "community": 4,
       "norm_label": "education"
     },
     {
@@ -2790,7 +3042,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L105",
       "id": "jsonresume_award",
-      "community": 3,
+      "community": 4,
       "norm_label": "award"
     },
     {
@@ -2799,7 +3051,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L112",
       "id": "jsonresume_certificate",
-      "community": 3,
+      "community": 4,
       "norm_label": "certificate"
     },
     {
@@ -2808,7 +3060,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L119",
       "id": "jsonresume_publication",
-      "community": 3,
+      "community": 4,
       "norm_label": "publication"
     },
     {
@@ -2817,7 +3069,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L127",
       "id": "jsonresume_skill",
-      "community": 3,
+      "community": 4,
       "norm_label": "skill"
     },
     {
@@ -2826,7 +3078,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L133",
       "id": "jsonresume_language",
-      "community": 3,
+      "community": 4,
       "norm_label": "language"
     },
     {
@@ -2835,7 +3087,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L138",
       "id": "jsonresume_interest",
-      "community": 3,
+      "community": 4,
       "norm_label": "interest"
     },
     {
@@ -2844,7 +3096,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L143",
       "id": "jsonresume_reference",
-      "community": 3,
+      "community": 4,
       "norm_label": "reference"
     },
     {
@@ -2853,7 +3105,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L148",
       "id": "jsonresume_project",
-      "community": 3,
+      "community": 4,
       "norm_label": "project"
     },
     {
@@ -2862,7 +3114,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L161",
       "id": "jsonresume_meta",
-      "community": 3,
+      "community": 4,
       "norm_label": "meta"
     },
     {
@@ -2871,7 +3123,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L167",
       "id": "jsonresume_jsonresume",
-      "community": 3,
+      "community": 4,
       "norm_label": "jsonresume"
     },
     {
@@ -2880,7 +3132,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L185",
       "id": "jsonresume_jsonresumegroundingerror",
-      "community": 2,
+      "community": 3,
       "norm_label": "jsonresumegroundingerror"
     },
     {
@@ -2889,7 +3141,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L189",
       "id": "jsonresume_digits",
-      "community": 3,
+      "community": 4,
       "norm_label": "_digits()"
     },
     {
@@ -2898,7 +3150,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L193",
       "id": "jsonresume_assert_contact_grounded",
-      "community": 3,
+      "community": 4,
       "norm_label": "assert_contact_grounded()"
     },
     {
@@ -2907,7 +3159,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L206",
       "id": "jsonresume_extract_jsonresume",
-      "community": 3,
+      "community": 4,
       "norm_label": "extract_jsonresume()"
     },
     {
@@ -2916,7 +3168,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L1",
       "id": "jsonresume_rationale_1",
-      "community": 3,
+      "community": 4,
       "norm_label": "file name: jsonresume.py author: senthilnathan karuppaiah date: 11-jul-2026 desc"
     },
     {
@@ -2925,7 +3177,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L41",
       "id": "jsonresume_rationale_41",
-      "community": 3,
+      "community": 4,
       "norm_label": "base for every section: unknown fields are rejected, all fields optional."
     },
     {
@@ -2934,7 +3186,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L168",
       "id": "jsonresume_rationale_168",
-      "community": 3,
+      "community": 4,
       "norm_label": "the full json resume v1.0.0 document \u2014 jsonresume.org/schema."
     },
     {
@@ -2943,7 +3195,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L186",
       "id": "jsonresume_rationale_186",
-      "community": 2,
+      "community": 3,
       "norm_label": "the extractor invented a contact field that is not in the resume text."
     },
     {
@@ -2952,7 +3204,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L194",
       "id": "jsonresume_rationale_194",
-      "community": 3,
+      "community": 4,
       "norm_label": "deterministic guard: email/phone must appear in the source text."
     },
     {
@@ -2961,7 +3213,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/jsonresume.py",
       "source_location": "L207",
       "id": "jsonresume_rationale_207",
-      "community": 3,
+      "community": 4,
       "norm_label": "convert resume text to a validated, grounded json resume document."
     },
     {
@@ -3033,7 +3285,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/observability/__init__.py",
       "source_location": "L74",
       "id": "init_configure",
-      "community": 0,
+      "community": 8,
       "norm_label": "configure()"
     },
     {
@@ -3132,7 +3384,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/observability/__init__.py",
       "source_location": "L75",
       "id": "init_rationale_75",
-      "community": 0,
+      "community": 8,
       "norm_label": "resolve the sink fan-out from env, once at startup (idempotent).      the json-l"
     },
     {
@@ -3348,7 +3600,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/observability/otel_bridge.py",
       "source_location": "L1",
       "id": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_job_matcher_observability_otel_bridge_py",
-      "community": 5,
+      "community": 8,
       "norm_label": "otel_bridge.py"
     },
     {
@@ -3357,7 +3609,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/observability/otel_bridge.py",
       "source_location": "L43",
       "id": "otel_bridge_require_otel",
-      "community": 5,
+      "community": 8,
       "norm_label": "_require_otel()"
     },
     {
@@ -3366,7 +3618,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/observability/otel_bridge.py",
       "source_location": "L52",
       "id": "otel_bridge_otelbridgesink",
-      "community": 5,
+      "community": 8,
       "norm_label": "otelbridgesink"
     },
     {
@@ -3375,7 +3627,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/observability/otel_bridge.py",
       "source_location": "L55",
       "id": "otel_bridge_otelbridgesink_init",
-      "community": 5,
+      "community": 8,
       "norm_label": ".__init__()"
     },
     {
@@ -3384,7 +3636,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/observability/otel_bridge.py",
       "source_location": "L77",
       "id": "otel_bridge_otelbridgesink_on_span_start",
-      "community": 5,
+      "community": 8,
       "norm_label": ".on_span_start()"
     },
     {
@@ -3393,7 +3645,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/observability/otel_bridge.py",
       "source_location": "L85",
       "id": "otel_bridge_otelbridgesink_on_span_end",
-      "community": 5,
+      "community": 8,
       "norm_label": ".on_span_end()"
     },
     {
@@ -3402,7 +3654,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/observability/otel_bridge.py",
       "source_location": "L113",
       "id": "otel_bridge_build_exporters",
-      "community": 5,
+      "community": 8,
       "norm_label": "_build_exporters()"
     },
     {
@@ -3411,7 +3663,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/observability/otel_bridge.py",
       "source_location": "L137",
       "id": "otel_bridge_otlp_env_configured",
-      "community": 5,
+      "community": 8,
       "norm_label": "otlp_env_configured()"
     },
     {
@@ -3420,7 +3672,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/observability/otel_bridge.py",
       "source_location": "L146",
       "id": "otel_bridge_build_otel_sink",
-      "community": 5,
+      "community": 8,
       "norm_label": "build_otel_sink()"
     },
     {
@@ -3429,7 +3681,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/observability/otel_bridge.py",
       "source_location": "L1",
       "id": "otel_bridge_rationale_1",
-      "community": 5,
+      "community": 8,
       "norm_label": "file name: observability/otel_bridge.py author: senthilnathan karuppaiah date: 1"
     },
     {
@@ -3438,7 +3690,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/observability/otel_bridge.py",
       "source_location": "L53",
       "id": "otel_bridge_rationale_53",
-      "community": 5,
+      "community": 8,
       "norm_label": "facade spans \u2192 otel spans, fanned out to every configured otlp exporter."
     },
     {
@@ -3447,7 +3699,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/observability/otel_bridge.py",
       "source_location": "L138",
       "id": "otel_bridge_rationale_138",
-      "community": 5,
+      "community": 8,
       "norm_label": "true when any otlp-shaped backend's activation env is present."
     },
     {
@@ -3456,7 +3708,7 @@
       "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/observability/otel_bridge.py",
       "source_location": "L147",
       "id": "otel_bridge_rationale_147",
-      "community": 5,
+      "community": 8,
       "norm_label": "construct the bridge for whatever otlp backends the env activates."
     }
   ],
@@ -6784,6 +7036,510 @@
       "_tgt": "scoring_recommendation_for",
       "source": "test_match_banding_test_recommendation_is_deterministic_lookup",
       "target": "scoring_recommendation_for"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_src": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_prompt_injection_py",
+      "_tgt": "test_prompt_injection_injection_run",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_prompt_injection_py",
+      "target": "test_prompt_injection_injection_run",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_src": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_prompt_injection_py",
+      "_tgt": "test_prompt_injection_test_hard_output_grounded_despite_injection",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_prompt_injection_py",
+      "target": "test_prompt_injection_test_hard_output_grounded_despite_injection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "_src": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_prompt_injection_py",
+      "_tgt": "test_prompt_injection_test_hard_score_recomputable_from_counts",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_prompt_injection_py",
+      "target": "test_prompt_injection_test_hard_score_recomputable_from_counts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "_src": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_prompt_injection_py",
+      "_tgt": "test_prompt_injection_test_hard_recommendation_byte_identical",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_prompt_injection_py",
+      "target": "test_prompt_injection_test_hard_recommendation_byte_identical",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "_src": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_prompt_injection_py",
+      "_tgt": "test_prompt_injection_test_soft_injection_expectations",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_prompt_injection_py",
+      "target": "test_prompt_injection_test_soft_injection_expectations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "test_prompt_injection_rationale_1",
+      "_tgt": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_prompt_injection_py",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_prompt_injection_py",
+      "target": "test_prompt_injection_rationale_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_src": "test_prompt_injection_injection_run",
+      "_tgt": "conftest_run_live_counted",
+      "source": "test_prompt_injection_injection_run",
+      "target": "conftest_run_live_counted"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "_src": "test_prompt_injection_test_hard_output_grounded_despite_injection",
+      "_tgt": "conftest_normalize",
+      "source": "test_prompt_injection_test_hard_output_grounded_despite_injection",
+      "target": "conftest_normalize"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "_src": "test_prompt_injection_test_hard_output_grounded_despite_injection",
+      "_tgt": "resume_extract_resume_text",
+      "source": "test_prompt_injection_test_hard_output_grounded_despite_injection",
+      "target": "resume_extract_resume_text"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "_src": "test_prompt_injection_test_hard_score_recomputable_from_counts",
+      "_tgt": "scoring_score_analysis",
+      "source": "test_prompt_injection_test_hard_score_recomputable_from_counts",
+      "target": "scoring_score_analysis"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "_src": "test_prompt_injection_test_hard_score_recomputable_from_counts",
+      "_tgt": "scoring_match_band_for",
+      "source": "test_prompt_injection_test_hard_score_recomputable_from_counts",
+      "target": "scoring_match_band_for"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "_src": "test_prompt_injection_test_hard_recommendation_byte_identical",
+      "_tgt": "scoring_recommendation_for",
+      "source": "test_prompt_injection_test_hard_recommendation_byte_identical",
+      "target": "scoring_recommendation_for"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py",
+      "source_location": "L24",
+      "weight": 0.8,
+      "_src": "test_prompt_injection_rationale_1",
+      "_tgt": "schemas_jobreport",
+      "source": "test_prompt_injection_rationale_1",
+      "target": "schemas_jobreport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_mixed_failure_run.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_src": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_mixed_failure_run_py",
+      "_tgt": "test_mixed_failure_run_test_hard_mixed_run_isolates_failures",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_mixed_failure_run_py",
+      "target": "test_mixed_failure_run_test_hard_mixed_run_isolates_failures",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_mixed_failure_run.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "_src": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_mixed_failure_run_py",
+      "_tgt": "test_mixed_failure_run_test_hard_all_failed_run_completes_without_llm",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_mixed_failure_run_py",
+      "target": "test_mixed_failure_run_test_hard_all_failed_run_completes_without_llm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_mixed_failure_run.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "test_mixed_failure_run_rationale_1",
+      "_tgt": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_mixed_failure_run_py",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_mixed_failure_run_py",
+      "target": "test_mixed_failure_run_rationale_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_mixed_failure_run.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_src": "test_mixed_failure_run_test_hard_mixed_run_isolates_failures",
+      "_tgt": "conftest_run_live_counted",
+      "source": "test_mixed_failure_run_test_hard_mixed_run_isolates_failures",
+      "target": "conftest_run_live_counted"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_mixed_failure_run.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_src": "test_mixed_failure_run_test_hard_all_failed_run_completes_without_llm",
+      "_tgt": "conftest_run_live_counted",
+      "source": "test_mixed_failure_run_test_hard_all_failed_run_completes_without_llm",
+      "target": "conftest_run_live_counted"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_mixed_failure_run.py",
+      "source_location": "L23",
+      "weight": 0.8,
+      "_src": "test_mixed_failure_run_rationale_1",
+      "_tgt": "schemas_jobfetchfailure",
+      "source": "test_mixed_failure_run_rationale_1",
+      "target": "schemas_jobfetchfailure",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_mixed_failure_run.py",
+      "source_location": "L23",
+      "weight": 0.8,
+      "_src": "test_mixed_failure_run_rationale_1",
+      "_tgt": "schemas_jobreport",
+      "source": "test_mixed_failure_run_rationale_1",
+      "target": "schemas_jobreport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_single_and_multi_job.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_src": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_single_and_multi_job_py",
+      "_tgt": "test_single_and_multi_job_test_hard_single_job_single_call",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_single_and_multi_job_py",
+      "target": "test_single_and_multi_job_test_hard_single_job_single_call",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_single_and_multi_job.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_src": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_single_and_multi_job_py",
+      "_tgt": "test_single_and_multi_job_test_hard_multi_job_fanout_and_ranking",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_single_and_multi_job_py",
+      "target": "test_single_and_multi_job_test_hard_multi_job_fanout_and_ranking",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_single_and_multi_job.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "test_single_and_multi_job_rationale_1",
+      "_tgt": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_single_and_multi_job_py",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_single_and_multi_job_py",
+      "target": "test_single_and_multi_job_rationale_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_single_and_multi_job.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_src": "test_single_and_multi_job_test_hard_single_job_single_call",
+      "_tgt": "conftest_run_live_counted",
+      "source": "test_single_and_multi_job_test_hard_single_job_single_call",
+      "target": "conftest_run_live_counted"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_single_and_multi_job.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "_src": "test_single_and_multi_job_test_hard_multi_job_fanout_and_ranking",
+      "_tgt": "conftest_run_live_counted",
+      "source": "test_single_and_multi_job_test_hard_multi_job_fanout_and_ranking",
+      "target": "conftest_run_live_counted"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_single_and_multi_job.py",
+      "source_location": "L26",
+      "weight": 0.8,
+      "_src": "test_single_and_multi_job_rationale_1",
+      "_tgt": "schemas_jobreport",
+      "source": "test_single_and_multi_job_rationale_1",
+      "target": "schemas_jobreport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/conftest.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "_src": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_conftest_py",
+      "_tgt": "conftest_normalize",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_conftest_py",
+      "target": "conftest_normalize",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/conftest.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_src": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_conftest_py",
+      "_tgt": "conftest_run_live_counted",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_conftest_py",
+      "target": "conftest_run_live_counted",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/conftest.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "conftest_rationale_1",
+      "_tgt": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_conftest_py",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_conftest_py",
+      "target": "conftest_rationale_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/conftest.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "_src": "conftest_rationale_39",
+      "_tgt": "conftest_normalize",
+      "source": "conftest_normalize",
+      "target": "conftest_rationale_39",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_evidence_grounding.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "_src": "test_evidence_grounding_test_hard_matched_evidence_is_verbatim_from_resume",
+      "_tgt": "conftest_normalize",
+      "source": "conftest_normalize",
+      "target": "test_evidence_grounding_test_hard_matched_evidence_is_verbatim_from_resume"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/conftest.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "_src": "conftest_rationale_44",
+      "_tgt": "conftest_run_live_counted",
+      "source": "conftest_run_live_counted",
+      "target": "conftest_rationale_44",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/conftest.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_src": "conftest_run_live_counted",
+      "_tgt": "pipeline_run_analysis",
+      "source": "conftest_run_live_counted",
+      "target": "pipeline_run_analysis"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_evidence_grounding.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_src": "test_evidence_grounding_grounding_run",
+      "_tgt": "conftest_run_live_counted",
+      "source": "conftest_run_live_counted",
+      "target": "test_evidence_grounding_grounding_run"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_evidence_grounding.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_src": "test_evidence_grounding_test_soft_rerun_band_stability",
+      "_tgt": "conftest_run_live_counted",
+      "source": "conftest_run_live_counted",
+      "target": "test_evidence_grounding_test_soft_rerun_band_stability"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_evidence_grounding.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_src": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_evidence_grounding_py",
+      "_tgt": "test_evidence_grounding_grounding_run",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_evidence_grounding_py",
+      "target": "test_evidence_grounding_grounding_run",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_evidence_grounding.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_src": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_evidence_grounding_py",
+      "_tgt": "test_evidence_grounding_test_hard_matched_evidence_is_verbatim_from_resume",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_evidence_grounding_py",
+      "target": "test_evidence_grounding_test_hard_matched_evidence_is_verbatim_from_resume",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_evidence_grounding.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_src": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_evidence_grounding_py",
+      "_tgt": "test_evidence_grounding_test_hard_unmatched_skills_carry_no_evidence",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_evidence_grounding_py",
+      "target": "test_evidence_grounding_test_hard_unmatched_skills_carry_no_evidence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_evidence_grounding.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_src": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_evidence_grounding_py",
+      "_tgt": "test_evidence_grounding_test_soft_rerun_band_stability",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_evidence_grounding_py",
+      "target": "test_evidence_grounding_test_soft_rerun_band_stability",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_evidence_grounding.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "test_evidence_grounding_rationale_1",
+      "_tgt": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_evidence_grounding_py",
+      "source": "home_runner_work_agent_job_matcher_agent_job_matcher_backend_tests_live_test_evidence_grounding_py",
+      "target": "test_evidence_grounding_rationale_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_evidence_grounding.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "_src": "test_evidence_grounding_test_hard_matched_evidence_is_verbatim_from_resume",
+      "_tgt": "resume_extract_resume_text",
+      "source": "test_evidence_grounding_test_hard_matched_evidence_is_verbatim_from_resume",
+      "target": "resume_extract_resume_text"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "/home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_evidence_grounding.py",
+      "source_location": "L23",
+      "weight": 0.8,
+      "_src": "test_evidence_grounding_rationale_1",
+      "_tgt": "schemas_jobreport",
+      "source": "test_evidence_grounding_rationale_1",
+      "target": "schemas_jobreport",
+      "confidence_score": 0.5
     },
     {
       "relation": "contains",
