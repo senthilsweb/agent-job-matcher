@@ -1,6 +1,62 @@
 # CHANGELOG
 
 
+## v0.4.0 (2026-07-11)
+
+### Bug Fixes
+
+- **ci**: Re-sync to current main before semantic-release runs
+  ([`23f1bc7`](https://github.com/senthilsweb/agent-job-matcher/commit/23f1bc7691c0a5fbc72f3cbc49a10810d824670a))
+
+The shared concurrency group only serializes execution with graphify.yml - it doesn't stop that
+  job's push from landing on main first while this job's checkout stays pinned to the original
+  trigger SHA. Add a git fetch + reset --hard origin/main immediately before invoking
+  semantic-release so it always computes/commits/pushes against the actual current tip, not a stale
+  snapshot.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+- **ci**: Serialize release and graphify pushes to stop a real race
+  ([`24de086`](https://github.com/senthilsweb/agent-job-matcher/commit/24de086febc2890205fd5b9117ce5443f56d56df))
+
+release.yml's semantic-release push and graphify.yml's graph-commit push both fire on every push to
+  main but lived in separate concurrency groups, so they could run in parallel and race for the same
+  ref — observed twice today: the Bolt 10 feat commit's release run was rejected non-fast-forward
+  because graphify's push landed on main first, mid-run, and a plain `gh run rerun` couldn't fix it
+  (it replays the original stale checkout, not current main).
+
+Both workflows now share one concurrency group (main-writers, cancel-in-progress: false) so they
+  queue instead of racing.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+### Features
+
+- **backend**: Cover letter rendering with deterministic candidate identity
+  ([`7163d29`](https://github.com/senthilsweb/agent-job-matcher/commit/7163d291492c54d21aeab85aa39659106bedd008))
+
+Bolt 10 of add-job-matcher-cli (revision 7) - offline suite now 109 passed (13 new tests), live
+  smoke on openai:gpt-5.4-mini renders the full header with zero operator configuration:
+
+- candidate.py: deterministic regex extraction of name/email/phone/ github/linkedin/website from the
+  already-extracted resume text - no third LLM call, no grounding guard needed (a regex match is
+  definitionally a literal substring of the source). Computed once per run, reused across every job
+  in the fan-out. - job_matcher/templates/cover_letter.txt ships as package data; load_template()
+  gains the same package-default fallback load_prompt() already has, so cover-letter rendering
+  activates with no operator setup (correction to the earlier "no package default, missing template
+  degrades to plain text" design) - pipeline.py: identity + a run-level date threaded through
+  _job_task -> _cover_letter_text(), which builds the Re: <title> [at <company>] line and renders
+  through the template - Real bug caught and fixed during implementation: the URL scanner's
+  email-exclusion lookbehind blocked matching a domain AFTER an email's @, but not the email's own
+  local-part before it (e.g. "sam.lee" in "sam.lee@example.com" briefly misread as a website) -
+  fixed by blanking email matches out of the text before URL scanning
+
+Proposal status: all ten bolts now implemented; VERIFIED still awaits only the two owner manual
+  evidence items (Claude Desktop mount, chatbot UI run).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+
 ## v0.3.2 (2026-07-11)
 
 ### Bug Fixes
