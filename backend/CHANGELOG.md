@@ -1,6 +1,30 @@
 # CHANGELOG
 
 
+## v0.2.0 (2026-07-11)
+
+### Features
+
+- **api**: Fastapi surface and env-activated telemetry backends
+  ([`213c3a5`](https://github.com/senthilsweb/agent-job-matcher/commit/213c3a562bb56960d07a6b59380ea6600a9420c1))
+
+Bolts 4-5 of add-job-matcher-cli (offline suite 86 passed; live server smoke: uvicorn + real POST
+  /analyze on the mini model → 74/good_match):
+
+- api.py: POST /analyze (multipart or server-path resume → typed JSON array, stateless, no workflow
+  endpoints), GET /health; per-request span middleware; full OpenAPI metadata + fixture-sourced
+  examples (test_openapi_docs.py enforces the documentation bar; export script verified producing
+  valid openapi.json/yaml) - telemetry: OpenObserve REST sink (batched _json ingestion,
+  fire-and-forget, one-warning resilience); OTel bridge as the only vendor-SDK import site behind
+  the [otel] extra — generic OTLP, Phoenix, and Arize AX exporters, OpenInference attrs on LLM
+  spans; env-only activation with fan-out; missing-extra startup error - @traced gained enrich= so
+  post-call span attributes (token usage, gated IO capture) are declared at the decorator — grep
+  gate clean: zero instrumentation calls in core function bodies - root docker-compose api service
+  now backed by the real app
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+
 ## v0.1.0 (2026-07-11)
 
 ### Documentation
