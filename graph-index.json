@@ -1,60 +1,59 @@
 {
   "version": 1,
-  "node_count": 79,
-  "edge_count": 125,
-  "module_count": 5,
+  "node_count": 313,
+  "edge_count": 634,
+  "module_count": 4,
   "modules": {
-    "backend/job_fit_from_files.py": {
+    "backend/tests": {
       "entry_files": [
-        "job_fit_from_files.py"
+        "__init__.py",
+        "test_api.py",
+        "test_embeddable_core.py",
+        "test_fetch_guards.py",
+        "test_match_banding.py",
+        "test_observability.py"
       ],
       "labels": [
-        "job_fit_from_files.py",
-        "main()"
+        "test_pipeline_offline.py",
+        "stub_analysis()",
+        "stubbed_analyze()",
+        "test_mixed_run_isolates_failures()",
+        "test_all_failed_run_completes_cleanly()",
+        "test_fanout_one_analysis_call_per_good_job()"
       ],
       "calls": [
-        "backend/app.py"
+        "backend/job_matcher"
       ],
       "called_by": []
     },
-    "backend/app.py": {
+    "backend/job_matcher": {
       "entry_files": [
-        "app.py"
+        "__init__.py",
+        "analyze.py",
+        "api.py",
+        "cli.py",
+        "config.py",
+        "fetch.py"
       ],
       "labels": [
-        "app.py",
-        "render_template()",
-        "load_template()",
-        "load_prompt()",
-        "MatchStatus",
-        "SkillMatch"
+        ".on_span_start()",
+        ".on_span_end()",
+        "__init__.py",
+        "run_analysis()",
+        "extract_resume_text()",
+        "_now()"
       ],
       "calls": [],
       "called_by": [
-        "backend/job_fit_from_files.py"
+        "backend/tests"
       ]
     },
-    "backend/cli.py": {
+    "scripts/export-openapi.py": {
       "entry_files": [
-        "cli.py"
+        "export-openapi.py"
       ],
       "labels": [
-        "cli.py",
-        "render_template()",
-        "load_template()",
-        "load_prompt()",
-        "get_system_prompt()",
-        "get_analysis_prompt()"
-      ],
-      "calls": [],
-      "called_by": []
-    },
-    "scripts/graphify-build.py": {
-      "entry_files": [
-        "graphify-build.py"
-      ],
-      "labels": [
-        "graphify-build.py",
+        "export-openapi.py",
         "main()"
       ],
       "calls": [],
