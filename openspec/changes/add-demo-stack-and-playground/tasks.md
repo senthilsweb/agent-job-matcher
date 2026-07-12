@@ -197,17 +197,72 @@ five bolts implemented and verified 2026-07-12.**
       (already accurate — the new apps live in this repo, not as
       external related repos)
 
+## Bolt 7 — Correction: containerize the MCP Bridge, renumber the whole stack ✅ (2026-07-12)
+
+Owner follow-up: "Whether the docker-compose is all complete? REST,
+MCP, MCP Bridge, Playground, chatbot?" — the agent-service (MCP Bridge)
+was the one piece still host-only; owner also asked for a consistent
+6000-series port scheme across the stack.
+
+- [x] `mcp/agent-service/Dockerfile` (new) — the MCP server
+      (`mcp/index.js`) has no network port of its own; it's a pure
+      stdio bridge spawned as a child process by the agent-service
+      (`StdioTransport` in `app.py`'s `build_agent()`). So there is no
+      separate "MCP container" — this one image bundles Python
+      (FastAPI/pydantic-ai, via `pip install ./backend`, reusing
+      everything the way `app.py`'s docstring already promises) *and*
+      Node 20 (to actually run `index.js`), build context is the repo
+      root so it can `COPY` both `backend/` and `mcp/`
+- [x] `docker-compose.yaml` — new `agent-service` service; `chat-demo`'s
+      `AGENT_SERVICE_URL` now defaults to `http://agent-service:<port>`
+      instead of the `host.docker.internal` fallback, since a real
+      containerized instance exists now
+- [x] **Real bug found while picking port 6000 specifically (2026-07-12):**
+      port 6000 is on the WHATWG Fetch spec's "bad ports" blocklist (the
+      historical X11 port) — Node's native `fetch()` (undici) and every
+      browser refuse to connect to it outright. `wget` from inside a
+      container worked fine (masking the problem at first), but the
+      playground's own `/api/health` route handler — which uses
+      `fetch()` — silently returned `{"status":"offline"}}` for a
+      backend that was actually healthy. Root-caused with `docker exec
+      ... node -e "fetch(...)"`, which surfaced the real error:
+      `TypeError: fetch failed ... Error: bad port`. Fixed by shifting
+      the whole scheme to **6010-6014** (also clear of 6006/6007,
+      already an Arize Phoenix container on this machine, and of
+      6665-6669/6697, also on the same blocklist)
+- [x] Renumbered every service: `api` 6010, `agent-service` 6011,
+      `playground` 6012, `openapi-docs` 6013, `chat-demo` 6014 —
+      internal container ports match published ports everywhere except
+      `chat-demo` (nginx stays on its standard port 80 internally,
+      published as 6014; not worth fighting nginx's default for a
+      value nothing reads). README's demo-stack quick-start block
+      updated to match
+- [x] **Verified (2026-07-12, real containers, real end-to-end chat and
+      analyze calls, not assumed):** `docker compose up -d` (full
+      stack, no manual steps) brought up all five services;
+      `agent-service`'s `/health` showed all 3 MCP tools discovered
+      (proving the Node subprocess spawned correctly);
+      `POST /chat/stream` on the containerized agent-service produced a
+      real streamed answer citing the backend's actual version, via a
+      genuine MCP tool call (`{"action": "Checking backend status…"}`
+      then real content) — the full LLM-2 → MCP → REST chain, all
+      containerized; playground's `/api/health` correctly reports
+      `online` post-fix; a real `/analyze` submission through the
+      containerized playground (Gusto's Enterprise Application AI
+      Architect JD, real fetch of a live URL) returned a real score
+      (82/100) through the fully containerized `api`
+
 ## Verification
 
 - [x] Bolts 1-5 all implemented and individually verified with real
       builds, real containers, and real backend calls (see each bolt's
       evidence above) — no mocked or assumed behavior anywhere in this
       change
+- [x] Bolt 7 closes the two items previously left out of scope: the
+      agent-service (MCP Bridge) is now containerized, and the whole
+      stack uses one consistent, verified-safe port scheme
 - [ ] Owner: final review pass, then status → **verified** and archive
-      per convention. Two items deliberately remain outside this
-      change's scope, unaffected: the agent-service is not yet
-      containerized (chat-demo points at a host-run instance by
-      default), and `mcp-chat-client`'s two previously-logged defects
+      per convention. `mcp-chat-client`'s two previously-logged defects
       (history losing the uploaded-file reference; the action indicator
-      not genuinely live) are still tracked separately in that repo's
-      own openspec.
+      not genuinely live) remain tracked separately in that repo's own
+      openspec, unaffected by this change.

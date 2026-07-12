@@ -47,17 +47,19 @@ jobmatch analyze --resume my-resume.pdf \
 Or the Docker image (`ghcr.io/senthilsweb/agent-job-matcher`):
 
 ```bash
-docker compose up -d api                  # FastAPI on :8000
+docker compose up -d api                  # FastAPI on :6010
 ```
 
-Or the whole self-contained demo stack — backend, a visual playground,
-branded API docs, and the chat widget, each in its own container:
+Or the whole self-contained demo stack — every piece containerized, one
+consistent 6010-series port each:
 
 ```bash
 docker compose up -d
-# playground    http://localhost:3011  — upload a resume, add job links, get visual fit reports
-# openapi-docs  http://localhost:3012  — browsable, branded API reference
-# chat-demo     http://localhost:8091  — the mcp-chat-client demo page (needs a host-run agent-service — see mcp/README.md)
+# api            http://localhost:6010  — REST backend
+# agent-service  http://localhost:6011  — MCP Bridge (LLM-2 + the MCP server, spawned inside this container)
+# playground     http://localhost:6012  — upload a resume, add job links, get visual fit reports
+# openapi-docs   http://localhost:6013  — browsable, branded API reference
+# chat-demo      http://localhost:6014  — the mcp-chat-client demo page (chatbot widget)
 ```
 
 ## Surfaces

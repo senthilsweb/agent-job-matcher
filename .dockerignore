@@ -23,6 +23,13 @@ frontend/dist
 frontend/.env
 frontend/.env.local
 
+# Node (mcp/ — installed fresh inside mcp/agent-service/Dockerfile)
+mcp/node_modules
+playground/node_modules
+playground/.next
+openapi-docs/node_modules
+openapi-docs/.next
+
 # OpenSpec / docs / graph artifacts
 openspec
 docs
