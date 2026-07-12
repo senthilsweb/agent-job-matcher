@@ -94,6 +94,20 @@ def _sse(payload: dict) -> str:
     return f"data: {json.dumps(payload)}\n\n"
 
 
+# Friendly labels for the live "current action" indicator — kept here since
+# this service owns the tool semantics; the widget stays generic (spec:
+# add-history-branding-and-release-assets).
+TOOL_ACTION_LABELS = {
+    "analyze_job_fit": "Analyzing job fit…",
+    "extract_jsonresume": "Converting resume to JSON Resume…",
+    "health": "Checking backend status…",
+}
+
+
+def _action_label(tool_name: str) -> str:
+    return TOOL_ACTION_LABELS.get(tool_name, f"Running {tool_name}…")
+
+
 def _to_model_history(history: list[dict] | None) -> list:
     """Convert the wire-format {role, content} turns into pydantic-ai's
     native message history. The agent service stays stateless: history is
@@ -147,10 +161,15 @@ async def chat_stream(request: Request):
             try:
                 async for delta in run_chat(message, tool_notices, history):
                     while not tool_notices.empty():
-                        yield _sse({"content": f"🔧 {tool_notices.get_nowait()}...\n"})
+                        # A distinct "action" field, not folded into content — the
+                        # widget renders this as a live progress indicator (three
+                        # dots + label), replaced once real content starts
+                        # streaming, instead of literal text concatenated into
+                        # the answer (the original ctms-inherited approach).
+                        yield _sse({"action": _action_label(tool_notices.get_nowait())})
                     yield _sse({"content": delta})
                 while not tool_notices.empty():
-                    yield _sse({"content": f"🔧 {tool_notices.get_nowait()}...\n"})
+                    yield _sse({"action": _action_label(tool_notices.get_nowait())})
                 yield _sse({"done": True})
             except Exception as exc:
                 log.error("chat_failed", error=f"{type(exc).__name__}: {exc}")

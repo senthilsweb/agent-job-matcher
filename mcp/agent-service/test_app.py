@@ -53,9 +53,14 @@ def test_chat_stream_ctms_contract(stubbed_chat):
     assert response.status_code == 200
     assert response.headers["content-type"].startswith("text/event-stream")
     events = sse_events(response.text)
+    # Tool notices arrive as a distinct "action" field, never folded into
+    # content — the widget renders this as a live progress indicator instead
+    # of literal text concatenated into the answer.
+    actions = [e["action"] for e in events if "action" in e]
+    assert any("analyz" in a.lower() for a in actions)
     contents = [e["content"] for e in events if "content" in e]
-    assert any("🔧 analyze_job_fit" in c for c in contents)  # tool notice surfaced
-    assert "".join(contents).endswith("79 (good_match).")
+    assert not any("🔧" in c for c in contents)  # never folded into content
+    assert "".join(contents) == "Score is 79 (good_match)."
     assert events[-1] == {"done": True}
 
 
