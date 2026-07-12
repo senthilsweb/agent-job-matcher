@@ -1,6 +1,28 @@
 # CHANGELOG
 
 
+## v0.8.0 (2026-07-12)
+
+### Features
+
+- **ci**: Publish all four images to GHCR, fix chat-demo's browser-unreachable URL
+  ([`375c3c2`](https://github.com/senthilsweb/agent-job-matcher/commit/375c3c213b8c31a66df03d2f7b7dac7bef4a68ad))
+
+build-and-publish.yml becomes a matrix building every image this repo produces — agent-job-matcher
+  (backend/CLI, unchanged name), -agent-service, -playground, and -openapi-docs — so a production
+  deployment can run entirely from pulled GHCR images with zero local builds. Per-image GHA cache
+  scopes so the matrix legs don't evict each other's layers.
+
+Also fixes a latent bug caught while building that production setup: chat-demo's AGENT_SERVICE_URL
+  default was the compose-network hostname http://agent-service:6011, but that value lands in
+  runtime-config.js and is consumed by the chat widget running client-side in the visitor's BROWSER
+  (verified: every apiEndpoint consumer in mcp-chat-client/src/lib/api.ts is a browser fetch) — a
+  compose-network name can never resolve there. Default is now the browser-reachable
+  http://localhost:6011.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+
 ## v0.7.1 (2026-07-12)
 
 ### Bug Fixes
