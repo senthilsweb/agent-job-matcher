@@ -51,10 +51,16 @@ class JobAnalysis(BaseModel):
 
     job_title: str = Field(min_length=1)
     company_name: str | None = None
-    # Verbatim as stated in the posting (e.g. "$120,000-$150,000/year",
-    # "$60-75/hr"), never inferred or estimated — null when the posting
-    # doesn't state one. Not evidence-grounded against the resume like
-    # SkillMatch: this describes the job, not the candidate.
+    # Verbatim as stated in the posting, in whatever currency/period it
+    # uses (e.g. "$120,000-$150,000/year", "$60-75/hr") — never inferred,
+    # estimated, or currency-converted. US pay-transparency postings often
+    # state several different location-tied figures instead of one range
+    # (e.g. one amount for Atlanta/Boston/Texas/Chicago, a different one
+    # for California/New York/Washington) — all of them SHALL be
+    # captured, not collapsed to a single value (see analysis_system.txt).
+    # Null when the posting states no compensation figure at all. Not
+    # evidence-grounded against the resume like SkillMatch: this
+    # describes the job, not the candidate.
     salary_range: str | None = None
     required_skills: list[SkillMatch]
     preferred_skills: list[SkillMatch]

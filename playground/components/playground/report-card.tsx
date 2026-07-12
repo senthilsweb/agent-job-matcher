@@ -12,7 +12,7 @@ import {
   MATCH_STATUS_CLASSES,
   MATCH_STATUS_LABEL,
 } from "@/lib/types";
-import { AlertTriangle, CheckCircle2, ChevronsUpDown, DollarSign, XCircle } from "lucide-react";
+import { AlertTriangle, Banknote, CheckCircle2, ChevronsUpDown, XCircle } from "lucide-react";
 
 function SkillPill({ skill, matched }: { skill: string; matched: boolean }) {
   return (
@@ -79,11 +79,19 @@ export function ReportCard({ outcome, value }: { outcome: JobOutcome; value: str
                 <span className="truncate text-xs text-muted-foreground">{analysis.company_name}</span>
               )}
               {/* Pay range, when the posting states one — important enough
-                  to see at a glance, not buried in the expanded report. */}
+                  to see at a glance, not buried in the expanded report.
+                  Currency-neutral icon (never a literal $): the extracted
+                  text is verbatim from the posting and may be in any
+                  currency, and some postings state several different
+                  location-tied figures rather than one short range — the
+                  `title` carries the full text when it's truncated. */}
               {analysis.salary_range && (
-                <span className="inline-flex items-center gap-1 rounded-none bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-inset ring-emerald-200">
-                  <DollarSign className="size-3" />
-                  {analysis.salary_range}
+                <span
+                  title={analysis.salary_range}
+                  className="inline-flex max-w-[240px] items-center gap-1 rounded-none bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-inset ring-emerald-200"
+                >
+                  <Banknote className="size-3 shrink-0" />
+                  <span className="truncate">{analysis.salary_range}</span>
                 </span>
               )}
             </div>
