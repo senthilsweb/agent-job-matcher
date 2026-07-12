@@ -1,12 +1,24 @@
 # agent-job-matcher — one-command launch (privacyshield pattern).
 #
-#   docker compose up -d api          # FastAPI on :8000
+#   docker compose up -d                        # the whole demo stack
+#   docker compose up -d api                    # just the FastAPI backend, :8000
 #   docker compose run --rm cli version
 #   docker compose run --rm cli analyze \
 #     --resume /work/data/resume/synthetic-resume.pdf \
 #     --job https://example.com/job --out /work/runs
 #
-# Uses the published GHCR image; `docker compose build` rebuilds locally.
+# Demo stack (add-demo-stack-and-playground): playground (:3011, resume
+# + job links -> visual fit reports), openapi-docs (:3012, branded API
+# reference), chat-demo (:8091, the containerized mcp-chat-client demo
+# page — points at a HOST-run agent-service by default; see
+# AGENT_SERVICE_URL below, that piece isn't containerized yet).
+#
+# Uses the published GHCR images (amd64-only; `platform: linux/amd64` on
+# each image+build service pins that explicitly, so Apple Silicon hosts
+# pull + emulate instead of silently falling back to a local build —
+# `docker compose pull` will tell you plainly if a pull genuinely can't
+# happen, e.g. a still-private package, rather than building without
+# saying why). `docker compose build` forces a local rebuild regardless.
 # Configuration: env_file loads the root .env; the environment blocks
 # below list every variable inline (documentation + per-run override via
 # `VAR=x docker compose up`). Inline entries use ${VAR:-default}
@@ -45,6 +57,19 @@ x-jobmatcher-env: &jobmatcher-env
 services:
   api:
     image: ghcr.io/senthilsweb/agent-job-matcher:latest
+    # This image is published amd64-only (build-and-publish.yml, a
+    # deliberate CI-speed tradeoff). Without a `platform:` pin, Compose
+    # can't find an arm64 manifest on Apple Silicon and silently falls
+    # back to `build:` instead — confirmed via `docker compose pull api`
+    # ("no matching manifest for linux/arm64/v8"). Pinning amd64
+    # explicitly makes Compose pull the real image and run it under
+    # Docker Desktop's emulation (the workflow comment's original
+    # intent), matching privacyshield's own platform-pin pattern.
+    # `pull_policy: missing` then does what it says: pull the tag if not
+    # cached, never build unless you explicitly ask (`docker compose
+    # build` / `up --build`).
+    platform: linux/amd64
+    pull_policy: missing
     build: .
     entrypoint: ["uvicorn", "job_matcher.api:app", "--host", "0.0.0.0", "--port", "8000"]
     env_file: .env
@@ -61,6 +86,8 @@ services:
   cli:
     profiles: ["cli"]
     image: ghcr.io/senthilsweb/agent-job-matcher:latest
+    platform: linux/amd64
+    pull_policy: missing
     build: .
     env_file: .env
     environment:
@@ -68,6 +95,58 @@ services:
     volumes:
       - ./runs:/work/runs
       - ./backend/evals/data:/work/data:ro
+
+  # --- demo stack (add-demo-stack-and-playground) ---------------------
+
+  chat-demo:
+    # mcp-chat-client lives in a sibling repo, not a subfolder of this
+    # one — the published image is the primary path here; `build:` only
+    # resolves if you have both repos checked out side by side.
+    #
+    # PENDING (2026-07-12): this package is still PRIVATE on GHCR — its
+    # first-ever push (this session) leaves new packages private by
+    # default, and making one public is a one-time manual step with no
+    # API (GitHub → mcp-chat-client repo → Packages → mcp-chat-client →
+    # Package settings → Change visibility). Confirmed via `docker
+    # compose pull chat-demo`: 403 Forbidden at the anonymous-token
+    # step, not an architecture mismatch — `build:` is the correct
+    # fallback until that step is done. `agent-job-matcher`'s package
+    # already went through this (its pull succeeds anonymously today).
+    image: ghcr.io/senthilsweb/mcp-chat-client:latest
+    # Also amd64-only (mcp-chat-client's build-and-publish.yml) — same
+    # platform pin, same reason as `api` above.
+    platform: linux/amd64
+    pull_policy: missing
+    build: ../mcp-chat-client
+    environment:
+      # No agent-service container exists in this compose file yet (out
+      # of scope for add-demo-stack-and-playground) — defaults to a
+      # host-run agent-service (`cd mcp/agent-service && python app.py`).
+      # Override to point at a containerized one once that lands.
+      AGENT_SERVICE_URL: ${AGENT_SERVICE_URL:-http://host.docker.internal:8006}
+    ports:
+      - "8091:80"
+
+  playground:
+    build: ./playground
+    environment:
+      # Container-network hostname (the `api` service above), not
+      # localhost — only the playground's own server-side route handler
+      # ever reads this; the browser never sees it.
+      API_URL: ${API_URL:-http://api:8000}
+    ports:
+      - "3011:3000"
+    depends_on:
+      - api
+
+  openapi-docs:
+    build: ./openapi-docs
+    environment:
+      API_URL: ${API_URL:-http://api:8000}
+    ports:
+      - "3012:3000"
+    depends_on:
+      - api
 
 volumes:
   # Shared upload landing zone — the future containerized agent service
