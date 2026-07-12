@@ -408,6 +408,24 @@ Mechanics:
   dual export, generalized). All remote delivery is batched, async, and
   fire-and-forget: flush on size/interval and at run end; an unreachable
   backend logs one warning per run and never fails or slows it.
+  **Correction (2026-07-12, owner-reported):** `configure()` originally
+  read telemetry env vars directly, relying on `config.py`'s
+  `resolve_model()` having already called `load_dotenv()` earlier in
+  the same process. That ordering held in the CLI/pipeline path
+  (`resolve_model()` runs before the root span opens) but not in the
+  agent service's `/chat/stream` handler, where `start_span()` fires
+  *before* any model-resolving code runs. Since `configure()`'s result
+  is cached for the process's lifetime, reading a pre-`.env`
+  environment once meant the Arize/OpenObserve sinks were silently
+  never activated for that entire server process, however long it ran
+  — reported by the owner as "Arize space/key entered but no
+  telemetry sent." Reproduced directly (a clean subprocess calling
+  `configure()` before anything else resolved `False` for sink
+  activation even with correct `.env` values on disk) and fixed:
+  `configure()` now calls the same `ensure_env_loaded()` `config.py`
+  exposes, so it discovers `.env` on its own regardless of call order.
+  Verified via the real `root_span`/`traced` API in a clean process:
+  spans now reach `otlp.arize.com` with HTTP 200.
 - **The OTel bridge** (`otel_bridge.py`) is the only place the
   OpenTelemetry SDK is imported, installed via the optional
   `pip install job-matcher[otel]` extra (`opentelemetry-sdk`,

@@ -84,6 +84,17 @@ def configure(force: bool = False) -> list[Sink]:
     global _sinks
     if _sinks is not None and not force:
         return _sinks
+
+    # This can be the FIRST thing that touches the environment in a
+    # request's lifetime (e.g. the agent service opens its root span
+    # before any model-resolving code runs) — without this, a pre-.env
+    # environment gets read once and the (wrong) result is cached for
+    # the rest of the process's life. This was a real bug: Arize/
+    # OpenObserve env vars were set correctly but never took effect.
+    from job_matcher.config import ensure_env_loaded
+
+    ensure_env_loaded()
+
     mode = os.getenv("OBSERVABILITY_SINK", "json").strip().lower()
     if mode == "none":
         _sinks = []

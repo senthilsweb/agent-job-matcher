@@ -32,7 +32,20 @@ from dotenv import find_dotenv, load_dotenv
 _loaded = False
 
 
-def _ensure_env_loaded() -> None:
+def ensure_env_loaded() -> None:
+    """Load the repo-root .env into os.environ, exactly once per process.
+
+    Any module that reads os.getenv() for a value that may live in .env
+    must call this first — resolve_model() below does; the observability
+    facade (job_matcher/observability/__init__.py) also must, since its
+    configure() can be the very first thing that touches the environment
+    in a request path (e.g. the agent service's per-request root span
+    opens before its model-resolving code ever runs). Skipping this call
+    anywhere is what silently dropped Arize/OpenObserve telemetry in
+    practice: configure()'s result is cached for the process's lifetime,
+    so reading a pre-.env environment once means never seeing those vars
+    again for that process, however long it runs.
+    """
     global _loaded
     if not _loaded:
         load_dotenv(find_dotenv(usecwd=True))
@@ -48,7 +61,7 @@ def resolve_model(role: str = "ANALYST", *fallback_roles: str) -> str:
 
     The agent service resolves resolve_model("CHAT", "ANALYST") per ADR 0001.
     """
-    _ensure_env_loaded()
+    ensure_env_loaded()
     chain = [f"MODEL_{role}", *(f"MODEL_{fb}" for fb in fallback_roles), "MODEL"]
     for var in chain:
         value = os.getenv(var, "").strip()
@@ -61,7 +74,7 @@ def resolve_model(role: str = "ANALYST", *fallback_roles: str) -> str:
 
 
 def _int_env(name: str, default: int) -> int:
-    _ensure_env_loaded()
+    ensure_env_loaded()
     raw = os.getenv(name, "").strip()
     try:
         return int(raw) if raw else default

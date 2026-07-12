@@ -37,8 +37,16 @@ CLEAN_ENV = [
 
 @pytest.fixture(autouse=True)
 def clean_env(monkeypatch):
+    import job_matcher.config as config_module
+
     for var in CLEAN_ENV:
         monkeypatch.delenv(var, raising=False)
+    # configure() now loads .env itself (the real fix under test elsewhere in
+    # this file) — without this, that reload would repopulate the very vars
+    # just deleted above from the developer's real repo-root .env, defeating
+    # every "clean env" test in this file. Tests that want to exercise the
+    # loading mechanism itself (below) explicitly flip this back to False.
+    monkeypatch.setattr(config_module, "_loaded", True)
     yield
     # monkeypatch restores env AFTER this teardown — don't re-configure here,
     # just neutralize the registry; later tests configure() as they need.
@@ -51,6 +59,25 @@ def _types(sinks):
 
 def test_default_is_json_only():
     assert _types(configure(force=True)) == ["JsonLogSink"]
+
+
+def test_configure_loads_dotenv_itself_without_resolve_model_first(tmp_path, monkeypatch):
+    """Regression: configure() must not depend on something else (resolve_model())
+    having already loaded .env — the agent service's real request path calls
+    start_span()/configure() before any model-resolving code runs, and
+    configure()'s result is cached for the process's lifetime. Missing this
+    silently dropped Arize/OpenObserve telemetry in practice even with correct
+    env vars in .env, because configure() read a pre-.env environment once and
+    never looked again."""
+    import job_matcher.config as config_module
+
+    (tmp_path / ".env").write_text("OPENOBSERVE_URL=http://independent-of-resolve-model\n")
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr(config_module, "_loaded", False)  # force a fresh .env load
+    # Deliberately do NOT call resolve_model() or export anything — configure()
+    # must discover the .env file entirely on its own.
+    sinks = configure(force=True)
+    assert _types(sinks) == ["JsonLogSink", "OpenObserveRestSink"]
 
 
 def test_none_disables_everything(monkeypatch):

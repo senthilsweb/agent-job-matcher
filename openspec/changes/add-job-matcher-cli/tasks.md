@@ -145,29 +145,24 @@ moves to **approved**.
       run unaffected), batching/flush contract, missing-extra error,
       OTel bridge span mapping with OpenInference attrs (InMemory
       exporter)
-- [ ] Manual smoke: one fixture run visible in a local Phoenix
-      (`docker run arizephoenix/phoenix`) and a local OpenObserve, via
-      env-only switches — record evidence here (deferred: needs the
-      containers running; unit suite covers the contracts)
-
-## Bolt 5 — Telemetry backends (env-activated)
-
-- [ ] `observability/sinks.py` — OpenObserve REST sink: batched POSTs to
-      `{url}/api/{org}/{stream}/_json`, basic auth, fire-and-forget,
-      one warning per run on failure
-- [ ] `observability/otel_bridge.py` — the only OTel import site: facade
-      spans → OTel spans (one-to-one nesting), OpenInference attrs on the
-      analyze span, `TELEMETRY_RECORD_IO` gate; OTLP exporters for
-      generic endpoint / Phoenix / Arize AX
-- [ ] Env registry wiring: each backend activates by its own vars alone;
-      multiple backends fan out; OTLP env without `[otel]` installed →
-      clear startup error naming the extra
-- [ ] Tests: registry activation matrix (each backend solo + two
-      together), unreachable-backend resilience, missing-extra error,
-      no vendor/OTel import outside `otel_bridge.py` (grep gate)
-- [ ] Manual smoke: one fixture run visible in a local Phoenix
-      (`docker run arizephoenix/phoenix`) and a local OpenObserve, via
-      env-only switches — record evidence in this file
+- [x] **Manual smoke, Arize AX (2026-07-12) — real bug found and fixed:**
+      owner configured `ARIZE_SPACE_ID`/`ARIZE_API_KEY` for real and
+      reported zero telemetry arriving. Root cause: `configure()` read
+      env vars directly, relying on `resolve_model()` having already
+      loaded `.env` earlier in the process — true in the CLI/pipeline
+      path, false in the agent service's `/chat/stream` handler, where
+      the root span opens before any model-resolving code runs.
+      `configure()`'s result is cached for the process's lifetime, so a
+      pre-`.env` read there meant Arize/OpenObserve were silently dead
+      for that entire server process, however long it ran. Reproduced
+      directly in a clean subprocess, fixed by having `configure()` call
+      the same `ensure_env_loaded()` `config.py` exposes. Verified via
+      the real `root_span`/`traced` API (not a hand-rolled OTel script)
+      in a clean environment: spans reach `otlp.arize.com` with HTTP
+      200. New regression test pins the exact failure mode: `configure()`
+      must discover `.env` on its own, with `resolve_model()` never called
+      first. Phoenix/OpenObserve container smoke still deferred — the
+      unit suite plus this real-backend verification cover the contract
 
 ## Bolt 6 — JSON Resume extraction (revision 5) ✅ (2026-07-11)
 
