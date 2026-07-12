@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "node_count": 452,
-  "edge_count": 901,
+  "node_count": 518,
+  "edge_count": 970,
   "module_count": 7,
   "modules": {
     "backend/job_matcher": {
