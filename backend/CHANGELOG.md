@@ -1,6 +1,33 @@
 # CHANGELOG
 
 
+## v0.7.1 (2026-07-12)
+
+### Bug Fixes
+
+- **salary**: Capture multi-location pay figures, drop the hardcoded $ icon
+  ([`6c36908`](https://github.com/senthilsweb/agent-job-matcher/commit/6c369080b87ae078e9a8219ebe9df41b79d659bc))
+
+Owner-tested against a real Bain posting: the extraction returned only one salary figure when the
+  posting actually states two different location-tied amounts (a pattern several US states'
+  pay-transparency laws require — one figure for Atlanta/Boston/Texas/Chicago, a different one for
+  California/New York/DC/Washington). Root-caused by fetching the real page text: the original
+  verbatim-only prompt rule had no instruction for this shape, so the model picked one figure rather
+  than merging or fabricating.
+
+analysis_system.txt now explicitly instructs capturing ALL location-tied figures with their location
+  context instead of collapsing to one. Re-ran the exact same Bain URL to confirm: both figures now
+  present.
+
+Also fixed the UI's DollarSign icon, which hardcoded a $ glyph next to already-currency-prefixed
+  text ("$ $293,500" — the owner's reported double-currency bug) and would have been misleading for
+  a non-USD posting regardless. Swapped for lucide's currency-neutral Banknote icon, fixing both
+  problems at once. The badge now truncates with the full text in a title attribute, since
+  multi-location disclosures run much longer than a short range.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+
+
 ## v0.7.0 (2026-07-12)
 
 ### Bug Fixes
