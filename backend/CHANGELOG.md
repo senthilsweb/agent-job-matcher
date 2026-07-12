@@ -1,6 +1,90 @@
 # CHANGELOG
 
 
+## v0.5.0 (2026-07-12)
+
+### Documentation
+
+- **openspec**: Demo-stack and playground-ui-parity change specs
+  ([`25064fb`](https://github.com/senthilsweb/agent-job-matcher/commit/25064fbf61e3eb973f06f5d4190c8ac04ebfe3c8))
+
+add-demo-stack-and-playground: proposal/design/tasks/specs for the containerized mcp-chat-client
+  image, the playground and openapi-docs Next.js apps, and the docker-compose wiring — written and
+  approved before implementation per standing AI-DLC process, all bolts now implemented and verified
+  (see tasks.md evidence).
+
+fix-playground-ui-parity: two rounds of owner UAT correction on the playground's look and feel
+  (industry-standard match colors, sticky submit, missing cover letter/copy-to-clipboard, then a
+  full privacyshield-template-parity pass — nav rail, fonts, contrast) — both logged and implemented
+  same-day per owner direction.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+
+- **readme**: Document the demo stack, REST endpoints, env vars, cover-letter templates
+  ([`70bac56`](https://github.com/senthilsweb/agent-job-matcher/commit/70bac563bc9a76632c6c1a43b1a374627305e05c))
+
+- Related repos: trimmed to mcp-chat-client (runtime dependency) and ai-dlc (the methodology deck
+  this repo's whole openspec workflow follows) — privacyshield/ai-agents/templrgo were
+  design-lineage notes that had served their purpose and just added noise - New REST endpoints table
+  (backend + agent service), Key environment variables table, and Cover letter templates section
+  (default path, placeholders, and the TEMPLATES_DIR override — verified against prompts.py's actual
+  render() function, not assumed) - Quick start gained the docker compose up -d demo-stack block
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+
+### Features
+
+- **compose**: Wire playground, openapi-docs, and chat-demo into the demo stack
+  ([`dd7515e`](https://github.com/senthilsweb/agent-job-matcher/commit/dd7515e938ffb48bd230690d8d85bd5ca89dcfed))
+
+docker compose up -d now brings up the full self-contained demo: the backend API, the containerized
+  mcp-chat-client demo page, the playground, and the branded OpenAPI docs — each on its own port,
+  chosen to avoid collisions with this machine's other locally-running compose projects.
+
+Also pins `platform: linux/amd64` and `pull_policy: missing` on every image+build service (api, cli,
+  chat-demo). These images are published amd64-only; without the pin, Compose can't resolve an arm64
+  manifest on Apple Silicon and silently falls back to a local build instead of saying why —
+  confirmed via `docker compose pull`, which surfaces the real reason plainly (a genuine
+  architecture mismatch for agent-job-matcher's own image; a still-private GHCR package, pending a
+  one-time manual visibility change, for mcp-chat-client's).
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+
+- **openapi-docs**: Add branded Next.js OpenAPI reference app
+  ([`531497d`](https://github.com/senthilsweb/agent-job-matcher/commit/531497d857e5f9574ef2dbafaabdf116a796850f))
+
+A second, separate Next.js app (its own port, not a tab inside the playground) rendering the
+  backend's live OpenAPI document through Scalar, themed with the same Slack-purple accent as the
+  rest of the demo suite. app/route.ts fetches /openapi.json server-side on every request and
+  inlines it via Scalar's `content` field rather than `url`, so the browser never needs direct
+  network access to the backend — only this app's own origin, which matters inside the compose
+  network where the backend's address isn't browser-reachable. Additive to FastAPI's built-in /docs,
+  not a replacement.
+
+Also force-adds playground/.env.example and openapi-docs/.env.example, both silently dropped from
+  the prior playground commit by create-next-app's default `.env*` gitignore pattern — they're plain
+  non-secret templates (just API_URL) matching the root repo's own tracked .env.example convention.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+
+- **playground**: Add Next.js playground for visual, evidence-grounded fit reports
+  ([`624dcba`](https://github.com/senthilsweb/agent-job-matcher/commit/624dcba1e9e7925f19ee7f249fd0c3b18fda9104))
+
+Resume upload + one-to-many job links on the left, a compact Grafana/ PowerBI-styled accordion of
+  scored report cards on the right — a non-chat way to see the 40/20/20/20 breakdown and evidence
+  quotes this project's whole scoring model produces. Server-side route handlers proxy to the
+  backend's existing POST /analyze and GET /health, keeping API_URL out of client-side code
+  entirely.
+
+Layout, colors, and chrome are a deliberate port of privacyshield's Sidebar/App structure (colored
+  collapsible nav rail, header with a live backend-status pill, Card/Label form composition) rather
+  than a new design, per owner direction during UAT. Match-status colors follow the standard
+  green-to-red grading scale, not the brand purple used elsewhere for chrome. Cover letters render
+  in a collapsible section with copy-to-clipboard.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+
+
 ## v0.4.2 (2026-07-12)
 
 ### Bug Fixes
