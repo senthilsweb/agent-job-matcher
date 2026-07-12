@@ -50,6 +50,16 @@ Or the Docker image (`ghcr.io/senthilsweb/agent-job-matcher`):
 docker compose up -d api                  # FastAPI on :8000
 ```
 
+Or the whole self-contained demo stack — backend, a visual playground,
+branded API docs, and the chat widget, each in its own container:
+
+```bash
+docker compose up -d
+# playground    http://localhost:3011  — upload a resume, add job links, get visual fit reports
+# openapi-docs  http://localhost:3012  — browsable, branded API reference
+# chat-demo     http://localhost:8091  — the mcp-chat-client demo page (needs a host-run agent-service — see mcp/README.md)
+```
+
 ## Surfaces
 
 | Surface | Entry | Notes |
@@ -58,6 +68,56 @@ docker compose up -d api                  # FastAPI on :8000
 | REST | `POST /analyze`, `POST /resume/jsonresume`, `GET /health` | stateless; typed JSON array payload; OpenAPI spec attached to every [release](https://github.com/senthilsweb/agent-job-matcher/releases) |
 | Python | `from job_matcher import run_analysis, score_job_fit, extract_jsonresume` | the embeddable core for in-process agents |
 | Chat | `mcp/` — MCP server (Claude Desktop) + agent service (`/chat/stream`, `/upload`) | see [mcp/README.md](mcp/README.md) |
+
+## REST endpoints
+
+Backend API (`job_matcher.api`, default `:8000`):
+
+| Method | Path | Purpose |
+|---|---|---|
+| POST | `/analyze` | Analyze a resume against one or more job sources — the typed `JobReport`/`JobFetchFailure` array |
+| POST | `/resume/jsonresume` | Convert a resume to a [JSON Resume](https://jsonresume.org) v1.0.0 document |
+| GET | `/health` | Liveness and package version |
+
+Agent service (`mcp/agent-service`, default `:8006`) — the chat bridge, ADR 0001:
+
+| Method | Path | Purpose |
+|---|---|---|
+| POST | `/chat/stream` | Stream a chat answer over SSE (ctms-compatible `content`/`action`/`done`/`error`) |
+| POST | `/upload` | Store an uploaded resume, return the server-side path for the conversation to reference |
+| GET | `/health` | Liveness and the discovered MCP tool list |
+
+Every route's full description, request/response schema, and fixture-sourced
+examples are in the live `/docs` (Swagger UI) or the branded
+[`openapi-docs`](openapi-docs/) app — see [Quick start](#quick-start).
+
+## Key environment variables
+
+The full, authoritative list is [`.env.example`](.env.example). The ones you'll actually touch:
+
+| Variable | Purpose |
+|---|---|
+| `MODEL_ANALYST` | The extraction model (LLM-1, required) — resolves `MODEL_ANALYST` → `MODEL` → error |
+| `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` | Provider credentials — set whichever your model id needs |
+| `MODEL_CHAT` | Optional override for the agent service's orchestration model (LLM-2) — resolves `MODEL_CHAT` → `MODEL_ANALYST` → `MODEL` → error (ADR 0001) |
+| `JOB_FANOUT_CONCURRENCY` | Max jobs analyzed in parallel per request |
+| `AGENT_UPLOAD_DIR`, `AGENT_PORT` | Agent service's upload landing directory and port |
+| `TEMPLATES_DIR` | Override directory for prompts and the cover-letter template (see below) |
+| `OBSERVABILITY_SINK` | `json` (always on) or add a remote backend below — never code-selected |
+| `OPENOBSERVE_URL`, `OTEL_EXPORTER_OTLP_ENDPOINT`, `PHOENIX_COLLECTOR_ENDPOINT`, `ARIZE_SPACE_ID`+`ARIZE_API_KEY` | Fill any one block to activate that telemetry backend (see [Observability](#observability)) |
+
+None of these ship with real values anywhere in this repo — every credential
+comes from your own `.env`, never a source default (`AGENTS.md` rule 5).
+
+## Cover letter templates
+
+Every job report includes a rendered cover letter (`cover_letter_text`),
+built from the LLM's typed paragraphs (never its own scoring or formatting)
+through a plain-text template:
+
+- **Default**: [`backend/job_matcher/templates/cover_letter.txt`](backend/job_matcher/templates/cover_letter.txt) — ships with the package.
+- **Placeholders**: `{{candidate_name}}`, `{{candidate_contact_line}}`, `{{date}}`, `{{re_line}}`, `{{cover_letter_body}}`. Unknown placeholders are left intact rather than erroring.
+- **Override**: set `TEMPLATES_DIR` to a directory containing your own `cover_letter.txt` — checked before the package default, same resolution order used for prompt overrides (`job_matcher/prompts.py`). No code change needed.
 
 ## Tech stack
 
@@ -78,9 +138,7 @@ docker compose up -d api                  # FastAPI on :8000
 | Repo | Relationship |
 |---|---|
 | [mcp-chat-client](https://github.com/senthilsweb/mcp-chat-client) | **Runtime dependency.** The embeddable chat widget that drives `mcp/agent-service/`'s `/chat/stream` and `/upload` endpoints — the actual "chatbot" referenced throughout `openspec/adr/0001-agent-service-chat-bridge.md`. Its own `openspec/` tracks fixes discovered by testing against this backend. |
-| [privacyshield](https://github.com/senthilsweb/privacyshield) | **Design lineage.** The sidebar+header layout pattern and Slack-purple brand color (`#4A154B`) this project's tooling reuses (e.g. `mcp-chat-client`'s rebuilt demo page) originate here. |
-| `ai-agents` monorepo, `agents/job-matcher/` (Eve/TypeScript) | **Design lineage, not a dependency.** The original governed rebuild this project ports its core ideas from — the 100-point deterministic scoring rubric, evidence-grounding discipline, and eval corpus all trace back to it. Not used at runtime. |
-| `templrgo` | **CI pattern lineage.** The Conventional-Commits release-asset workflow shape (build → checksum → attach to GitHub Release) this repo's and `mcp-chat-client`'s release workflows follow. |
+| [ai-dlc](https://github.com/senthilsweb/ai-dlc) | **Methodology & training deck.** This project is the running example — every `openspec/changes/` proposal → design → tasks → spec cycle in this repo follows the AI-DLC methodology documented and taught there, 100%. |
 
 ## Observability
 
