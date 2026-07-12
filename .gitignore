@@ -49,6 +49,9 @@ logs/
 backend/logs/
 data/
 *.log
+# CLI run artifacts (jobmatch analyze --out runs/, docker compose run cli) —
+# local/ephemeral by design, never a tracked repo artifact.
+runs/
 
 # Graphify local build output (CI commits the root graph files)
 graphify-out/

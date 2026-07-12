@@ -167,6 +167,7 @@ services:
       - "6014:80"
     depends_on:
       - agent-service
+    restart: unless-stopped
 
   playground:
     build: ./playground
@@ -180,6 +181,7 @@ services:
       - "6012:6012"
     depends_on:
       - api
+    restart: unless-stopped
 
   openapi-docs:
     build: ./openapi-docs
@@ -190,6 +192,7 @@ services:
       - "6013:6013"
     depends_on:
       - api
+    restart: unless-stopped
 
 volumes:
   # Shared upload landing zone — both api (API_UPLOAD_DIR) and
