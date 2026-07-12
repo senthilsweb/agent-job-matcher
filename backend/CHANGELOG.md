@@ -1,6 +1,64 @@
 # CHANGELOG
 
 
+## v0.7.0 (2026-07-12)
+
+### Bug Fixes
+
+- **compose**: Restart policy on the whole demo stack, ignore CLI run artifacts
+  ([`7870e6e`](https://github.com/senthilsweb/agent-job-matcher/commit/7870e6e8d123241555c4287972cca1d6d02e9731))
+
+Only api/agent-service had restart: unless-stopped; playground, openapi-docs, and chat-demo didn't,
+  so a Docker Desktop restart brought back half the stack automatically and left the rest down with
+  no indication why. All five services now self-heal consistently.
+
+Also: runs/ (jobmatch analyze --out, docker compose run cli) was never gitignored — a real gap,
+  surfaced when a local verification run left real output files showing as untracked.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+
+- **playground**: Sharp corners, scoring guide, Clear button, salary display
+  ([`6957088`](https://github.com/senthilsweb/agent-job-matcher/commit/6957088bc9bb9189c03bcebcfff5c8f0d9375837))
+
+- components/ui/button.tsx: every variant/size now rounded-none (was rounded-lg / per-size radius
+  overrides) — sharp corners app-wide - nav-rail.tsx: new ScoringGuide fills the rail's
+  previously-empty space — all 5 match bands with their exact score ranges (from scoring.py's
+  match_band_for(), 80/65/50/35 boundaries) and colors matching lib/types.ts's MATCH_STATUS_CLASSES;
+  nav item label shortened "Analyze fit" -> "Analyze" to match privacyshield's terse verb-only nav
+  items (the fuller label stays on the page header and Card title, same split privacyshield itself
+  uses) - sidebar-form.tsx + page.tsx: new Clear button resets the form's own state and, via a new
+  onClear prop, the results/error state too - report-card.tsx + lib/types.ts: salary_range rendered
+  as a pill in the collapsed accordion trigger, next to company name
+
+Also root-caused the "Backend unreachable" status pill bug reported during UAT: not a code issue.
+  Docker Desktop itself had degraded after several days of uptime across 23 containers — docker
+  exec/restart started reporting success without the daemon taking effect, confirmed via
+  container-to-container connection-refused despite `docker inspect` reporting healthy. Restarting
+  Docker Desktop resolved every symptom immediately. Full details in
+  openspec/changes/fix-playground-ui-parity Bolt 8.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+
+### Features
+
+- **schema**: Add salary_range to JobAnalysis, extracted verbatim
+  ([`e818cc1`](https://github.com/senthilsweb/agent-job-matcher/commit/e818cc155443dc615159749cd0fc77807f7b7c09))
+
+Owner UAT observation: the playground's report cards had no salary info, and it wasn't clear whether
+  that was a UI gap or missing from the schema entirely — traced to the latter. JobAnalysis gains
+  salary_range: str | None, copied verbatim from the posting when stated, null when it isn't.
+  Deliberately unstructured (not {min,max,currency,period}) — postings state pay in wildly
+  inconsistent formats and forcing early structure risks misrepresenting a posting's actual wording.
+  Not a scoring input; purely informational.
+
+Verified with a real extraction, not assumed: `docker compose run cli analyze` against the Anthropic
+  eval fixture (which states "$405,000 - $485,000") correctly extracted the range verbatim. Live
+  postings without a stated range correctly returned null rather than a fabricated value. 111/111
+  offline tests pass (110 existing + 1 new).
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+
+
 ## v0.6.0 (2026-07-12)
 
 ### Features
