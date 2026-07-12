@@ -1,6 +1,55 @@
 # CHANGELOG
 
 
+## v0.4.1 (2026-07-12)
+
+### Bug Fixes
+
+- **observability**: Configure() must load .env itself, not rely on call order
+  ([`6aa788c`](https://github.com/senthilsweb/agent-job-matcher/commit/6aa788ce480f7b8962a8826cc696fca1103a27a0))
+
+Owner configured ARIZE_SPACE_ID/ARIZE_API_KEY for real and got zero telemetry. Root cause:
+  configure() read env vars directly, depending on resolve_model() having already called
+  load_dotenv() earlier in the process - true in the CLI/pipeline path (resolve_model runs before
+  the root span opens), false in the agent service's /chat/stream handler, where start_span() fires
+  before any model-resolving code runs. configure()'s result is cached for the process's lifetime,
+  so reading a pre-.env environment once meant Arize/OpenObserve were silently dead for that entire
+  server process, however long it ran.
+
+Reproduced directly (a clean subprocess calling configure() before anything else resolved False for
+  sink activation despite correct .env values on disk) and fixed: configure() now calls the same
+  ensure_env_loaded() config.py already exposes (renamed from _ensure_env_loaded, now a shared
+  utility instead of module-private).
+
+Verified via the real root_span/traced API in a clean process, not a hand-rolled OTel script: spans
+  now reach otlp.arize.com with HTTP 200.
+
+New regression test pins the exact failure mode. Fixing it surfaced a second issue in the existing
+  telemetry test fixture: it deleted Arize env vars to simulate a clean environment, but
+  configure()'s new .env load faithfully repopulated them from the real .env on disk (deleting a var
+  just makes it "unset" from load_dotenv's perspective) - fixed by also freezing config's _loaded
+  flag during those tests.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+### Testing
+
+- **agent-service**: Cover conversation-history threading
+  ([`7aaf0cd`](https://github.com/senthilsweb/agent-job-matcher/commit/7aaf0cd44f975040abc25d746b5019be4912f10e))
+
+Existing stub fixtures needed the new history parameter added to run_chat()'s signature (from the
+  prior commit, bundled in with the CI race fix by an add -A - the code change was correct, this
+  fills in its test coverage): history-threaded-through, missing-history-is-empty-list, and
+  _to_model_history's dict-to-pydantic-ai-message conversion.
+
+Live-verified end to end (not just unit tested): a follow-up question in the same session answered
+  correctly from conversation memory alone (59/100 + the specific gap, no re-invoked tool call); the
+  identical question with no history in a fresh session correctly said it hadn't given a score,
+  ruling out a lucky guess.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+
 ## v0.4.0 (2026-07-11)
 
 ### Bug Fixes
