@@ -77,6 +77,7 @@ _ANALYZE_RESPONSE_EXAMPLE = [
         "analysis": {
             "job_title": "Senior Data Engineer",
             "company_name": "Acme",
+            "salary_range": "$160,000-$190,000/year",
             "required_skills": [
                 {"skill": "python", "matched": True, "evidence": "12 years building cloud data platforms"}
             ],

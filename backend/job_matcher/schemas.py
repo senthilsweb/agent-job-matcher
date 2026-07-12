@@ -51,6 +51,11 @@ class JobAnalysis(BaseModel):
 
     job_title: str = Field(min_length=1)
     company_name: str | None = None
+    # Verbatim as stated in the posting (e.g. "$120,000-$150,000/year",
+    # "$60-75/hr"), never inferred or estimated — null when the posting
+    # doesn't state one. Not evidence-grounded against the resume like
+    # SkillMatch: this describes the job, not the candidate.
+    salary_range: str | None = None
     required_skills: list[SkillMatch]
     preferred_skills: list[SkillMatch]
     experience_alignment: ExperienceAlignment

@@ -109,3 +109,11 @@ def test_analysis_schema_has_no_score_field():
     # in the one schema an LLM fills in.
     fields = set(JobAnalysis.model_fields)
     assert not any("score" in f for f in fields)
+
+
+def test_salary_range_defaults_to_none_and_accepts_a_verbatim_string():
+    # Most postings won't state one — the field must be optional, never a
+    # required extraction that forces the model to invent a number.
+    assert make_analysis().salary_range is None
+    stated = make_analysis().model_copy(update={"salary_range": "$160,000-$190,000/year"})
+    assert stated.salary_range == "$160,000-$190,000/year"
