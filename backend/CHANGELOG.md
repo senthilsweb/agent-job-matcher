@@ -1,6 +1,37 @@
 # CHANGELOG
 
 
+## v0.4.2 (2026-07-12)
+
+### Bug Fixes
+
+- **agent-service**: Tool-call notices as a distinct field, not concatenated text
+  ([`373434c`](https://github.com/senthilsweb/agent-job-matcher/commit/373434c68834644b4ba934c02a855a301dfdcb95))
+
+Owner-reported bug: the progress notice ("🔧 analyze_job_fit...") was literally prepended into the
+  answer text, with no distinct visual treatment - the chat just showed one concatenated blob.
+
+- app.py: tool notices now emit a distinct {"action": "<label>"} SSE field (with a friendly per-tool
+  label map) instead of folding "🔧 {name}...\n" into content. Additive to the ctms wire contract - a
+  client ignoring the field behaves exactly as before. - test_app.py updated: asserts no "🔧" ever
+  appears in content, and that an "action" event carries the tool notice instead.
+
+README: added Tech Stack and Related Repos sections, including an
+
+honest answer to "are we using Pydantic AI Gateway" - we're not: model ids resolve directly to each
+  provider via pydantic-ai's own provider integrations, not through Pydantic's hosted
+  gateway/routing product (a real, separate thing, now part of Pydantic Logfire). Noted as an
+  additive future option, not a current gap.
+
+A second, deeper issue was found while verifying this fix (the action label isn't yet genuinely live
+  - it arrives alongside the first content chunk rather than while the tool call is in flight,
+  confirmed via Playwright instrumentation on both fast and ~11s tool calls) and is logged as a
+  defect spec in mcp-chat-client's openspec, not fixed here - it needs a real async-generator
+  concurrency change.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+
 ## v0.4.1 (2026-07-12)
 
 ### Bug Fixes
