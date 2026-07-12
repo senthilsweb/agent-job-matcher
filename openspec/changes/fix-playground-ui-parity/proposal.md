@@ -17,6 +17,15 @@
 > `privacyshield/frontend`" — literally port `Sidebar.tsx`'s structure
 > rather than re-derive it, and self-verify against the real running
 > reference before reporting done. See Bolt 6 in `tasks.md`.
+>
+> **Correction (2026-07-12, Bolt 8):** a third UAT pass: sharp corners
+> app-wide (not just the add-job button), a scoring-guide legend filling
+> the nav rail's empty space, a Clear button, and an investigation into
+> a persistently-wrong "Backend unreachable" status pill that turned
+> out to be genuine Docker Desktop instability (a multi-day-uptime
+> daemon serving 23 containers silently stopped honoring commands) —
+> root-caused and resolved by restarting Docker Desktop, not a code
+> fix. See Bolt 8 in `tasks.md`.
 
 ## Why
 

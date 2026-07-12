@@ -23,6 +23,7 @@ export interface SkillMatch {
 export interface JobAnalysis {
   job_title: string;
   company_name: string | null;
+  salary_range: string | null;
   required_skills: SkillMatch[];
   preferred_skills: SkillMatch[];
   experience_alignment: ExperienceAlignment;

@@ -12,7 +12,7 @@ import {
   MATCH_STATUS_CLASSES,
   MATCH_STATUS_LABEL,
 } from "@/lib/types";
-import { AlertTriangle, CheckCircle2, ChevronsUpDown, XCircle } from "lucide-react";
+import { AlertTriangle, CheckCircle2, ChevronsUpDown, DollarSign, XCircle } from "lucide-react";
 
 function SkillPill({ skill, matched }: { skill: string; matched: boolean }) {
   return (
@@ -73,10 +73,20 @@ export function ReportCard({ outcome, value }: { outcome: JobOutcome; value: str
               <span className="text-xs font-normal text-muted-foreground">/100</span>
             </span>
           </div>
-          {analysis.company_name && (
-            <span className="col-span-2 -mt-2 truncate text-xs text-muted-foreground sm:col-span-1">
-              {analysis.company_name}
-            </span>
+          {(analysis.company_name || analysis.salary_range) && (
+            <div className="col-span-2 -mt-2 flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 sm:col-span-1">
+              {analysis.company_name && (
+                <span className="truncate text-xs text-muted-foreground">{analysis.company_name}</span>
+              )}
+              {/* Pay range, when the posting states one — important enough
+                  to see at a glance, not buried in the expanded report. */}
+              {analysis.salary_range && (
+                <span className="inline-flex items-center gap-1 rounded-none bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-inset ring-emerald-200">
+                  <DollarSign className="size-3" />
+                  {analysis.salary_range}
+                </span>
+              )}
+            </div>
           )}
           <div className="col-span-2 grid grid-cols-2 gap-x-4 gap-y-2 sm:col-span-2">
             <ScoreBar

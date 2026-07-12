@@ -70,6 +70,10 @@ export default function Home() {
                 setError(message);
                 setLoading(false);
               }}
+              onClear={() => {
+                setResults(null);
+                setError(null);
+              }}
             />
           </aside>
 

@@ -152,3 +152,72 @@ real running reference (http://localhost:7171) before reporting done.
       (`playground` at `localhost:3011`) rebuilt and restarted with
       this correction
 - [ ] Owner: re-review at http://localhost:3011
+
+## Bolt 8 — Sharp corners, nav-rail scoring guide, Clear button, status-pill root cause ✅ (2026-07-12)
+
+Third UAT pass. Also confirms the `uploads` volume mount (owner asked
+to double-check): `docker-compose.yaml`'s `api` (`API_UPLOAD_DIR`) and
+`agent-service` (`AGENT_UPLOAD_DIR`) both already mounted the named
+`uploads` volume correctly — verified by tracing `api.py`'s
+`_staged_upload_dir()` (stages the multipart upload, deletes it in a
+`finally` block right after the pipeline runs — a transient staging
+area by design, not accumulating storage). No change needed there.
+
+- [x] `components/ui/button.tsx` — every variant/size now `rounded-none`
+      (was `rounded-lg` / per-size `rounded-[...]` overrides) — sharp
+      corners app-wide, not just the Bolt 6 add-job button
+- [x] `components/playground/nav-rail.tsx` — new `ScoringGuide`
+      component fills the rail's previously-empty space below the one
+      nav item: all 5 match bands, their exact score ranges (from
+      `backend/job_matcher/scoring.py`'s `match_band_for()` — 80/65/50/35
+      boundaries, not guessed), and colored dots matching
+      `lib/types.ts`'s `MATCH_STATUS_CLASSES` exactly, plus the
+      required/preferred/experience/domain rubric as a footnote
+- [x] `sidebar-form.tsx` + `app/page.tsx` — new "Clear" button (ghost,
+      left of "Analyze fit" in the sticky footer, privacyshield's
+      Reset+Submit pattern) resets the form's own `resume`/`links`
+      state and calls a new `onClear` prop that resets `page.tsx`'s
+      `results`/`error` state — clears form AND results together, per
+      the owner's literal ask
+- [x] Nav-rail single item label shortened from "Analyze fit" to
+      "Analyze" — matches privacyshield's terse verb-only nav items
+      (Detect/Anonymize/Enhance); the fuller "Analyze fit" stays on the
+      page header and the form Card's title, matching privacyshield's
+      own split (short nav word, fuller Card title: "Detect" →
+      "Detect PII entities")
+- [x] **Status-pill "Backend unreachable" — root-caused, not a code
+      bug (2026-07-12):** while investigating, live-verified `curl`
+      calls to the containerized `api`/`agent-service` started
+      timing out and then returning outright connection-refused, even
+      from *inside* the Docker network (container-to-container, ruling
+      out a host-networking explanation) — despite `docker inspect`
+      reporting the containers healthy and running. Root cause: Docker
+      Desktop itself had been running for several days across 23
+      containers on this machine and had degraded into a state where
+      the CLI reported success (`docker restart` exiting 0) without the
+      daemon actually taking the action. Owner restarted Docker
+      Desktop; every symptom — including the status pill showing
+      "Backend unreachable" in a real browser — resolved immediately
+      and has not recurred. Added `restart: unless-stopped` to
+      `chat-demo`/`playground`/`openapi-docs` (only `api`/`agent-service`
+      had it before) so a future Docker Desktop restart brings the
+      *whole* stack back automatically instead of half of it.
+- [x] **Verified (2026-07-12, real Playwright against the freshly
+      rebuilt containers, not assumed):** status pill correctly reads
+      "Backend online"; scoring guide renders all 5 bands with correct
+      ranges/colors in the nav rail's previously-empty space; Clear
+      and Analyze fit buttons both render with sharp corners; Clear
+      button tested end-to-end — resume, job link, and the results
+      panel all reset to their empty states in one click; a fresh
+      `docker compose build --no-cache playground` was required after
+      the Docker Desktop restart (the container that came back up was
+      running a stale pre-crash image) — caught by comparing the
+      rendered page against what the code actually said, not by
+      trusting the container's reported status
+
+## Verification
+
+- [x] All 8 bolts implemented and verified with real containers, real
+      Playwright runs, and — this round — a real infrastructure
+      incident root-caused rather than worked around
+- [ ] Owner: final re-review, then status → **verified** and archive

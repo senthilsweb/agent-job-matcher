@@ -13,12 +13,13 @@ import {
 import { ResumeDropzone } from "@/components/playground/resume-dropzone";
 import { JobLinkList } from "@/components/playground/job-link-list";
 import { JobOutcome } from "@/lib/types";
-import { Briefcase, Loader2, Sparkles } from "lucide-react";
+import { Briefcase, Loader2, RotateCcw, Sparkles } from "lucide-react";
 
 interface SidebarFormProps {
   onSubmitStart: () => void;
   onSubmitSuccess: (results: JobOutcome[]) => void;
   onSubmitError: (message: string) => void;
+  onClear: () => void;
   loading: boolean;
 }
 
@@ -26,6 +27,7 @@ export function SidebarForm({
   onSubmitStart,
   onSubmitSuccess,
   onSubmitError,
+  onClear,
   loading,
 }: SidebarFormProps) {
   const [resume, setResume] = useState<File | null>(null);
@@ -33,6 +35,13 @@ export function SidebarForm({
 
   const validLinks = links.map((l) => l.trim()).filter(Boolean);
   const canSubmit = resume !== null && validLinks.length > 0 && !loading;
+  const hasContent = resume !== null || links.some((l) => l.trim());
+
+  const handleClear = () => {
+    setResume(null);
+    setLinks([""]);
+    onClear();
+  };
 
   const handleSubmit = async () => {
     if (!resume || validLinks.length === 0) return;
@@ -85,9 +94,17 @@ export function SidebarForm({
         </div>
       </CardContent>
 
-      <div className="shrink-0 border-t bg-card p-4">
+      <div className="flex shrink-0 items-center gap-2 border-t bg-card p-4">
         <Button
-          className="w-full bg-brand-700 text-white hover:bg-brand-800"
+          variant="ghost"
+          disabled={!hasContent || loading}
+          onClick={handleClear}
+        >
+          <RotateCcw className="size-4" />
+          Clear
+        </Button>
+        <Button
+          className="flex-1 bg-brand-700 text-white hover:bg-brand-800"
           disabled={!canSubmit}
           onClick={handleSubmit}
         >
