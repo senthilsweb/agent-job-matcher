@@ -157,12 +157,16 @@ services:
     pull_policy: missing
     build: ../mcp-chat-client
     environment:
-      # Now that agent-service is a real compose service, point at it by
-      # name on the compose network — no more host.docker.internal
-      # fallback needed for the all-in-one-stack case. Override this if
-      # you're running the chat-demo image against an external
-      # agent-service instead.
-      AGENT_SERVICE_URL: ${AGENT_SERVICE_URL:-http://agent-service:6011}
+      # BROWSER-reachable address, not a compose-network hostname: this
+      # value lands in runtime-config.js and is fetched by the chat
+      # widget running client-side in the visitor's browser (verified
+      # against mcp-chat-client/src/lib/api.ts — every consumer of
+      # apiEndpoint is a browser fetch). `http://agent-service:6011`
+      # only resolves inside the compose network and can never work
+      # from a browser — a latent bug in the previous default, caught
+      # while building the production deployment. Override with your
+      # public agent-service URL when deploying behind a domain.
+      AGENT_SERVICE_URL: ${AGENT_SERVICE_URL:-http://localhost:6011}
     ports:
       - "6014:80"
     depends_on:

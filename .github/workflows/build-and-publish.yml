@@ -1,12 +1,17 @@
 name: Build & publish
 
-# Modelled on privacyshield's build-and-publish.yml. Publishes the backend
-# image to GHCR. Auth uses the workflow's built-in GITHUB_TOKEN via the
+# Modelled on privacyshield's build-and-publish.yml. Publishes every image
+# this repo produces to GHCR — the backend/CLI, the agent-service (MCP
+# Bridge), the playground, and the openapi-docs apps — so a production
+# deployment can run entirely from pulled images with zero local builds.
+# Auth uses the workflow's built-in GITHUB_TOKEN via the
 # `packages: write` permission — no repository secrets required.
 #
-# NOTE: the package is created PRIVATE on first publish. Making it public
-# is a one-time manual step (GitHub → Packages → agent-job-matcher →
-# Package settings → Change visibility) — there is no API for it.
+# NOTE: each package is created PRIVATE on its first-ever publish. Making
+# it public is a one-time manual step per package (GitHub → Packages →
+# <package> → Package settings → Change visibility) — there is no API
+# for it. agent-job-matcher has already been flipped; the three
+# sub-images need the same treatment after their first publish.
 
 on:
   push:
@@ -31,11 +36,29 @@ permissions:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: senthilsweb/agent-job-matcher
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Backend + CLI (the original image, name unchanged)
+          - image: senthilsweb/agent-job-matcher
+            context: .
+            dockerfile: ./Dockerfile
+          # MCP Bridge — repo-root context so it can COPY backend/ and mcp/
+          - image: senthilsweb/agent-job-matcher-agent-service
+            context: .
+            dockerfile: ./mcp/agent-service/Dockerfile
+          # Next.js apps — their own folders are their build contexts
+          - image: senthilsweb/agent-job-matcher-playground
+            context: ./playground
+            dockerfile: ./playground/Dockerfile
+          - image: senthilsweb/agent-job-matcher-openapi-docs
+            context: ./openapi-docs
+            dockerfile: ./openapi-docs/Dockerfile
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -55,7 +78,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ matrix.image }}
           tags: |
             type=ref,event=branch
             type=ref,event=pr
@@ -70,11 +93,11 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: ./Dockerfile
+          context: ${{ matrix.context }}
+          file: ${{ matrix.dockerfile }}
           platforms: linux/amd64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=${{ matrix.image }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.image }}
