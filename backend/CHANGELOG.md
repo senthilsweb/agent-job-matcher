@@ -1,6 +1,38 @@
 # CHANGELOG
 
 
+## v0.6.0 (2026-07-12)
+
+### Features
+
+- **compose**: Containerize the MCP Bridge, put the whole stack on one port scheme
+  ([`b39560b`](https://github.com/senthilsweb/agent-job-matcher/commit/b39560b306134ff9cff3eee28d5b6dd4b324a77b))
+
+mcp/agent-service/Dockerfile (new): the MCP server (mcp/index.js) has no network port of its own —
+  it's a pure stdio bridge, spawned as a child process by the agent-service via pydantic-ai's
+  StdioTransport. So there's no separate "MCP container": this one image bundles both Python
+  (FastAPI/pydantic-ai, reusing job_matcher directly) and Node 20 (to actually run index.js). Wired
+  into docker-compose.yaml as `agent-service`; chat-demo now points at it by compose network name
+  instead of falling back to host.docker.internal.
+
+Real bug found while picking port 6000 specifically: it's on the WHATWG Fetch spec's "bad ports"
+  blocklist (the historical X11 port) — Node's native fetch() and every browser refuse to connect to
+  it outright. wget from inside a container worked fine, masking the problem at first; the
+  playground's own /api/health route (which uses fetch()) silently reported a healthy backend as
+  offline. Root-caused via `docker exec ... node -e "fetch(...)"`, which surfaced the real "bad
+  port" TypeError. Fixed by shifting the whole scheme to 6010-6014 (also clear of 6006/6007, already
+  in local use by an unrelated Arize Phoenix container, and of 6665-6669/6697, also on the
+  blocklist).
+
+Verified end-to-end with real containers: agent-service's spawned MCP subprocess discovers all 3
+  tools, a real /chat/stream call produces a genuine tool-called answer, and a real /analyze
+  submission through the containerized playground scores a live job posting correctly — the full
+  REST + MCP Bridge + playground + chat-demo stack, all containerized, all on the corrected port
+  range.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+
+
 ## v0.5.0 (2026-07-12)
 
 ### Documentation
