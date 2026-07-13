@@ -1,6 +1,23 @@
 # CHANGELOG
 
 
+## v0.9.0 (2026-07-13)
+
+### Features
+
+- **chat**: Emit reasoning in <thinking> tags for the client's thinking panel
+  ([`0c25fa3`](https://github.com/senthilsweb/agent-job-matcher/commit/0c25fa376bec941c24758515e20d86f157c2bac8))
+
+One instruction added to the chat system prompt: start each reply with brief reasoning inside
+  <thinking>...</thinking>, keeping the visible answer outside the tags. The mcp-chat-client widget
+  (as of its add-live-thinking-panel change) renders this as a Claude-style collapsible panel —
+  reasoning streams into it live, then it collapses to "Thought for Xs" when the answer begins.
+  Verified over a live /chat/stream turn: the model emits the tags split across SSE chunks and the
+  panel handles them correctly.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+
 ## v0.8.0 (2026-07-12)
 
 ### Features
