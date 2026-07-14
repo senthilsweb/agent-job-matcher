@@ -59,7 +59,7 @@ The wiki lives in [docs/](docs/) and is published at
 - [Configuration](docs/configuration.md) — every env var, model resolution, template overrides
 - [Surfaces](docs/surfaces.md) — CLI, REST (both services' endpoints), Python, chat/MCP
 - [Runbook](docs/runbook.md) — workflows, secrets, releases, tests, graphify
-- [FAQ & Design Decisions](docs/faq.md) — why the LLM never scores, and more, linked to specs
+- [FAQ](docs/faq.md) — why the LLM never scores, and more, linked to specs
 
 Docs follow the shared
 [documentation style guide](https://senthilsweb.github.io/ai-agents/style-guide/).

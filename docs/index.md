@@ -43,7 +43,7 @@ agent service (LLM-2). Nothing else calls a model.
 | Setting it up properly | [Installation](installation.md), then [Configuration](configuration.md) |
 | Integrating (API, Python, chat) | [Surfaces](surfaces.md) |
 | Operating it (releases, secrets, CI) | [Runbook](runbook.md) |
-| Wondering why it works this way | [FAQ & Design Decisions](faq.md) |
+| Wondering why it works this way | [FAQ](faq.md) |
 
 ## Tech stack
 
@@ -74,7 +74,7 @@ agent service (LLM-2). Nothing else calls a model.
 - [Configuration](configuration.md) — every environment variable, grouped by concern.
 - [Surfaces](surfaces.md) — CLI, REST, Python, and chat/MCP, with endpoint tables.
 - [Runbook](runbook.md) — workflows, secrets, releases, tests.
-- [FAQ & Design Decisions](faq.md) — the reasoning, linked to specs.
+- [FAQ](faq.md) — the reasoning, linked to specs.
 
 Docs in this repo follow the shared
 [documentation style guide](https://senthilsweb.github.io/ai-agents/style-guide/).

@@ -94,4 +94,4 @@ root (`graph.json`, `graph-index.json`, `graph.html`,
 `GRAPH_REPORT.md`, `graph-manifest.json`) — never edit those by hand.
 Add `[skip graphify]` to a commit message to skip.
 
-Next: [FAQ & Design Decisions](faq.md).
+Next: [FAQ](faq.md).

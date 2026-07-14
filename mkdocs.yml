@@ -39,16 +39,24 @@ nav:
   - Configuration: configuration.md
   - Surfaces: surfaces.md
   - Runbook: runbook.md
-  - FAQ & Design Decisions: faq.md
+  - FAQ: faq.md
 
 markdown_extensions:
   - admonition
   - attr_list
   - tables
+  - footnotes
   - toc:
       permalink: true
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_javascript:
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - javascripts/tablesort.js

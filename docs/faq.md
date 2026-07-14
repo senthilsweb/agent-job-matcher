@@ -1,4 +1,4 @@
-# FAQ & Design Decisions
+# FAQ
 
 Short answers first, each linked to the spec or ADR that recorded the
 full reasoning. Docs explain how to use; specs record why built.
