@@ -1,0 +1,54 @@
+# Wiki site, published to GitHub Pages by .github/workflows/docs.yml.
+# Pattern shared with senthilsweb/ai-agents; writing standard:
+# https://senthilsweb.github.io/ai-agents/style-guide/
+# Spec: openspec/changes/project-wiki/
+site_name: agent-job-matcher
+site_url: https://senthilsweb.github.io/agent-job-matcher/
+repo_url: https://github.com/senthilsweb/agent-job-matcher
+repo_name: senthilsweb/agent-job-matcher
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.footer
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Installation: installation.md
+  - Configuration: configuration.md
+  - Surfaces: surfaces.md
+  - Runbook: runbook.md
+  - FAQ & Design Decisions: faq.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format

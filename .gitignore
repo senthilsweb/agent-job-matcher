@@ -71,3 +71,6 @@ backend/evals/data/resume/local/
 *.p12
 secrets/
 node_modules/
+
+# mkdocs build output (docs.yml builds it in CI)
+site/
