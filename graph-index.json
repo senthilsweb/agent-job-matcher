@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "node_count": 520,
+  "node_count": 521,
   "edge_count": 973,
   "module_count": 7,
   "modules": {
@@ -16,14 +16,15 @@
       "labels": [
         ".on_span_start()",
         ".on_span_end()",
-        "__init__.py",
-        "run_analysis()",
+        "analyze()",
         "extract_resume_text()",
-        "extract_jsonresume()"
+        "extract_jsonresume()",
+        "_now()"
       ],
-      "calls": [],
+      "calls": [
+        "backend/tests"
+      ],
       "called_by": [
-        "backend/tests",
         "mcp/agent-service"
       ]
     },
@@ -38,16 +39,16 @@
       ],
       "labels": [
         "__init__.py",
-        "test_pipeline_offline.py",
-        "stub_analysis()",
-        "stubbed_analyze()",
-        "test_mixed_run_isolates_failures()",
-        "test_all_failed_run_completes_cleanly()"
+        "test_candidate.py",
+        "test_synthetic_resume_identity()",
+        "test_all_fields_are_grounded_in_the_source_text()",
+        "test_missing_phone_and_github_are_omitted_not_guessed()",
+        "test_no_contact_fields_at_all()"
       ],
-      "calls": [
+      "calls": [],
+      "called_by": [
         "backend/job_matcher"
-      ],
-      "called_by": []
+      ]
     },
     "mcp/agent-service": {
       "entry_files": [
@@ -55,41 +56,16 @@
         "test_app.py"
       ],
       "labels": [
-        "app.py",
-        "build_agent()",
-        "upload_dir()",
-        "_sse()",
-        "_action_label()",
-        "_to_model_history()"
+        "test_app.py",
+        "sse_events()",
+        "stubbed_chat()",
+        "test_chat_stream_ctms_contract()",
+        "test_chat_stream_empty_message_is_error()",
+        "test_chat_stream_exception_becomes_error_event()"
       ],
       "calls": [
         "backend/job_matcher"
       ],
-      "called_by": []
-    },
-    "scripts/export-openapi.py": {
-      "entry_files": [
-        "export-openapi.py"
-      ],
-      "labels": [
-        "export-openapi.py",
-        "main()"
-      ],
-      "calls": [],
-      "called_by": []
-    },
-    "scripts/graphify-index.py": {
-      "entry_files": [
-        "graphify-index.py"
-      ],
-      "labels": [
-        "graphify-index.py",
-        "module_for()",
-        "build_index()",
-        "main()",
-        "Return the module key for a given file path, or None if unrecognised."
-      ],
-      "calls": [],
       "called_by": []
     },
     "mcp/index.js": {
@@ -109,6 +85,31 @@
       ],
       "labels": [
         "smoke.mjs"
+      ],
+      "calls": [],
+      "called_by": []
+    },
+    "scripts/graphify-index.py": {
+      "entry_files": [
+        "graphify-index.py"
+      ],
+      "labels": [
+        "graphify-index.py",
+        "module_for()",
+        "build_index()",
+        "main()",
+        "Return the module key for a given file path, or None if unrecognised."
+      ],
+      "calls": [],
+      "called_by": []
+    },
+    "scripts/export-openapi.py": {
+      "entry_files": [
+        "export-openapi.py"
+      ],
+      "labels": [
+        "export-openapi.py",
+        "main()"
       ],
       "calls": [],
       "called_by": []
