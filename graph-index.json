@@ -16,15 +16,14 @@
       "labels": [
         ".on_span_start()",
         ".on_span_end()",
-        "analyze()",
+        "_now()",
+        "run_analysis()",
         "extract_resume_text()",
-        "extract_jsonresume()",
-        "_now()"
+        "__init__.py"
       ],
-      "calls": [
-        "backend/tests"
-      ],
+      "calls": [],
       "called_by": [
+        "backend/tests",
         "mcp/agent-service"
       ]
     },
@@ -39,16 +38,16 @@
       ],
       "labels": [
         "__init__.py",
-        "test_candidate.py",
-        "test_synthetic_resume_identity()",
-        "test_all_fields_are_grounded_in_the_source_text()",
-        "test_missing_phone_and_github_are_omitted_not_guessed()",
-        "test_no_contact_fields_at_all()"
+        "test_pipeline_offline.py",
+        "stub_analysis()",
+        "stubbed_analyze()",
+        "test_mixed_run_isolates_failures()",
+        "test_all_failed_run_completes_cleanly()"
       ],
-      "calls": [],
-      "called_by": [
+      "calls": [
         "backend/job_matcher"
-      ]
+      ],
+      "called_by": []
     },
     "mcp/agent-service": {
       "entry_files": [
@@ -89,6 +88,17 @@
       "calls": [],
       "called_by": []
     },
+    "scripts/export-openapi.py": {
+      "entry_files": [
+        "export-openapi.py"
+      ],
+      "labels": [
+        "export-openapi.py",
+        "main()"
+      ],
+      "calls": [],
+      "called_by": []
+    },
     "scripts/graphify-index.py": {
       "entry_files": [
         "graphify-index.py"
@@ -99,17 +109,6 @@
         "build_index()",
         "main()",
         "Return the module key for a given file path, or None if unrecognised."
-      ],
-      "calls": [],
-      "called_by": []
-    },
-    "scripts/export-openapi.py": {
-      "entry_files": [
-        "export-openapi.py"
-      ],
-      "labels": [
-        "export-openapi.py",
-        "main()"
       ],
       "calls": [],
       "called_by": []
