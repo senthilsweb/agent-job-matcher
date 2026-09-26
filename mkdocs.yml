@@ -38,6 +38,7 @@ nav:
   - Installation: installation.md
   - Configuration: configuration.md
   - Surfaces: surfaces.md
+  - ATS rules: ats-rules.md
   - Runbook: runbook.md
   - FAQ: faq.md
 

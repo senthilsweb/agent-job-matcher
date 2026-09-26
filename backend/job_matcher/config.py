@@ -21,6 +21,7 @@ Environment Variables (.env at repo root):
 - JOB_MIN_WORDS: minimum extractable words for a job posting (default: 100)
 - MAX_FETCH_BYTES: response byte cap for job fetches (default: 2000000)
 - MAX_RESUME_BYTES: resume file size cap (default: 20000000)
+- ATS_RULES_DIR: optional folder of extra/override ATS rule sets (default: none)
 """
 
 # Import necessary libraries
@@ -96,3 +97,9 @@ def max_fetch_bytes() -> int:
 
 def max_resume_bytes() -> int:
     return _int_env("MAX_RESUME_BYTES", 20_000_000)
+
+
+def ats_rules_dir() -> str:
+    """Optional override folder for ATS rule sets; empty string when unset."""
+    ensure_env_loaded()
+    return os.getenv("ATS_RULES_DIR", "").strip()

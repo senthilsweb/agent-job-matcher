@@ -36,6 +36,7 @@ There is no gateway or proxy in the path
 |---|---|
 | `JOB_FANOUT_CONCURRENCY` | max jobs analyzed in parallel per request (default 3) |
 | `TEMPLATES_DIR` | directory checked before the package defaults for prompt files and `cover_letter.txt` |
+| `ATS_RULES_DIR` | optional folder of extra or replacement job-board rule sets — see [ATS rules](ats-rules.md) |
 
 ### Cover letter template
 

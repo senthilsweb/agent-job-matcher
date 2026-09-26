@@ -1,0 +1,75 @@
+{
+  "contentType": "application/vnd.gorules.decision",
+  "nodes": [
+    {
+      "id": "in",
+      "type": "inputNode",
+      "name": "request",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "x",
+      "type": "expressionNode",
+      "name": "extract",
+      "position": {
+        "x": 200,
+        "y": 0
+      },
+      "content": {
+        "expressions": [
+          {
+            "id": "0",
+            "key": "title",
+            "value": "body.title"
+          },
+          {
+            "id": "1",
+            "key": "location",
+            "value": "body.location.name"
+          },
+          {
+            "id": "2",
+            "key": "parts",
+            "value": "[body.content]"
+          },
+          {
+            "id": "3",
+            "key": "format",
+            "value": "\"html_escaped\""
+          },
+          {
+            "id": "4",
+            "key": "pay",
+            "value": "len((body.pay_input_ranges ?? [])) > 0 ? (body.pay_input_ranges ?? [])[0].title + \" \" + string((body.pay_input_ranges ?? [])[0].min_cents / 100) + \" - \" + string((body.pay_input_ranges ?? [])[0].max_cents / 100) + \" \" + (body.pay_input_ranges ?? [])[0].currency_type : null"
+          }
+        ]
+      }
+    },
+    {
+      "id": "out",
+      "type": "outputNode",
+      "name": "response",
+      "position": {
+        "x": 400,
+        "y": 0
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "sourceId": "in",
+      "targetId": "x",
+      "type": "edge"
+    },
+    {
+      "id": "e2",
+      "sourceId": "x",
+      "targetId": "out",
+      "type": "edge"
+    }
+  ]
+}
