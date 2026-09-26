@@ -11,7 +11,7 @@ coding conventions in
 | Workflow | Trigger | Manual run |
 |---|---|---|
 | Graphify Knowledge Graph | push to main (code/spec paths), weekly, manual | `gh workflow run graphify.yml` |
-| Build & publish (GHCR image) | push to main, `v*` tags, PRs | `gh workflow run build-and-publish.yml` |
+| Build & publish (GHCR images) | push to main, `v*` tags, PRs — builds only the images whose files changed | `gh workflow run build-and-publish.yml` (builds all) |
 | Release (semantic version) | push to main (conventional commits), manual | `gh workflow run release.yml` |
 | Docs site (GitHub Pages) | push to main touching `docs/**` or `mkdocs.yml`, manual | `gh workflow run docs.yml` |
 
