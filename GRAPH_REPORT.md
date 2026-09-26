@@ -1,7 +1,7 @@
 # Graph Report - /home/runner/work/agent-job-matcher/agent-job-matcher  (2026-09-26)
 
 ## Corpus Check
-- 84 files · ~109,962 words
+- 84 files · ~114,924 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
