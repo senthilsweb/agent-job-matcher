@@ -20,9 +20,32 @@ Every rule in `hard-constraints.md` and `rubric.md` SHALL name at least one
 governing field as a path into the request or response schema, and every
 named path SHALL exist in the exported JSON Schema.
 
+## Requirement: Inputs are a resume and jobs only
+The governed engine SHALL accept only a resume and one or more jobs, each
+given as a URL or as full text. Every hard and soft constraint SHALL be
+decidable from these inputs.
+
 ## Requirement: Models never produce scores
-Soft constraints SHALL return levels, evidence, and narrative only. Points
-and totals SHALL be computed by `scoring.py`.
+Soft constraints SHALL return levels, evidence, and narrative only. Points,
+totals, and bands SHALL be computed by code from `scoring.md`.
+
+## Requirement: Rules and scoring are configured only in markdown
+Hard constraints, soft constraints, and scoring SHALL be configured in
+`hard-constraints.md`, `rubric.md`, and `scoring.md`. They SHALL be loaded
+and validated once at startup, and an invalid file SHALL stop startup.
+There SHALL be no runtime interface for changing them.
+
+## Requirement: Injected instructions cannot raise a score
+Hidden text SHALL be stripped and both inputs pre-scanned before any model
+call. Semantic injection checks SHALL run on the gate model. Independently
+of detection, every matched skill SHALL require a verbatim resume quote,
+and level claims SHALL agree with the evidence counts.
+
+## Requirement: Job text is cached
+A successfully fetched job SHALL be cached by normalised URL for
+`JOB_CACHE_TTL_HOURS`. A cache hit SHALL make no fetch attempt, failures
+SHALL NOT be cached, and each response SHALL record cache hits in its trace.
+A result cache that stores resume-derived data SHALL be off by default.
 
 ## Requirement: Evidence is verbatim
 Every evidence quote attributed to the resume SHALL appear verbatim in the

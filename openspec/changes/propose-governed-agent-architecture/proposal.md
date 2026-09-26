@@ -43,21 +43,31 @@ project into a reference implementation of the pattern.
   `soft_constraints[]`, the existing deterministic `score_breakdown`,
   `decision`, and `narrative`. Governing fields are named JSON paths into
   these schemas.
-- **Rules as data.** `hard-constraints.md` and `rubric.md` hold the HC and SC
-  catalogue, each rule with an id, the governing fields it reads, its
-  pass/fail condition, and a narrative template.
-- **HC gate.** Deterministic HCs run in code first (free). Semantic HCs run
-  as one OpenAI Responses API call on a small model with structured output.
-  Any hard failure short-circuits to a typed failure decision with
-  narratives.
+- **Inputs stay minimal.** A resume, plus each job as a URL or as full
+  text. Every rule must be decidable from those two inputs.
+- **Rules and scoring as markdown.** `hard-constraints.md`, `rubric.md`, and
+  `scoring.md` hold the checks, soft constraints, weights, points, and
+  bands. Code reads their front matter and validates it at startup. They
+  change only by deployment: a new image, or an override folder mounted at
+  deploy time.
+- **HC gate.** Deterministic checks and an injection pre-scan run in code
+  first, at no cost. Semantic checks run as one call to a small OpenAI
+  model with structured output. Any blocking failure short-circuits to a
+  rejection with narratives.
+- **Layered injection guardrails.** Detection in the gate, plus structural
+  defences that hold even if every model is fooled: no model can write a
+  score, and every matched skill needs a verbatim resume quote.
+- **Caching.** Fetched job text is cached by normalised URL for a set
+  lifetime. Job-only gate results are cached too. A full result cache is
+  available but off by default, because it stores personal data.
 - **Reasoning agent.** Defined entirely by the markdown bundle and run by
   the backend through the existing provider-neutral model layer, it does the
   evidence-grounded analysis, SC assessment, and cover-letter work. It
   returns the typed response directly. Code then validates it against the
   rubric's completeness rules.
-- **Scoring stays deterministic.** SCs return typed levels with evidence and
-  narrative; `scoring.py` still turns levels into points. No model produces
-  a number.
+- **Scoring stays deterministic and becomes configurable.** SCs return typed
+  levels with evidence and narrative; code turns levels into points using
+  `scoring.md`. No model produces a number.
 - **Opt-in engine.** `DECISION_ENGINE=legacy|governed` selects the path. The
   existing pipeline stays the default until the governed path passes parity
   evals.
@@ -88,6 +98,13 @@ project into a reference implementation of the pattern.
    markdown bundle, or an operator override folder. No prompt text for the
    governed path lives in Python, and the bundle version is recorded in
    every response.
-6. On the committed eval fixtures, the governed path's match band agrees
+6. A resume or job containing an instruction aimed at the evaluator cannot
+   raise the score: the adversarial fixtures are rejected or score the same
+   as their clean versions.
+7. A repeated request for a cached job makes no fetch, and the response
+   trace says so.
+8. With `scoring.md` holding today's values, scores are identical to the
+   legacy engine; an invalid `scoring.md` stops startup.
+9. On the committed eval fixtures, the governed path's match band agrees
    with the legacy path on at least an agreed share of jobs, and every
    disagreement has an HC or SC narrative that explains it.
