@@ -1,12 +1,12 @@
-# Graph Report - /home/runner/work/agent-job-matcher/agent-job-matcher  (2026-09-21)
+# Graph Report - /home/runner/work/agent-job-matcher/agent-job-matcher  (2026-09-26)
 
 ## Corpus Check
-- 82 files · ~106,230 words
+- 84 files · ~109,962 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 521 nodes · 973 edges · 48 communities detected
-- Extraction: 57% EXTRACTED · 43% INFERRED · 0% AMBIGUOUS · INFERRED: 418 edges (avg confidence: 0.66)
+- 566 nodes · 1087 edges · 50 communities detected
+- Extraction: 60% EXTRACTED · 40% INFERRED · 0% AMBIGUOUS · INFERRED: 440 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
@@ -58,96 +58,98 @@
 - [[_COMMUNITY_Community 45|Community 45]]
 - [[_COMMUNITY_Community 46|Community 46]]
 - [[_COMMUNITY_Community 47|Community 47]]
+- [[_COMMUNITY_Community 48|Community 48]]
+- [[_COMMUNITY_Community 49|Community 49]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `JobReport` - 37 edges
-2. `JobAnalysis` - 28 edges
-3. `extract_resume_text()` - 24 edges
+2. `fetch_job_source()` - 31 edges
+3. `JobAnalysis` - 28 edges
 4. `SkillMatch` - 23 edges
 5. `OpenObserveRestSink` - 23 edges
-6. `run_analysis()` - 22 edges
+6. `GET()` - 23 edges
 7. `ScoreBreakdown` - 21 edges
-8. `GET()` - 21 edges
-9. `JobFetchFailure` - 20 edges
-10. `JsonLogSink` - 20 edges
+8. `JobFetchFailure` - 20 edges
+9. `JsonLogSink` - 20 edges
+10. `_Strict` - 19 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `File Name: test_api.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Descri` --uses--> `JobReport`  [INFERRED]
-  /home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_api.py → /home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/schemas.py
-- `test_full_offline_run_via_package_root()` --calls--> `run_analysis()`  [INFERRED]
-  /home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_embeddable_core.py → /home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/pipeline.py
-- `test_api_endpoint_returns_document()` --calls--> `POST()`  [INFERRED]
-  /home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_jsonresume.py → /home/runner/work/agent-job-matcher/agent-job-matcher/playground/app/api/analyze/route.ts
-- `test_api_endpoint_operator_error_422()` --calls--> `POST()`  [INFERRED]
-  /home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_jsonresume.py → /home/runner/work/agent-job-matcher/agent-job-matcher/playground/app/api/analyze/route.ts
-- `File Name: test_prompt_injection.py Author: Senthilnathan Karuppaiah Date: 11-JU` --uses--> `JobReport`  [INFERRED]
-  /home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/live/test_prompt_injection.py → /home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/schemas.py
+- `File Name: test_resume_extraction.py Author: Senthilnathan Karuppaiah Date: 11-J` --uses--> `ResumeError`  [INFERRED]
+  /home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_resume_extraction.py → /home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/resume.py
+- `File Name: test_scoring_determinism.py Author: Senthilnathan Karuppaiah Date: 11` --uses--> `SkillMatch`  [INFERRED]
+  /home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_scoring_determinism.py → /home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/schemas.py
+- `Fixture helper — mirrors the Eve eval's mkSkills().` --uses--> `SkillMatch`  [INFERRED]
+  /home/runner/work/agent-job-matcher/agent-job-matcher/backend/tests/test_scoring_determinism.py → /home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/schemas.py
+- `File Name: analyze.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Descrip` --uses--> `JobAnalysis`  [INFERRED]
+  /home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/analyze.py → /home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/schemas.py
+- `Best-effort token accounting across pydantic-ai versions.` --uses--> `JobAnalysis`  [INFERRED]
+  /home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/analyze.py → /home/runner/work/agent-job-matcher/agent-job-matcher/backend/job_matcher/schemas.py
 
 ## Communities
 
 ### Community 0 - "Community 0"
+Cohesion: 0.06
+Nodes (72): BaseModel, FetchResult, The outcome of the single fetch attempt for one job source., File Name: observability/__init__.py Author: Senthilnathan Karuppaiah Date: 11-J, Stable core entry point — lazy import so `import job_matcher` stays light., Stable core re-export of resume extraction (lazy import)., Stable core re-export of JSON Resume extraction (lazy import, async)., _job_task() (+64 more)
+
+### Community 1 - "Community 1"
 Cohesion: 0.05
 Nodes (57): add_span_attributes(), _allowlisted(), configure(), current_span(), Test/advanced hook: replace the sink fan-out explicitly., The span active in this execution context, if any., Open a span nested under the context's active span (or a new trace root)., Open the per-invocation root span; the run id becomes the trace id.      When al (+49 more)
 
-### Community 1 - "Community 1"
-Cohesion: 0.07
-Nodes (51): extract_jsonresume(), extract_resume_text(), File Name: observability/__init__.py Author: Senthilnathan Karuppaiah Date: 11-J, Stable core entry point — lazy import so `import job_matcher` stays light., Stable core re-export of resume extraction (lazy import)., Stable core re-export of JSON Resume extraction (lazy import, async)., run_analysis(), build_job_report() (+43 more)
-
 ### Community 2 - "Community 2"
-Cohesion: 0.05
-Nodes (46): _action_label(), build_agent(), chat_stream(), health(), File Name: app.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Description, Convert the wire-format {role, content} turns into pydantic-ai's     native mess, The one LLM-2 invocation per chat turn; wrapped so tests can stub it., Stream a chat answer over SSE (ctms contract: content / done / error). (+38 more)
+Cohesion: 0.06
+Nodes (38): _action_label(), chat_stream(), health(), File Name: app.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Description, Convert the wire-format {role, content} turns into pydantic-ai's     native mess, Stream a chat answer over SSE (ctms contract: content / done / error)., Store an uploaded resume in the configured temp dir; return its path., Liveness + the MCP tool list discovered over stdio. (+30 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.07
-Nodes (48): analyze(), _custom_openapi(), health(), File Name: api.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Description, FastAPI-native generation plus the repo link (spec: repo path link)., One span per HTTP request — the root the pipeline's run span nests under., Run the full analysis synchronously and return the typed outcome array.      Pro, Extract the resume into the standard JSON Resume format.      Provide the resume (+40 more)
+Cohesion: 0.12
+Nodes (38): _blocked_host_reason(), fetch_job_source(), _fetch_local(), html_to_text(), _now(), File Name: fetch.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Descripti, Turn a rule-extracted posting into the plain text the analyst reads., Make the one and only fetch attempt for a job source. Never retries. (+30 more)
 
 ### Community 4 - "Community 4"
-Cohesion: 0.11
-Nodes (38): BaseModel, CandidateIdentity, Whatever contact fields were found in the resume text — never a guess., FetchResult, The outcome of the single fetch attempt for one job source., _cover_letter_text(), _job_task(), _now() (+30 more)
+Cohesion: 0.1
+Nodes (36): analyze(), _custom_openapi(), health(), File Name: api.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Description, FastAPI-native generation plus the repo link (spec: repo path link)., One span per HTTP request — the root the pipeline's run span nests under., Run the full analysis synchronously and return the typed outcome array.      Pro, Extract the resume into the standard JSON Resume format.      Provide the resume (+28 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.1
-Nodes (34): jsonresume(), Convert a resume into a JSON Resume v1.0.0 document (jsonresume.org)., assert_contact_grounded(), Award, Basics, Certificate, _digits(), Education (+26 more)
+Cohesion: 0.08
+Nodes (28): normalize(), File Name: conftest.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Descri, Whitespace/case normalization — the rubric's grounding comparison space., Run the REAL pipeline while counting analysis calls. Returns (result, calls)., run_live_counted(), extract_resume_text(), grounding_run(), File Name: test_evidence_grounding.py Author: Senthilnathan Karuppaiah Date: 11- (+20 more)
 
 ### Community 6 - "Community 6"
-Cohesion: 0.12
-Nodes (27): ensure_env_loaded(), fanout_concurrency(), _int_env(), job_min_words(), max_fetch_bytes(), max_resume_bytes(), File Name: config.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Descript, Load the repo-root .env into os.environ, exactly once per process.      Any modu (+19 more)
+Cohesion: 0.11
+Nodes (31): assert_contact_grounded(), Award, Basics, Certificate, _digits(), Education, extract_jsonresume(), Interest (+23 more)
 
 ### Community 7 - "Community 7"
 Cohesion: 0.1
-Nodes (18): normalize(), File Name: conftest.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Descri, Whitespace/case normalization — the rubric's grounding comparison space., Run the REAL pipeline while counting analysis calls. Returns (result, calls)., run_live_counted(), grounding_run(), File Name: test_evidence_grounding.py Author: Senthilnathan Karuppaiah Date: 11-, test_hard_matched_evidence_is_verbatim_from_resume() (+10 more)
+Nodes (28): analyze_job_fit(), File Name: analyze.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Descrip, Best-effort token accounting across pydantic-ai versions., Declared at the decorator (AOP): token usage + model onto the LLM span;     prom, Extract the typed, evidence-grounded analysis for one job posting., _span_enrichment(), _usage_dict(), build_agent() (+20 more)
 
 ### Community 8 - "Community 8"
-Cohesion: 0.15
-Nodes (20): contact_line(), extract_candidate_identity(), _find_email(), _find_name(), _find_phone(), _find_urls(), File Name: candidate.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Descr, Extract whatever contact fields the resume text contains, deterministically. (+12 more)
+Cohesion: 0.12
+Nodes (22): AtsPosting, AtsRuleError, AtsTarget, _evaluate(), extract(), _load_folder(), File Name: ats.py Author: Senthilnathan Karuppaiah Date: 26-SEP-2026 Description, Return the API target for a known-ATS URL, or None when no rule matches. (+14 more)
 
 ### Community 9 - "Community 9"
 Cohesion: 0.15
-Nodes (18): assert_safe_relative(), File Name: report.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Descript, UTC timestamp in the filename-safe contract format., Lowercase; every run of characters outside [a-z0-9] collapses to one hyphen., The per-job artifact name: slug + timestamp (+ .failed for fetch failures)., Reject absolute paths and traversal segments in artifact names., Write a validated model as pretty JSON under the run folder, path-confined., report_filename() (+10 more)
+Nodes (20): contact_line(), extract_candidate_identity(), _find_email(), _find_name(), _find_phone(), _find_urls(), File Name: candidate.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Descr, Extract whatever contact fields the resume text contains, deterministically. (+12 more)
 
 ### Community 10 - "Community 10"
-Cohesion: 0.16
-Nodes (14): analyze_job_fit(), File Name: analyze.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Descrip, Best-effort token accounting across pydantic-ai versions., Declared at the decorator (AOP): token usage + model onto the LLM span;     prom, Extract the typed, evidence-grounded analysis for one job posting., _span_enrichment(), _usage_dict(), load_prompt() (+6 more)
+Cohesion: 0.14
+Nodes (19): ats_rules_dir(), ensure_env_loaded(), fanout_concurrency(), _int_env(), job_min_words(), max_fetch_bytes(), max_resume_bytes(), File Name: config.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Descript (+11 more)
 
 ### Community 11 - "Community 11"
-Cohesion: 0.22
-Nodes (10): _build_exporters(), build_otel_sink(), OtelBridgeSink, otlp_env_configured(), File Name: observability/otel_bridge.py Author: Senthilnathan Karuppaiah Date: 1, True when any OTLP-shaped backend's activation env is present., Construct the bridge for whatever OTLP backends the env activates., Facade spans → OTel spans, fanned out to every configured OTLP exporter. (+2 more)
+Cohesion: 0.27
+Nodes (13): _count_matched(), js_round(), score_job_fit(), mk_skills(), File Name: test_scoring_determinism.py Author: Senthilnathan Karuppaiah Date: 11, Fixture helper — mirrors the Eve eval's mkSkills()., test_all_matched_scores_100(), test_empty_preferred_reallocates_to_required() (+5 more)
 
 ### Community 12 - "Community 12"
+Cohesion: 0.2
+Nodes (10): _build_exporters(), build_otel_sink(), OtelBridgeSink, otlp_env_configured(), File Name: observability/otel_bridge.py Author: Senthilnathan Karuppaiah Date: 1, True when any OTLP-shaped backend's activation env is present., Construct the bridge for whatever OTLP backends the env activates., Facade spans → OTel spans, fanned out to every configured OTLP exporter. (+2 more)
+
+### Community 13 - "Community 13"
+Cohesion: 0.22
+Nodes (10): run_analysis(), test_full_run_cover_letter_is_grounded_in_resume_text(), File Name: test_embeddable_core.py Author: Senthilnathan Karuppaiah Date: 11-JUL, test_full_offline_run_via_package_root(), test_all_failed_run_completes_cleanly(), test_analysis_exception_isolated_to_its_job(), test_api_mode_persists_nothing(), test_cli_mode_persistence_contract() (+2 more)
+
+### Community 14 - "Community 14"
 Cohesion: 0.4
 Nodes (0): 
 
-### Community 13 - "Community 13"
+### Community 15 - "Community 15"
 Cohesion: 0.5
 Nodes (2): Badge(), cn()
-
-### Community 14 - "Community 14"
-Cohesion: 0.67
-Nodes (0): 
-
-### Community 15 - "Community 15"
-Cohesion: 0.67
-Nodes (0): 
 
 ### Community 16 - "Community 16"
 Cohesion: 0.67
@@ -162,11 +164,11 @@ Cohesion: 0.67
 Nodes (0): 
 
 ### Community 19 - "Community 19"
-Cohesion: 1.0
+Cohesion: 0.67
 Nodes (0): 
 
 ### Community 20 - "Community 20"
-Cohesion: 1.0
+Cohesion: 0.67
 Nodes (0): 
 
 ### Community 21 - "Community 21"
@@ -277,82 +279,90 @@ Nodes (0):
 Cohesion: 1.0
 Nodes (0): 
 
+### Community 48 - "Community 48"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 49 - "Community 49"
+Cohesion: 1.0
+Nodes (0): 
+
 ## Knowledge Gaps
-- **65 isolated node(s):** `File Name: test_observability.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2`, `File Name: test_candidate.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026`, `Regression: configure() must not depend on something else (resolve_model())`, `File Name: test_slug_naming.py Author: Senthilnathan Karuppaiah Date: 11-JUL-202`, `File Name: test_match_banding.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2` (+60 more)
+- **77 isolated node(s):** `File Name: app.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Description`, `LLM-2: pydantic-ai agent with the MCP server as its only toolset.`, `Convert the wire-format {role, content} turns into pydantic-ai's     native mess`, `The one LLM-2 invocation per chat turn; wrapped so tests can stub it.`, `Stream a chat answer over SSE (ctms contract: content / done / error).` (+72 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **Thin community `Community 19`** (2 nodes): `index.js`, `callBackend()`
+- **Thin community `Community 21`** (2 nodes): `index.js`, `callBackend()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 20`** (2 nodes): `utils.ts`, `cn()`
+- **Thin community `Community 22`** (2 nodes): `layout.tsx`, `RootLayout()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 21`** (2 nodes): `use-backend-status.ts`, `useBackendStatus()`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 22`** (2 nodes): `input.tsx`, `Input()`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 23`** (2 nodes): `label.tsx`, `cn()`
+- **Thin community `Community 23`** (2 nodes): `separator.tsx`, `cn()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 24`** (2 nodes): `cn()`, `button.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 25`** (2 nodes): `Collapsible()`, `collapsible.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 26`** (2 nodes): `status-pill.tsx`, `StatusPill()`
+- **Thin community `Community 26`** (2 nodes): `label.tsx`, `cn()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 27`** (2 nodes): `handleCopy()`, `cover-letter-section.tsx`
+- **Thin community `Community 27`** (2 nodes): `input.tsx`, `Input()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 28`** (2 nodes): `score-bar.tsx`, `ScoreBar()`
+- **Thin community `Community 28`** (2 nodes): `handleCopy()`, `cover-letter-section.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 29`** (2 nodes): `resume-dropzone.tsx`, `ResumeDropzone()`
+- **Thin community `Community 29`** (2 nodes): `status-pill.tsx`, `StatusPill()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 30`** (2 nodes): `layout.tsx`, `RootLayout()`
+- **Thin community `Community 30`** (2 nodes): `resume-dropzone.tsx`, `ResumeDropzone()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 31`** (2 nodes): `main()`, `export-openapi.py`
+- **Thin community `Community 31`** (2 nodes): `score-bar.tsx`, `ScoreBar()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 32`** (1 nodes): `__init__.py`
+- **Thin community `Community 32`** (2 nodes): `use-backend-status.ts`, `useBackendStatus()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 33`** (1 nodes): `__init__.py`
+- **Thin community `Community 33`** (2 nodes): `main()`, `export-openapi.py`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 34`** (1 nodes): `smoke.mjs`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 35`** (1 nodes): `next.config.ts`
+- **Thin community `Community 35`** (1 nodes): `__init__.py`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 36`** (1 nodes): `eslint.config.mjs`
+- **Thin community `Community 36`** (1 nodes): `__init__.py`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 37`** (1 nodes): `postcss.config.mjs`
+- **Thin community `Community 37`** (1 nodes): `next.config.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 38`** (1 nodes): `types.ts`
+- **Thin community `Community 38`** (1 nodes): `eslint.config.mjs`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 39`** (1 nodes): `page.tsx`
+- **Thin community `Community 39`** (1 nodes): `postcss.config.mjs`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 40`** (1 nodes): `layout.tsx`
+- **Thin community `Community 40`** (1 nodes): `next.config.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 41`** (1 nodes): `report-card.tsx`
+- **Thin community `Community 41`** (1 nodes): `eslint.config.mjs`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 42`** (1 nodes): `nav-rail.tsx`
+- **Thin community `Community 42`** (1 nodes): `postcss.config.mjs`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 43`** (1 nodes): `results-panel.tsx`
+- **Thin community `Community 43`** (1 nodes): `report-card.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 44`** (1 nodes): `next.config.ts`
+- **Thin community `Community 44`** (1 nodes): `nav-rail.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 45`** (1 nodes): `eslint.config.mjs`
+- **Thin community `Community 45`** (1 nodes): `results-panel.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 46`** (1 nodes): `postcss.config.mjs`
+- **Thin community `Community 46`** (1 nodes): `types.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 47`** (1 nodes): `tablesort.js`
+- **Thin community `Community 47`** (1 nodes): `page.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 48`** (1 nodes): `layout.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 49`** (1 nodes): `tablesort.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `run_analysis()` connect `Community 4` to `Community 0`, `Community 1`, `Community 3`, `Community 6`, `Community 7`, `Community 8`, `Community 9`?**
-  _High betweenness centrality (0.165) - this node is a cross-community bridge._
-- **Why does `GET()` connect `Community 2` to `Community 0`, `Community 10`, `Community 11`, `Community 6`?**
-  _High betweenness centrality (0.164) - this node is a cross-community bridge._
-- **Why does `JobReport` connect `Community 4` to `Community 1`, `Community 2`, `Community 3`, `Community 5`, `Community 7`, `Community 9`?**
-  _High betweenness centrality (0.109) - this node is a cross-community bridge._
-- **Are the 34 inferred relationships involving `JobReport` (e.g. with `File Name: test_api.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Descri` and `File Name: test_schema_conformance.py Author: Senthilnathan Karuppaiah Date: 11-`) actually correct?**
+- **Why does `GET()` connect `Community 2` to `Community 1`, `Community 3`, `Community 7`, `Community 8`, `Community 12`?**
+  _High betweenness centrality (0.178) - this node is a cross-community bridge._
+- **Why does `fetch_job_source()` connect `Community 3` to `Community 0`, `Community 8`, `Community 2`, `Community 10`?**
+  _High betweenness centrality (0.150) - this node is a cross-community bridge._
+- **Why does `JobReport` connect `Community 0` to `Community 2`, `Community 4`, `Community 5`, `Community 7`?**
+  _High betweenness centrality (0.121) - this node is a cross-community bridge._
+- **Are the 34 inferred relationships involving `JobReport` (e.g. with `File Name: cli.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Description` and `Keeps single commands as named subcommands (jobmatch version, jobmatch analyze..`) actually correct?**
   _`JobReport` has 34 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 25 inferred relationships involving `JobAnalysis` (e.g. with `File Name: test_schema_conformance.py Author: Senthilnathan Karuppaiah Date: 11-` and `File Name: test_pipeline_offline.py Author: Senthilnathan Karuppaiah Date: 11-JU`) actually correct?**
+- **Are the 22 inferred relationships involving `fetch_job_source()` (e.g. with `resolve()` and `GET()`) actually correct?**
+  _`fetch_job_source()` has 22 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 25 inferred relationships involving `JobAnalysis` (e.g. with `File Name: report.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Descript` and `UTC timestamp in the filename-safe contract format.`) actually correct?**
   _`JobAnalysis` has 25 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 18 inferred relationships involving `extract_resume_text()` (e.g. with `test_synthetic_resume_identity()` and `test_all_fields_are_grounded_in_the_source_text()`) actually correct?**
-  _`extract_resume_text()` has 18 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 20 inferred relationships involving `SkillMatch` (e.g. with `File Name: test_scoring_determinism.py Author: Senthilnathan Karuppaiah Date: 11` and `Fixture helper — mirrors the Eve eval's mkSkills().`) actually correct?**
+- **Are the 20 inferred relationships involving `SkillMatch` (e.g. with `File Name: scoring.py Author: Senthilnathan Karuppaiah Date: 11-JUL-2026 Descrip` and `Round half away from zero for positives — JS Math.round semantics (2.5 → 3).`) actually correct?**
   _`SkillMatch` has 20 INFERRED edges - model-reasoned connections that need verification._

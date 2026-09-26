@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "node_count": 521,
-  "edge_count": 973,
+  "node_count": 566,
+  "edge_count": 1087,
   "module_count": 7,
   "modules": {
     "backend/job_matcher": {
@@ -9,23 +9,24 @@
         "__init__.py",
         "analyze.py",
         "api.py",
+        "ats.py",
         "candidate.py",
-        "cli.py",
-        "config.py"
+        "cli.py"
       ],
       "labels": [
         ".on_span_start()",
         ".on_span_end()",
-        "__init__.py",
-        "run_analysis()",
+        ".__init__()",
         "extract_resume_text()",
+        "analyze()",
         "extract_jsonresume()"
       ],
       "calls": [
-        "mcp/agent-service"
+        "backend/tests",
+        "scripts/graphify-index.py"
       ],
       "called_by": [
-        "backend/tests"
+        "mcp/agent-service"
       ]
     },
     "backend/tests": {
@@ -33,22 +34,22 @@
         "__init__.py",
         "conftest.py",
         "test_api.py",
+        "test_ats_rules.py",
         "test_candidate.py",
-        "test_cover_letter.py",
-        "test_embeddable_core.py"
+        "test_cover_letter.py"
       ],
       "labels": [
         "__init__.py",
-        "test_observability.py",
-        "RecorderSink",
-        ".__init__()",
-        ".on_span_start()",
-        ".on_span_end()"
+        "test_scoring_determinism.py",
+        "mk_skills()",
+        "test_all_matched_scores_100()",
+        "test_none_matched_scores_floor()",
+        "test_empty_preferred_reallocates_to_required()"
       ],
-      "calls": [
+      "calls": [],
+      "called_by": [
         "backend/job_matcher"
-      ],
-      "called_by": []
+      ]
     },
     "mcp/agent-service": {
       "entry_files": [
@@ -62,6 +63,22 @@
         "_sse()",
         "_action_label()",
         "_to_model_history()"
+      ],
+      "calls": [
+        "backend/job_matcher"
+      ],
+      "called_by": []
+    },
+    "scripts/graphify-index.py": {
+      "entry_files": [
+        "graphify-index.py"
+      ],
+      "labels": [
+        "graphify-index.py",
+        "module_for()",
+        "build_index()",
+        "main()",
+        "Return the module key for a given file path, or None if unrecognised."
       ],
       "calls": [],
       "called_by": [
@@ -85,20 +102,6 @@
       ],
       "labels": [
         "smoke.mjs"
-      ],
-      "calls": [],
-      "called_by": []
-    },
-    "scripts/graphify-index.py": {
-      "entry_files": [
-        "graphify-index.py"
-      ],
-      "labels": [
-        "graphify-index.py",
-        "module_for()",
-        "build_index()",
-        "main()",
-        "Return the module key for a given file path, or None if unrecognised."
       ],
       "calls": [],
       "called_by": []
