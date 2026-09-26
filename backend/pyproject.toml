@@ -23,6 +23,7 @@ dependencies = [
     "python-docx>=1.1",
     "python-dotenv>=1.0",
     "python-multipart>=0.0.9",
+    "zen-engine>=2.0",
 ]
 
 [project.optional-dependencies]
@@ -45,7 +46,7 @@ jobmatch = "job_matcher.cli:main"
 include = ["job_matcher*"]
 
 [tool.setuptools.package-data]
-job_matcher = ["prompts/*.txt", "templates/*.txt"]
+job_matcher = ["prompts/*.txt", "templates/*.txt", "ats_rules/*/*.json"]
 
 [tool.pytest.ini_options]
 markers = ["live: requires a configured model and network access"]

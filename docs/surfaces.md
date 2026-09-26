@@ -78,4 +78,4 @@ is a pure stdio bridge: it exposes the REST API as MCP tools and holds
 no logic of its own. Setup:
 [mcp/README.md](https://github.com/senthilsweb/agent-job-matcher/blob/main/mcp/README.md).
 
-Next: [Runbook](runbook.md).
+Next: [ATS rules](ats-rules.md).

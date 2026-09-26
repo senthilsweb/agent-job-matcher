@@ -1,0 +1,94 @@
+{
+  "contentType": "application/vnd.gorules.decision",
+  "nodes": [
+    {
+      "id": "in",
+      "type": "inputNode",
+      "name": "request",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "t",
+      "type": "decisionTableNode",
+      "name": "resolve",
+      "position": {
+        "x": 200,
+        "y": 0
+      },
+      "content": {
+        "hitPolicy": "first",
+        "inputs": [
+          {
+            "id": "h",
+            "name": "Host",
+            "field": "host"
+          },
+          {
+            "id": "n",
+            "name": "Path segments",
+            "field": "len(segments)"
+          },
+          {
+            "id": "s",
+            "name": "Second path segment",
+            "field": "segments[1]"
+          }
+        ],
+        "outputs": [
+          {
+            "id": "a",
+            "name": "ATS",
+            "field": "ats"
+          },
+          {
+            "id": "u",
+            "name": "API URL",
+            "field": "api_url"
+          },
+          {
+            "id": "j",
+            "name": "Job id",
+            "field": "job_id"
+          }
+        ],
+        "rules": [
+          {
+            "_id": "r1",
+            "h": "\"boards.greenhouse.io\", \"job-boards.greenhouse.io\"",
+            "n": ">= 3",
+            "a": "\"greenhouse\"",
+            "u": "\"https://boards-api.greenhouse.io/v1/boards/\" + segments[0] + \"/jobs/\" + segments[2] + \"?pay_transparency=true\"",
+            "j": "segments[2]",
+            "s": "\"jobs\""
+          }
+        ]
+      }
+    },
+    {
+      "id": "out",
+      "type": "outputNode",
+      "name": "response",
+      "position": {
+        "x": 400,
+        "y": 0
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "sourceId": "in",
+      "targetId": "t",
+      "type": "edge"
+    },
+    {
+      "id": "e2",
+      "sourceId": "t",
+      "targetId": "out",
+      "type": "edge"
+    }
+  ]
+}

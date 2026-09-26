@@ -17,7 +17,11 @@ This module fetches job content by:
    HTML → text extraction; minimum-extractable-words guard (the
    JavaScript-shell detector — the committed failure captures are the
    regression fixtures).
-3. Returning a typed FetchResult (ok/failed + reason) — a failure is
+3. ATS mode: a URL on a known applicant-tracking system (see ats.py and
+   the ats_rules/ folders) is fetched through that system's public
+   posting API instead of its JavaScript page. The API request REPLACES
+   the page request — still exactly one attempt, no page fallback.
+4. Returning a typed FetchResult (ok/failed + reason) — a failure is
    recorded, never retried, never fabricated into an analysis.
 
 Known residual risk (documented, accepted for the single-user CLI threat
@@ -33,6 +37,7 @@ Environment Variables (.env at repo root):
 # Import necessary libraries
 from __future__ import annotations
 
+import html
 import ipaddress
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -43,6 +48,7 @@ import httpx
 import structlog
 from bs4 import BeautifulSoup
 
+from job_matcher import ats
 from job_matcher.config import job_min_words, max_fetch_bytes
 from job_matcher.observability import traced
 
@@ -121,6 +127,20 @@ def _fetch_local(path: Path, source: str) -> FetchResult:
     return _word_guard(text, source)
 
 
+def _render_posting(posting: ats.AtsPosting) -> str:
+    """Turn a rule-extracted posting into the plain text the analyst reads."""
+    joined = "\n\n".join(part for part in posting.parts if part)
+    if posting.format == "html_escaped":
+        joined = html.unescape(joined)
+    body = html_to_text(joined) if posting.format != "plain" else " ".join(joined.split())
+    header = [posting.title]
+    if posting.location:
+        header.append(f"Location: {posting.location}")
+    if posting.pay:
+        header.append(f"Compensation: {posting.pay}")
+    return "\n".join(header) + "\n\n" + body
+
+
 @traced("fetch_job_source")
 async def fetch_job_source(source: str, client: httpx.AsyncClient | None = None) -> FetchResult:
     """Make the one and only fetch attempt for a job source. Never retries."""
@@ -141,31 +161,70 @@ async def fetch_job_source(source: str, client: httpx.AsyncClient | None = None)
     if reason := _blocked_host_reason(parsed.hostname):
         return FetchResult(job_source=source, ok=False, attempted_at=_now(), reason=reason)
 
+    # ATS mode — a known ATS is fetched through its API instead of its page
+    try:
+        target = ats.resolve(source)
+    except ats.AtsRuleError as exc:
+        log.warning("ats_rule_error", job_source=source, error=str(exc))
+        return FetchResult(job_source=source, ok=False, attempted_at=_now(), reason=f"ATS rule error: {exc}")
+    fetch_url, label = source, ""
+    if target:
+        api = urlparse(target.api_url)
+        if api.scheme != "https" or (reason := _blocked_host_reason(api.hostname)):
+            return FetchResult(
+                job_source=source, ok=False, attempted_at=_now(),
+                reason=f"{target.ats} rule produced an unusable API URL",
+            )
+        fetch_url, label = target.api_url, f"{target.ats} API: "
+
     own_client = client is None
     client = client or httpx.AsyncClient(follow_redirects=True, timeout=FETCH_TIMEOUT_SECONDS)
     try:
-        response = await client.get(source, headers={"User-Agent": USER_AGENT})
+        headers = {"User-Agent": USER_AGENT}
+        if target:
+            headers["Accept"] = "application/json"
+        response = await client.get(fetch_url, headers=headers)
         # Post-redirect re-check: a redirect must not land on a blocked target
         if reason := _blocked_host_reason(response.url.host):
             return FetchResult(
                 job_source=source, ok=False, attempted_at=_now(),
-                reason=f"redirected to a blocked target — {reason}",
+                reason=f"{label}redirected to a blocked target — {reason}",
             )
         if response.status_code >= 400:
             return FetchResult(
                 job_source=source, ok=False, attempted_at=_now(),
-                reason=f"HTTP {response.status_code}",
+                reason=f"{label}HTTP {response.status_code}",
             )
         if len(response.content) > max_fetch_bytes():
             return FetchResult(
                 job_source=source, ok=False, attempted_at=_now(),
-                reason=f"response exceeds the {max_fetch_bytes()} byte cap",
+                reason=f"{label}response exceeds the {max_fetch_bytes()} byte cap",
             )
-        text = html_to_text(response.text)
-        return _word_guard(text, source)
+        if not target:
+            return _word_guard(html_to_text(response.text), source)
+
+        # ATS mode continues: parse the API JSON, run the extract rule, guard the words
+        try:
+            body = response.json()
+        except ValueError:
+            return FetchResult(
+                job_source=source, ok=False, attempted_at=_now(),
+                reason=f"{label}response was not valid JSON",
+            )
+        try:
+            posting = ats.extract(target, body)
+        except ats.AtsRuleError as exc:
+            log.warning("ats_rule_error", job_source=source, error=str(exc))
+            return FetchResult(job_source=source, ok=False, attempted_at=_now(), reason=f"ATS rule error: {exc}")
+        if posting is None:
+            return FetchResult(
+                job_source=source, ok=False, attempted_at=_now(),
+                reason=f"job {target.job_id} not found on the {target.ats} board — it may have been closed",
+            )
+        return _word_guard(_render_posting(posting), source)
     except httpx.HTTPError as exc:
         log.info("job_fetch_failed", job_source=source, error=str(exc))
-        return FetchResult(job_source=source, ok=False, attempted_at=_now(), reason=f"fetch error: {exc}")
+        return FetchResult(job_source=source, ok=False, attempted_at=_now(), reason=f"{label}fetch error: {exc}")
     finally:
         if own_client:
             await client.aclose()

@@ -1,0 +1,75 @@
+{
+  "contentType": "application/vnd.gorules.decision",
+  "nodes": [
+    {
+      "id": "in",
+      "type": "inputNode",
+      "name": "request",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "x",
+      "type": "expressionNode",
+      "name": "extract",
+      "position": {
+        "x": 200,
+        "y": 0
+      },
+      "content": {
+        "expressions": [
+          {
+            "id": "0",
+            "key": "title",
+            "value": "filter(body.jobs, # .id == job_id)[0].title"
+          },
+          {
+            "id": "1",
+            "key": "location",
+            "value": "filter(body.jobs, # .id == job_id)[0].location"
+          },
+          {
+            "id": "2",
+            "key": "parts",
+            "value": "[filter(body.jobs, # .id == job_id)[0].descriptionPlain]"
+          },
+          {
+            "id": "3",
+            "key": "format",
+            "value": "\"plain\""
+          },
+          {
+            "id": "4",
+            "key": "pay",
+            "value": "filter(body.jobs, # .id == job_id)[0].compensation.scrapeableCompensationSalarySummary"
+          }
+        ]
+      }
+    },
+    {
+      "id": "out",
+      "type": "outputNode",
+      "name": "response",
+      "position": {
+        "x": 400,
+        "y": 0
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "sourceId": "in",
+      "targetId": "x",
+      "type": "edge"
+    },
+    {
+      "id": "e2",
+      "sourceId": "x",
+      "targetId": "out",
+      "type": "edge"
+    }
+  ]
+}
