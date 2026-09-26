@@ -1,6 +1,49 @@
 # CHANGELOG
 
 
+## v0.10.0 (2026-09-26)
+
+### Documentation
+
+- Faq naming + markdown capability parity (footnotes, details, tabbed, sortable tables) [skip
+  graphify]
+  ([`eddf2c8`](https://github.com/senthilsweb/agent-job-matcher/commit/eddf2c85a750ed7434a8621bede1429ab97e0519))
+
+project-wiki Bolt 3, consistent with ai-agents wiki-live-pages.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+- Project wiki — 7 task-organized pages, README front door, Pages site [skip graphify]
+  ([`60c2999`](https://github.com/senthilsweb/agent-job-matcher/commit/60c2999682af0528c1e13ba48b85004cef78a870))
+
+openspec/changes/project-wiki (both bolts): - docs/: index, getting-started, installation,
+  configuration, surfaces, runbook, faq — shared style guide, content relocated from README/RUNBOOK
+  - README trimmed to front door; RUNBOOK.md is now a pointer to docs/runbook.md - mkdocs.yml
+  (Material, mermaid via superfences) + docs.yml workflow (build --strict, mkdocs<2 pin,
+  deploy-pages); site/ gitignored
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+
+### Features
+
+- **fetch**: Read Ashby, Greenhouse and Lever postings through rule-driven ATS APIs
+  ([`4804df4`](https://github.com/senthilsweb/agent-job-matcher/commit/4804df474c6959d36ebe46d2c9044180c784555f))
+
+JavaScript-rendered job boards failed the min-words guard because the page fetch only saw an empty
+  shell. Each of these boards serves the same posting as public JSON, so a known ATS URL is now
+  fetched through its API instead.
+
+Routing and field picking live in per-ATS GoRules JSON rule files
+  (ats_rules/<ats>/{resolve,extract}.json, run by zen-engine), so a new ATS is a new folder rather
+  than a Python change. ATS_RULES_DIR adds or overrides rule sets. The HTTP call stays in Python
+  with every existing guard, a known ATS makes exactly one request, and there is no fallback to the
+  page. Unknown hosts follow the unchanged HTML path.
+
+Includes the openspec change, docs page, real-response fixtures, and 24 offline tests.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+
+
 ## v0.9.0 (2026-07-13)
 
 ### Features
