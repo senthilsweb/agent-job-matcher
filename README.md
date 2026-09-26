@@ -22,7 +22,7 @@ flowchart LR
     end
 
     subgraph B["backend/"]
-        API["FastAPI /analyze"] --> CORE["job_matcher core<br/>fetch → extract (LLM-1) → score"]
+        API["FastAPI /analyze"] --> CORE["job_matcher core<br/>fetch (page or ATS API) → extract (LLM-1) → score"]
         CLI["jobmatch CLI"] --> CORE
     end
 
@@ -46,6 +46,7 @@ cp .env.example .env                      # set MODEL_ANALYST + your provider ke
 | Use it from Claude Desktop | the MCP server — [mcp/README.md](mcp/README.md) |
 | Embed it in Python | `from job_matcher import run_analysis` — [Surfaces](docs/surfaces.md) |
 | Configure models, telemetry, templates | [Configuration](docs/configuration.md) |
+| Read a job on Ashby, Greenhouse, or Lever | works out of the box — [ATS rules](docs/ats-rules.md) |
 | Operate it (secrets, releases, CI) | [Runbook](docs/runbook.md) |
 
 ## Documentation
@@ -58,6 +59,8 @@ The wiki lives in [docs/](docs/) and is published at
 - [Installation](docs/installation.md) — pip, Docker image, or the full demo stack
 - [Configuration](docs/configuration.md) — every env var, model resolution, template overrides
 - [Surfaces](docs/surfaces.md) — CLI, REST (both services' endpoints), Python, chat/MCP
+- [Architecture](docs/architecture.md) — request flow, module map, design rules
+- [ATS rules](docs/ats-rules.md) — Ashby, Greenhouse, and Lever job links, and adding a board
 - [Runbook](docs/runbook.md) — workflows, secrets, releases, tests, graphify
 - [FAQ](docs/faq.md) — why the LLM never scores, and more, linked to specs
 

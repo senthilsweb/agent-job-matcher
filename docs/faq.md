@@ -39,6 +39,16 @@ deployable anywhere. The trade-off (no scanned-image resumes) is
 recorded in the design notes under
 [openspec/](https://github.com/senthilsweb/agent-job-matcher/tree/main/openspec).
 
+## Why do Ashby, Greenhouse, and Lever links work but other career pages may not?
+
+Those boards draw their pages with JavaScript, so a plain page fetch sees
+an empty shell and stops at the minimum-words guard. Each also serves the
+same posting as public JSON, so the fetcher reads that instead. A page on
+any other site is still fetched as HTML, and if it is a JavaScript shell you
+get the same readable failure as before. Support for a board is a small
+folder of JSON rule files, not code, so adding one is cheap.
+*Spec: [add-ats-rules-engine](https://github.com/senthilsweb/agent-job-matcher/tree/main/openspec/changes/add-ats-rules-engine).*
+
 ## Why are the eval fixtures committed captures?
 
 Because live postings close. The suite runs against four committed JD
