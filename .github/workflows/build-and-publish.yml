@@ -7,6 +7,13 @@ name: Build & publish
 # Auth uses the workflow's built-in GITHUB_TOKEN via the
 # `packages: write` permission — no repository secrets required.
 #
+# Only images whose inputs changed are built (and, off pull requests,
+# pushed): the `detect` job runs scripts/detect-changed-images.sh, which
+# owns the image -> path mapping. Tag pushes, manual runs, and changes to
+# this workflow build everything. Unchanged images keep their previous
+# `latest`, so a stale image can only happen if the path table in that
+# script is wrong — edit it whenever an image's build inputs change.
+#
 # NOTE: each package is created PRIVATE on its first-ever publish. Making
 # it public is a one-time manual step per package (GitHub → Packages →
 # <package> → Package settings → Change visibility) — there is no API
@@ -38,27 +45,55 @@ env:
   REGISTRY: ghcr.io
 
 jobs:
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.detect.outputs.matrix }}
+    steps:
+      - name: Checkout (full history, so any base commit resolves)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect images that need building
+        id: detect
+        env:
+          EVENT: ${{ github.event_name }}
+          REF: ${{ github.ref }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+          SHA: ${{ github.sha }}
+        run: |
+          # An empty range makes the script build everything (tags, manual runs).
+          RANGE=""
+          if [[ "$REF" != refs/tags/* ]]; then
+            if [[ "$EVENT" == "pull_request" ]]; then
+              RANGE="${PR_BASE}...${PR_HEAD}"
+            elif [[ "$EVENT" == "push" ]]; then
+              RANGE="${PUSH_BEFORE}..${SHA}"
+            fi
+          fi
+          MATRIX="$(bash scripts/detect-changed-images.sh "$RANGE")"
+          echo "range='${RANGE}' matrix=${MATRIX}"
+          echo "matrix=${MATRIX}" >> "$GITHUB_OUTPUT"
+          {
+            echo "### Images to build"
+            if [[ "$MATRIX" == "[]" ]]; then
+              echo "None — no image inputs changed in \`${RANGE}\`."
+            else
+              echo "$MATRIX" | python3 -c "import sys,json; [print('- ' + e['image']) for e in json.load(sys.stdin)]"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
   build-and-push:
+    needs: detect
+    if: needs.detect.outputs.matrix != '[]'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        include:
-          # Backend + CLI (the original image, name unchanged)
-          - image: senthilsweb/agent-job-matcher
-            context: .
-            dockerfile: ./Dockerfile
-          # MCP Bridge — repo-root context so it can COPY backend/ and mcp/
-          - image: senthilsweb/agent-job-matcher-agent-service
-            context: .
-            dockerfile: ./mcp/agent-service/Dockerfile
-          # Next.js apps — their own folders are their build contexts
-          - image: senthilsweb/agent-job-matcher-playground
-            context: ./playground
-            dockerfile: ./playground/Dockerfile
-          - image: senthilsweb/agent-job-matcher-openapi-docs
-            context: ./openapi-docs
-            dockerfile: ./openapi-docs/Dockerfile
+        include: ${{ fromJSON(needs.detect.outputs.matrix) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
