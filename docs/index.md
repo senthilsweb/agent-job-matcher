@@ -23,7 +23,7 @@ flowchart LR
     end
 
     subgraph B["backend/"]
-        API["FastAPI /analyze"] --> CORE["job_matcher core<br/>fetch → extract (LLM-1) → score"]
+        API["FastAPI /analyze"] --> CORE["job_matcher core<br/>fetch (page or ATS API) → extract (LLM-1) → score"]
         CLI["jobmatch CLI"] --> CORE
     end
 
@@ -42,6 +42,8 @@ agent service (LLM-2). Nothing else calls a model.
 | Trying it out | [Getting Started](getting-started.md) — a rendered fit report in 5 minutes |
 | Setting it up properly | [Installation](installation.md), then [Configuration](configuration.md) |
 | Integrating (API, Python, chat) | [Surfaces](surfaces.md) |
+| Understanding how it fits together | [Architecture](architecture.md) |
+| Adding support for a job board | [ATS rules](ats-rules.md) |
 | Operating it (releases, secrets, CI) | [Runbook](runbook.md) |
 | Wondering why it works this way | [FAQ](faq.md) |
 
@@ -57,6 +59,7 @@ agent service (LLM-2). Nothing else calls a model.
 | CLI | [Typer](https://typer.tiangolo.com/) | `jobmatch` |
 | Chat protocol | [Model Context Protocol](https://modelcontextprotocol.io/) (Node SDK) | `mcp/index.js`, a pure stdio bridge to the REST API |
 | Observability | structured `structlog` JSON + optional OpenTelemetry | decorator-only (AOP) instrumentation — [Configuration](configuration.md#telemetry-activates-by-env-alone) |
+| Job-board rules | [GoRules ZEN](https://gorules.io) via `zen-engine` | per-ATS JSON rule files decide the API address and where the posting text sits — [ATS rules](ats-rules.md) |
 | Document parsing | `pypdf`, `python-docx` | no OCR, no Docling — [FAQ](faq.md#why-pypdfpython-docx-and-not-ocr-or-docling) |
 
 ## Related repos
@@ -73,6 +76,8 @@ agent service (LLM-2). Nothing else calls a model.
 - [Installation](installation.md) — pip, Docker image, or the full demo stack.
 - [Configuration](configuration.md) — every environment variable, grouped by concern.
 - [Surfaces](surfaces.md) — CLI, REST, Python, and chat/MCP, with endpoint tables.
+- [Architecture](architecture.md) — request flow, module map, and the rules the design keeps.
+- [ATS rules](ats-rules.md) — how Ashby, Greenhouse, and Lever links are read, and how to add a board.
 - [Runbook](runbook.md) — workflows, secrets, releases, tests.
 - [FAQ](faq.md) — the reasoning, linked to specs.
 
