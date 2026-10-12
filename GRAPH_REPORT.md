@@ -1,4 +1,4 @@
-# Graph Report - /home/runner/work/agent-job-matcher/agent-job-matcher  (2026-10-05)
+# Graph Report - /home/runner/work/agent-job-matcher/agent-job-matcher  (2026-10-12)
 
 ## Corpus Check
 - 84 files · ~114,924 words
