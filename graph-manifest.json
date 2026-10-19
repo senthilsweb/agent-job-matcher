@@ -1,9 +1,9 @@
 {
   "version": 1,
   "source_repo": "senthilsweb/agent-job-matcher",
-  "source_sha": "f589e92e330e4cea262d34374f3425b427a7ef9c",
+  "source_sha": "ff3288c63704a169e7e0f9b848a4973f834987b9",
   "source_ref": "refs/heads/main",
   "graphify_version": "0.4.23",
-  "generated_at": "2026-10-12T06:32:39Z",
-  "run_url": "https://github.com/senthilsweb/agent-job-matcher/actions/runs/38213010324"
+  "generated_at": "2026-10-19T06:26:44Z",
+  "run_url": "https://github.com/senthilsweb/agent-job-matcher/actions/runs/39209922850"
 }
