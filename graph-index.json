@@ -17,9 +17,9 @@
         ".on_span_start()",
         ".on_span_end()",
         ".__init__()",
-        "extract_resume_text()",
-        "analyze()",
-        "extract_jsonresume()"
+        "extract_jsonresume()",
+        "_now()",
+        "extract_resume_text()"
       ],
       "calls": [
         "backend/tests",
@@ -40,11 +40,11 @@
       ],
       "labels": [
         "__init__.py",
-        "test_scoring_determinism.py",
-        "mk_skills()",
-        "test_all_matched_scores_100()",
-        "test_none_matched_scores_floor()",
-        "test_empty_preferred_reallocates_to_required()"
+        "test_schema_conformance.py",
+        "make_analysis()",
+        "test_matched_skill_requires_evidence()",
+        "test_unmatched_skill_forbids_evidence()",
+        "test_job_report_round_trips()"
       ],
       "calls": [],
       "called_by": [
@@ -57,12 +57,12 @@
         "test_app.py"
       ],
       "labels": [
-        "app.py",
-        "build_agent()",
-        "upload_dir()",
-        "_sse()",
-        "_action_label()",
-        "_to_model_history()"
+        "test_app.py",
+        "sse_events()",
+        "stubbed_chat()",
+        "test_chat_stream_ctms_contract()",
+        "test_chat_stream_empty_message_is_error()",
+        "test_chat_stream_exception_becomes_error_event()"
       ],
       "calls": [
         "backend/job_matcher"
